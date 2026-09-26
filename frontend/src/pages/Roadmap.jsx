@@ -4,7 +4,7 @@ import { getTask, loadProgress, saveProgress } from '../api/client.js'
 import RoadmapGraph from '../components/RoadmapGraph.jsx'
 import StepList from '../components/StepList.jsx'
 import StepPanel from '../components/StepPanel.jsx'
-import { stepState } from '../lib/graph.js'
+import { stepState, stages } from '../lib/graph.js'
 import { useLang, tr, fmtDate } from '../lib/i18n.jsx'
 
 export default function Roadmap() {
@@ -20,7 +20,7 @@ export default function Roadmap() {
   const [fresh, setFresh] = useState(new Set())
   const freshTimer = useRef()
   const [copied, setCopied] = useState(false)
-  const [view, setView] = useState(() => (window.innerWidth < 768 ? 'list' : 'graph'))
+  const [view, setView] = useState('list')
 
   useEffect(() => {
     getTask(taskId, place.state, place.city)
@@ -67,14 +67,12 @@ export default function Roadmap() {
 
   const pct = Math.round((done.size / task.steps.length) * 100)
   const step = task.steps.find((s) => s.id === selected)
-  const nextUp = task.steps.filter((s) => stepState(s, done) === 'available')
-  const visits = task.steps.filter((s) => s.type === 'visit').length
-  const online = task.steps.filter((s) => s.type === 'form').length
+  const branching = stages(task.steps).some((g) => g.length > 1)
 
   return (
     <section className="max-w-6xl mx-auto px-4 py-8">
-      <Link to="/" className="text-sm text-muted hover:text-ink">{t.newSearch}</Link>
-      <div className="mt-3 flex flex-wrap items-end justify-between gap-4">
+      <Link to="/" className="inline-flex items-center min-h-11 text-sm text-muted hover:text-ink">{t.newSearch}</Link>
+      <div className="mt-1 flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
         <div>
           <h1 className="font-display text-2xl sm:text-3xl">{tr(task, 'title', lang)}</h1>
           <p className="text-sm text-muted mt-1">
@@ -83,55 +81,41 @@ export default function Roadmap() {
             <Link to="/" className="underline underline-offset-2 hover:text-ink no-print">{t.changePlace}</Link>
             <span aria-hidden> · </span>
             <span>{t.verifiedLabel} {fmtDate(task.last_verified, lang)}</span>
-            {task.sample_data && <><span aria-hidden> · </span><span className="rounded bg-warn/10 text-warn px-1.5 py-0.5 text-xs">{t.sampleData}</span></>}
+            {task.sample_data && <><span aria-hidden> · </span><span>{t.sampleData}</span></>}
           </p>
         </div>
-        <div className="flex flex-wrap items-center gap-2 no-print">
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-sm no-print">
           <button onClick={async () => { try { await navigator.clipboard.writeText(location.href); setCopied(true); setTimeout(() => setCopied(false), 2000) } catch { /* clipboard blocked */ } }}
-            className="min-h-11 rounded-lg border border-line bg-card px-3 text-sm">{copied ? t.copied : t.copyLink}</button>
+            className="min-h-11 underline underline-offset-4 decoration-line hover:decoration-ink">{copied ? t.copied : t.copyLink}</button>
           <button onClick={() => { setView('list'); setTimeout(() => window.print(), 100) }}
-            className="min-h-11 rounded-lg border border-line bg-card px-3 text-sm">{t.print}</button>
-        <div role="tablist" className="flex rounded-lg border border-line bg-card p-1 text-sm">
-          {['graph', 'list'].map((v) => (
-            <button key={v} role="tab" aria-selected={view === v} onClick={() => setView(v)}
-              className={`min-h-9 px-3 rounded-md ${view === v ? 'bg-accent text-on-accent' : 'text-muted'}`}>{t[v]}</button>
-          ))}
-        </div>
+            className="min-h-11 underline underline-offset-4 decoration-line hover:decoration-ink">{t.print}</button>
+          {branching && (
+            <div role="tablist" className="hidden md:flex border border-ink/80 rounded-[3px]">
+              {['list', 'graph'].map((v) => (
+                <button key={v} role="tab" aria-selected={view === v} onClick={() => setView(v)}
+                  className={`min-h-10 px-3 ${view === v ? 'bg-ink text-paper' : 'text-muted hover:text-ink'}`}>{t[v]}</button>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
       {task.coverage !== 'full' && (
-        <p role="note" className="mt-4 rounded-lg border border-warn/40 bg-warn/5 px-4 py-3 text-sm">
+        <p role="note" className="mt-4 border-l-2 border-warn pl-4 py-1 text-sm max-w-3xl">
           {task.coverage === 'state' ? t.covState(task.city, task.state) : t.covNational(task.state)}
         </p>
       )}
 
-      <div className="mt-5" aria-label={`${pct}% complete`}>
-        <div className="flex justify-between text-xs text-muted mb-1"><span>{t.stepsDone(done.size, task.steps.length)}</span><span>{pct}%</span></div>
-        <div className="h-2 rounded-full bg-line overflow-hidden"><div className="h-full bg-done transition-all" style={{ width: `${pct}%` }} /></div>
+      <div className="mt-5 max-w-md">
+        <p className="text-xs text-muted mb-1.5 tabular-nums">{t.stepsDone(done.size, task.steps.length)}</p>
+        <div aria-hidden className="h-1 bg-line"><div className="h-full bg-done transition-all" style={{ width: `${pct}%` }} /></div>
       </div>
 
-      <div className="mt-5 rounded-xl border border-line bg-card px-5 py-4 flex flex-wrap gap-x-8 gap-y-3 text-sm">
-        <div className="min-w-0">
-          <p className="text-xs text-muted">{nextUp.length ? t.doNext : t.status}</p>
-          <p className="font-medium mt-0.5">
-            {nextUp.length
-              ? nextUp.map((s, i) => (
-                  <span key={s.id}>{i > 0 && <span className="text-muted font-normal"> {t.and} </span>}
-                    <button onClick={() => setSelected(s.id)} className="underline decoration-line underline-offset-4 hover:decoration-accent">{tr(s, 'name', lang)}</button>
-                  </span>))
-              : t.allDone}
-          </p>
-        </div>
-        <div><p className="text-xs text-muted">{t.onlineForms}</p><p className="font-medium mt-0.5 tabular-nums">{online}</p></div>
-        <div><p className="text-xs text-muted">{t.officeVisits}</p><p className="font-medium mt-0.5 tabular-nums">{visits}</p></div>
-      </div>
-
-      <div className="mt-6 grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
+      <div className="mt-8 grid grid-cols-[minmax(0,1fr)] gap-8 lg:grid-cols-[minmax(0,1fr)_340px]">
         {view === 'graph'
           ? <RoadmapGraph steps={task.steps} done={done} selectedId={selected} onSelect={setSelected} fresh={fresh} />
           : <StepList steps={task.steps} done={done} selectedId={selected} onSelect={setSelected} fresh={fresh} />}
-        <aside className="rounded-xl border border-line bg-card p-5 h-fit lg:sticky lg:top-6 no-print">
+        <aside className="border-t border-ink/80 pt-6 lg:border-t-0 lg:pt-0 lg:border-l lg:border-line lg:pl-8 h-fit lg:sticky lg:top-6 no-print">
           <StepPanel step={step} steps={task.steps} done={done} onToggle={toggle} taskTitle={task.title} rights={task.rights} />
         </aside>
       </div>

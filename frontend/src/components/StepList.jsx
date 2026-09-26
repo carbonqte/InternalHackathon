@@ -1,44 +1,52 @@
 import { stages, stepState } from '../lib/graph.js'
 import { useLang, tr } from '../lib/i18n.jsx'
 
-const tagCls = { done: 'bg-done/10 text-done', available: 'bg-accent text-on-accent', locked: 'bg-paper text-lock border border-line' }
+const Lock = () => (
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden className="inline -mt-0.5 mr-1"><rect x="5" y="11" width="14" height="10" rx="1.5" /><path d="M8 11V8a4 4 0 018 0v3" /></svg>
+)
 
 // Modelled on GOV.UK's step-by-step pattern: numbered stages, "and" for steps you can do in parallel.
+// Only the step you can act on now gets a label; locked steps are simply quieter.
 export default function StepList({ steps, done, selectedId, onSelect, fresh }) {
   const { lang, t } = useLang()
-  const tagText = { done: t.tagDone, available: t.tagStart, locked: t.tagLocked }
   return (
-    <ol className="relative">
-      {stages(steps).map((group, i, all) => (
-        <li key={i} className="relative pl-11 pb-6 last:pb-0 min-w-0 animate-reveal" style={{ animationDelay: `${i * 140}ms` }}>
-          {i < all.length - 1 && <span aria-hidden className="absolute left-[15px] top-8 bottom-0 w-0.5 bg-line" />}
-          <span className={`absolute left-0 top-0 w-8 h-8 rounded-full border-2 grid place-items-center text-sm font-semibold bg-paper ${group.every((s) => done.has(s.id)) ? 'border-done text-done' : 'border-ink'}`}>
-            {i + 1}
-          </span>
-          <div className="space-y-2 min-w-0">
+    <ol>
+      {stages(steps).map((group, i, all) => {
+        const groupDone = group.every((s) => done.has(s.id))
+        const groupNow = group.some((s) => stepState(s, done) === 'available')
+        return (
+          <li key={i} className="relative pl-12 pb-2 min-w-0">
+            {i < all.length - 1 && <span aria-hidden className="absolute left-[15px] top-9 bottom-0 w-px bg-line" />}
+            <span className={`absolute left-0 top-2.5 w-8 h-8 grid place-items-center font-display text-lg tabular-nums ${groupDone ? 'text-done' : groupNow ? 'text-stamp' : 'text-muted'}`}>
+              {groupDone ? '✓' : i + 1}
+            </span>
             {group.map((s, j) => {
               const st = stepState(s, done)
-              const label = tagText[st], cls = tagCls[st]
+              const sel = s.id === selectedId
               return (
                 <div key={s.id}>
-                  {j > 0 && <p className="text-xs font-semibold text-muted py-1">{t.and}</p>}
+                  {j > 0 && <p className="text-xs font-semibold text-muted pt-1">{t.and}</p>}
                   <button
                     onClick={() => onSelect(s.id)}
-                    aria-current={s.id === selectedId ? 'step' : undefined}
-                    className={`w-full text-left rounded-lg border px-4 py-3 flex items-center justify-between gap-3 transition-colors ${s.id === selectedId ? 'border-accent bg-accent-soft' : 'border-line bg-card hover:border-muted'} ${fresh?.has(s.id) ? 'animate-unlock' : ''}`}
+                    aria-current={sel ? 'step' : undefined}
+                    className={`w-full text-left py-3 pl-3 -ml-3 pr-2 border-l-2 flex items-start justify-between gap-3 transition-colors ${sel ? 'border-stamp bg-card' : 'border-transparent hover:bg-card'} ${fresh?.has(s.id) ? 'animate-unlock' : ''}`}
                   >
                     <span className="min-w-0 [overflow-wrap:anywhere]">
-                      <span className={`block text-sm font-medium ${st === 'locked' ? 'text-lock' : ''} ${st === 'done' ? 'line-through decoration-done/60' : ''}`}>{tr(s, 'name', lang)}</span>
-                      <span className="block text-xs text-muted mt-0.5">{t.types[s.type]}{s.office ? ` · ${tr(s, 'office', lang)}` : ''}</span>
+                      <span className={`block font-medium leading-snug ${st === 'locked' ? 'text-muted' : ''} ${st === 'done' ? 'line-through decoration-done/60 text-muted' : ''}`}>
+                        {st === 'locked' && <span className="sr-only">{t.tagLocked}: </span>}
+                        {tr(s, 'name', lang)}
+                      </span>
+                      <span className="block text-sm text-muted mt-0.5">{st === 'locked' && <Lock />}{t.types[s.type]}{s.office ? ` · ${tr(s, 'office', lang)}` : ''}</span>
                     </span>
-                    <span className={`shrink-0 text-[11px] font-medium rounded px-2 py-1 ${cls}`}>{label}</span>
+                    {st === 'available' && <span className="shrink-0 text-xs font-semibold text-stamp pt-1">{t.tagStart}</span>}
+                    {st === 'done' && <span className="sr-only">{t.tagDone}</span>}
                   </button>
                 </div>
               )
             })}
-          </div>
-        </li>
-      ))}
+          </li>
+        )
+      })}
     </ol>
   )
 }

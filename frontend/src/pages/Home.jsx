@@ -165,7 +165,7 @@ export default function Home() {
           <SweepLink to="/browse" className="text-sm font-semibold pb-0.5">{t.seeAllPlain(journeys.length)}</SweepLink>
         </div>
         <ul className="mt-6 grid lg:grid-cols-2 lg:gap-x-12">
-          {AREAS.map((a) => {
+          {AREAS.filter((a) => !SOON.includes(a)).map((a) => {
             const soon = SOON.includes(a)
             const inner = (
               <>

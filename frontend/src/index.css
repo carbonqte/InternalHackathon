@@ -7,8 +7,8 @@
   --color-ink: #14203a;
   --color-muted: #4f5a6b;
   --color-line: #dcd7cc;
-  --color-accent: #1f45a0;
-  --color-accent-soft: #e7ecf8;
+  --color-accent: #2b4a80;
+  --color-accent-soft: #e9edf4;
   --color-stamp: #a3281c;
   --color-band: #13223f;
   --color-on-band: #f7f5f0;
@@ -27,7 +27,7 @@
 :root[data-theme="dark"] {
   color-scheme: dark;
   --color-paper: #0d1420; --color-card: #151e2d; --color-ink: #e8edf5; --color-muted: #a3afc0;
-  --color-line: #2c384b; --color-grid: #182232; --color-accent: #8fb1ff; --color-accent-soft: #1b2a4a;
+  --color-line: #2c384b; --color-grid: #182232; --color-accent: #a9bfe6; --color-accent-soft: #1b2a4a;
   --color-on-accent: #0a1222; --color-stamp: #ff8f7f; --color-band: #182a4d; --color-on-band: #eef2f8; --color-band-muted: #aab6c9; --color-done: #6fd39a; --color-lock: #a3afc0; --color-warn: #f2a867;
 }
 :root[data-theme="contrast"] {

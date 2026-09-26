@@ -298,6 +298,13 @@ Object.assign(dict.kn, { sampleLabel: 'ಉದಾಹರಣೆ ಮಾರ್ಗಸ�
 Object.assign(dict.gu, { sampleLabel: 'ઉદાહરણ રોડમેપ', openFull: 'પૂરો રોડમેપ ખોલો', seeAllPlain: (n) => `બધી ${n} પ્રક્રિયાઓ` })
 Object.assign(dict.ta, { sampleLabel: 'எடுத்துக்காட்டு வழிவரைபடம்', openFull: 'முழு வழிவரைபடத்தைத் திற', seeAllPlain: (n) => `அனைத்து ${n} நடைமுறைகளும்` })
 
+Object.assign(dict.en, { moreDetails: 'Law, your rights and last check' })
+Object.assign(dict.hi, { moreDetails: 'क़ानून, आपके अधिकार और पिछली जाँच' })
+Object.assign(dict.mr, { moreDetails: 'कायदा, तुमचे हक्क आणि शेवटची तपासणी' })
+Object.assign(dict.kn, { moreDetails: 'ಕಾನೂನು, ನಿಮ್ಮ ಹಕ್ಕುಗಳು ಮತ್ತು ಕೊನೆಯ ಪರಿಶೀಲನೆ' })
+Object.assign(dict.gu, { moreDetails: 'કાયદો, તમારા અધિકારો અને છેલ્લી તપાસ' })
+Object.assign(dict.ta, { moreDetails: 'சட்டம், உங்கள் உரிமைகள், கடைசிச் சரிபார்ப்பு' })
+
 // English fills any gap in a translation, including nested groups like t.cats.
 const cache = {}
 function withFallback(lang) {
