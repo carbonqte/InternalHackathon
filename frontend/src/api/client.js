@@ -18,7 +18,7 @@ export async function listJurisdictions() {
 export async function listTasks() {
   await delay()
   return db
-    .map(({ task_id, title, title_hi, title_mr, category, popular, keywords }) => ({ task_id, title, title_hi, title_mr, category, popular, keywords }))
+    .map(({ steps, last_verified, sample_data, ...rest }) => rest)
     .sort((a, b) => (a.popular ?? 99) - (b.popular ?? 99))
 }
 

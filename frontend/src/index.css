@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Mukta", system-ui, sans-serif;
-  --font-display: "Mukta", system-ui, sans-serif;
+  --font-sans: "Mukta", "Noto Sans Kannada", "Noto Sans Gujarati", "Noto Sans Tamil", system-ui, sans-serif;
+  --font-display: "Mukta", "Noto Sans Kannada", "Noto Sans Gujarati", "Noto Sans Tamil", system-ui, sans-serif;
   --color-paper: #f4f6f9;
   --color-ink: #0f1b2d;
   --color-muted: #4d5b6e;
@@ -67,3 +67,6 @@ body { background: #fff; }
 
 .react-flow .react-flow__controls-button { width: 40px; height: 40px; }
 .react-flow .react-flow__controls-button svg { max-width: 16px; max-height: 16px; }
+
+/* Long words (Tamil, Kannada, German-style compounds) may wrap only when they would otherwise overflow. */
+main :where(h1, h2, h3, p, li, a, button, label, span, dd) { overflow-wrap: anywhere; }

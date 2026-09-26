@@ -28,7 +28,7 @@ export default function App() {
             <label htmlFor="lang" className="sr-only">{t.language}</label>
             <select id="lang" value={lang} onChange={(e) => setLang(e.target.value)}
               className="min-h-11 rounded-md border border-line bg-card px-2 text-sm">
-              {LANGS.map((l) => <option key={l.code} value={l.code}>{l.label}</option>)}
+              {LANGS.map((l) => <option key={l.code} value={l.code}>{l.label}{l.beta ? ' (Beta)' : ''}</option>)}
             </select>
             <Link to="/admin" className="text-sm text-muted hover:text-ink hidden sm:flex items-center min-h-11">{t.admin}</Link>
           </div>

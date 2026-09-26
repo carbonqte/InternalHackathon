@@ -33,7 +33,16 @@
       "ढाबा",
       "टपरी",
       "चहा",
-      "नाश्ता"
+      "नाश्ता",
+      "ಚಹಾ",
+      "ಹೋಟೆಲ್",
+      "ಊಟ",
+      "ચા",
+      "હોટલ",
+      "નાસ્તો",
+      "டீ",
+      "உணவகம்",
+      "உணவு"
     ],
     "last_verified": "2026-09-20",
     "sample_data": true,
@@ -63,7 +72,10 @@
           "act": "Income-tax Act, 1961",
           "url": "https://www.indiacode.nic.in/",
           "verified": true
-        }
+        },
+        "name_kn": "ಪ್ಯಾನ್ ಕಾರ್ಡ್",
+        "name_gu": "પાન કાર્ડ",
+        "name_ta": "பான் அட்டை"
       },
       {
         "id": "s2",
@@ -85,7 +97,10 @@
         "scope": "national",
         "requirement": "required",
         "processing_time": null,
-        "verified_on": "2026-09-20"
+        "verified_on": "2026-09-20",
+        "name_kn": "ವ್ಯವಹಾರ ಸ್ಥಳದ ಪುರಾವೆ",
+        "name_gu": "વ્યવસાયના સ્થળનો પુરાવો",
+        "name_ta": "தொழில் இடத்துக்கான சான்று"
       },
       {
         "id": "s3",
@@ -114,7 +129,10 @@
           "act": "Micro, Small and Medium Enterprises Development Act, 2006",
           "url": "https://www.indiacode.nic.in/",
           "verified": true
-        }
+        },
+        "name_kn": "ಉದ್ಯಮ್ (MSME) ನೋಂದಣಿ",
+        "name_gu": "ઉદ્યમ (MSME) નોંધણી",
+        "name_ta": "உத்யம் (MSME) பதிவு"
       },
       {
         "id": "s5",
@@ -145,7 +163,10 @@
           "act": "Food Safety and Standards Act, 2006",
           "url": "https://www.indiacode.nic.in/",
           "verified": true
-        }
+        },
+        "name_kn": "FSSAI ನೋಂದಣಿ / ಪರವಾನಗಿ",
+        "name_gu": "FSSAI નોંધણી / લાઇસન્સ",
+        "name_ta": "FSSAI பதிவு / உரிமம்"
       },
       {
         "id": "s7",
@@ -180,7 +201,10 @@
         },
         "condition": "Only if your turnover is above the GST registration limit",
         "condition_hi": "केवल तब, जब आपका टर्नओवर GST पंजीकरण सीमा से अधिक हो",
-        "condition_mr": "फक्त तुमची उलाढाल GST नोंदणी मर्यादेपेक्षा जास्त असल्यास"
+        "condition_mr": "फक्त तुमची उलाढाल GST नोंदणी मर्यादेपेक्षा जास्त असल्यास",
+        "name_kn": "GST ನೋಂದಣಿ (ಮಿತಿ ಮೀರಿದರೆ)",
+        "name_gu": "GST નોંધણી (મર્યાદાથી વધુ હોય તો)",
+        "name_ta": "GST பதிவு (வரம்பைத் தாண்டினால்)"
       },
       {
         "id": "s4",
@@ -212,7 +236,10 @@
           "act": "Maharashtra Shops and Establishments (Regulation of Employment and Conditions of Service) Act, 2017",
           "url": "https://www.indiacode.nic.in/",
           "verified": true
-        }
+        },
+        "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
+        "name_gu": "દુકાન અને સંસ્થા નોંધણી",
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
       },
       {
         "id": "s6",
@@ -245,7 +272,10 @@
           "act": "Mumbai Municipal Corporation Act, 1888",
           "url": "https://www.indiacode.nic.in/",
           "verified": false
-        }
+        },
+        "name_kn": "ಆರೋಗ್ಯ / ವ್ಯಾಪಾರ ಪರವಾನಗಿ (BMC)",
+        "name_gu": "આરોગ્ય / વેપાર લાઇસન્સ (BMC)",
+        "name_ta": "சுகாதார / வணிக உரிமம் (BMC)"
       },
       {
         "id": "s9",
@@ -278,7 +308,294 @@
           "act": "Maharashtra Municipal Corporations Act, 1949",
           "url": "https://www.indiacode.nic.in/",
           "verified": false
-        }
+        },
+        "name_kn": "ವ್ಯಾಪಾರ ಪರವಾನಗಿ (PMC)",
+        "name_gu": "વેપાર લાઇસન્સ (PMC)",
+        "name_ta": "வணிக உரிமம் (PMC)"
+      },
+      {
+        "id": "s4_ka",
+        "name": "Shop & Establishment registration",
+        "name_hi": "दुकान एवं प्रतिष्ठान पंजीकरण",
+        "name_mr": "दुकान व आस्थापना नोंदणी",
+        "type": "form",
+        "office": "Karnataka Labour Dept (e-Karmika, online)",
+        "office_hi": "कर्नाटक श्रम विभाग (ई-कार्मिका, ऑनलाइन)",
+        "office_mr": "कर्नाटक कामगार विभाग (ई-कार्मिका, ऑनलाइन)",
+        "documents": [
+          "PAN",
+          "Premises proof",
+          "Photo of shop with name board"
+        ],
+        "fee": null,
+        "link": "https://www.ekarmika.karnataka.gov.in/ekarmika/static/home.aspx",
+        "status": "approved",
+        "depends_on": [
+          "s1",
+          "s2"
+        ],
+        "scope": "state",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "state": "Karnataka",
+        "legal": {
+          "act": "Karnataka Shops and Commercial Establishments Act, 1961",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": true
+        },
+        "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
+        "name_gu": "દુકાન અને સંસ્થા નોંધણી",
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
+      },
+      {
+        "id": "s4_gj",
+        "name": "Shop & Establishment registration",
+        "name_hi": "दुकान एवं प्रतिष्ठान पंजीकरण",
+        "name_mr": "दुकान व आस्थापना नोंदणी",
+        "type": "form",
+        "office": "Your municipal corporation (AMC in Ahmedabad)",
+        "office_hi": "आपकी नगर निगम (अहमदाबाद में AMC)",
+        "office_mr": "तुमची महानगरपालिका (अहमदाबादमध्ये AMC)",
+        "documents": [
+          "PAN",
+          "Premises proof",
+          "Photo of shop with name board"
+        ],
+        "fee": null,
+        "link": "https://ahmedabadcity.gov.in/portal/jsp/Static_pages/shops_establishment.jsp",
+        "status": "approved",
+        "depends_on": [
+          "s1",
+          "s2"
+        ],
+        "scope": "state",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "state": "Gujarat",
+        "legal": {
+          "act": "Gujarat Shops and Establishments (Regulation of Employment and Conditions of Service) Act, 2019",
+          "url": "https://www.indiacode.nic.in/handle/123456789/15202",
+          "verified": true
+        },
+        "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
+        "name_gu": "દુકાન અને સંસ્થા નોંધણી",
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
+      },
+      {
+        "id": "s4_tn",
+        "name": "Shop & Establishment registration",
+        "name_hi": "दुकान एवं प्रतिष्ठान पंजीकरण",
+        "name_mr": "दुकान व आस्थापना नोंदणी",
+        "type": "form",
+        "office": "Tamil Nadu Labour Dept (online)",
+        "office_hi": "तमिलनाडु श्रम विभाग (ऑनलाइन)",
+        "office_mr": "तमिळनाडू कामगार विभाग (ऑनलाइन)",
+        "documents": [
+          "PAN",
+          "Premises proof",
+          "Photo of shop with name board"
+        ],
+        "fee": null,
+        "link": "https://labour.tn.gov.in/services/shop-establishments/registration",
+        "status": "approved",
+        "depends_on": [
+          "s1",
+          "s2"
+        ],
+        "scope": "state",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "state": "Tamil Nadu",
+        "legal": {
+          "act": "Tamil Nadu Shops and Establishments Act, 1947",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": true
+        },
+        "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
+        "name_gu": "દુકાન અને સંસ્થા નોંધણી",
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
+      },
+      {
+        "id": "s4_dl",
+        "name": "Shop & Establishment registration",
+        "name_hi": "दुकान एवं प्रतिष्ठान पंजीकरण",
+        "name_mr": "दुकान व आस्थापना नोंदणी",
+        "type": "form",
+        "office": "Delhi Labour Dept (online)",
+        "office_hi": "दिल्ली श्रम विभाग (ऑनलाइन)",
+        "office_mr": "दिल्ली कामगार विभाग (ऑनलाइन)",
+        "documents": [
+          "PAN",
+          "Premises proof",
+          "Photo of shop with name board"
+        ],
+        "fee": null,
+        "link": "https://labour.delhi.gov.in/labour/delhi-shops-act-1954",
+        "status": "approved",
+        "depends_on": [
+          "s1",
+          "s2"
+        ],
+        "scope": "state",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "state": "Delhi",
+        "legal": {
+          "act": "Delhi Shops and Establishments Act, 1954",
+          "url": "https://www.indiacode.nic.in/handle/123456789/13587",
+          "verified": true
+        },
+        "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
+        "name_gu": "દુકાન અને સંસ્થા નોંધણી",
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
+      },
+      {
+        "id": "s9_blr",
+        "name": "Trade licence (Bengaluru city corporation)",
+        "name_hi": "व्यापार लाइसेंस (बेंगलुरु नगर निगम)",
+        "name_mr": "व्यापार परवाना (बेंगळुरू महानगरपालिका)",
+        "type": "visit",
+        "office": "Your city corporation under the Greater Bengaluru Authority",
+        "office_hi": "ग्रेटर बेंगलुरु प्राधिकरण के तहत आपकी नगर निगम",
+        "office_mr": "ग्रेटर बेंगळुरू प्राधिकरणाअंतर्गत तुमची महानगरपालिका",
+        "documents": [
+          "FSSAI certificate",
+          "Shop Act certificate",
+          "Premises proof"
+        ],
+        "fee": null,
+        "link": "https://gba.karnataka.gov.in",
+        "status": "approved",
+        "depends_on": [
+          "s4_ka",
+          "s5"
+        ],
+        "scope": "local",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "state": "Karnataka",
+        "city": "Bengaluru",
+        "legal": {
+          "act": "Greater Bengaluru Governance Act, 2024",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": false
+        },
+        "name_kn": "ವ್ಯಾಪಾರ ಪರವಾನಗಿ (ಬೆಂಗಳೂರು ನಗರ ಪಾಲಿಕೆ)",
+        "name_gu": "વેપાર લાઇસન્સ (બેંગલુરુ મહાનગરપાલિકા)",
+        "name_ta": "வணிக உரிமம் (பெங்களூரு மாநகராட்சி)"
+      },
+      {
+        "id": "s9_chn",
+        "name": "Trade licence (Greater Chennai Corporation)",
+        "name_hi": "व्यापार लाइसेंस (ग्रेटर चेन्नई निगम)",
+        "name_mr": "व्यापार परवाना (ग्रेटर चेन्नई महानगरपालिका)",
+        "type": "visit",
+        "office": "Greater Chennai Corporation (online)",
+        "office_hi": "ग्रेटर चेन्नई निगम (ऑनलाइन)",
+        "office_mr": "ग्रेटर चेन्नई महानगरपालिका (ऑनलाइन)",
+        "documents": [
+          "FSSAI certificate",
+          "Shop Act certificate",
+          "Premises proof"
+        ],
+        "fee": null,
+        "link": "https://chennaicorporation.gov.in",
+        "status": "approved",
+        "depends_on": [
+          "s4_tn",
+          "s5"
+        ],
+        "scope": "local",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "state": "Tamil Nadu",
+        "city": "Chennai",
+        "legal": {
+          "act": "Chennai City Municipal Corporation Act, 1919",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": false
+        },
+        "name_kn": "ವ್ಯಾಪಾರ ಪರವಾನಗಿ (ಗ್ರೇಟರ್ ಚೆನ್ನೈ ಪಾಲಿಕೆ)",
+        "name_gu": "વેપાર લાઇસન્સ (ગ્રેટર ચેન્નાઈ કોર્પોરેશન)",
+        "name_ta": "வணிக உரிமம் (பெருநகர சென்னை மாநகராட்சி)"
+      },
+      {
+        "id": "s9_mcd",
+        "name": "Health trade licence (MCD)",
+        "name_hi": "हेल्थ ट्रेड लाइसेंस (MCD)",
+        "name_mr": "हेल्थ ट्रेड परवाना (MCD)",
+        "type": "visit",
+        "office": "Municipal Corporation of Delhi (online)",
+        "office_hi": "दिल्ली नगर निगम (ऑनलाइन)",
+        "office_mr": "दिल्ली महानगरपालिका (ऑनलाइन)",
+        "documents": [
+          "FSSAI certificate",
+          "Shop Act certificate",
+          "Premises proof"
+        ],
+        "fee": null,
+        "link": "https://etl.mcdonline.nic.in/",
+        "status": "approved",
+        "depends_on": [
+          "s4_dl",
+          "s5"
+        ],
+        "scope": "local",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "state": "Delhi",
+        "city": "Delhi (MCD area)",
+        "legal": {
+          "act": "Delhi Municipal Corporation Act, 1957",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": false
+        },
+        "name_kn": "ಆರೋಗ್ಯ ವ್ಯಾಪಾರ ಪರವಾನಗಿ (MCD)",
+        "name_gu": "હેલ્થ ટ્રેડ લાઇસન્સ (MCD)",
+        "name_ta": "சுகாதார வணிக உரிமம் (MCD)"
+      },
+      {
+        "id": "s9_ndmc",
+        "name": "Health trade licence (NDMC)",
+        "name_hi": "हेल्थ ट्रेड लाइसेंस (NDMC)",
+        "name_mr": "हेल्थ ट्रेड परवाना (NDMC)",
+        "type": "visit",
+        "office": "New Delhi Municipal Council (online)",
+        "office_hi": "नई दिल्ली नगर पालिका परिषद (ऑनलाइन)",
+        "office_mr": "नवी दिल्ली नगरपालिका परिषद (ऑनलाइन)",
+        "documents": [
+          "FSSAI certificate",
+          "Shop Act certificate",
+          "Premises proof"
+        ],
+        "fee": null,
+        "link": "https://online.ndmc.gov.in/hl/",
+        "status": "approved",
+        "depends_on": [
+          "s4_dl",
+          "s5"
+        ],
+        "scope": "local",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "state": "Delhi",
+        "city": "New Delhi (NDMC area)",
+        "legal": {
+          "act": "New Delhi Municipal Council Act, 1994",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": false
+        },
+        "name_kn": "ಆರೋಗ್ಯ ವ್ಯಾಪಾರ ಪರವಾನಗಿ (NDMC)",
+        "name_gu": "હેલ્થ ટ્રેડ લાઇસન્સ (NDMC)",
+        "name_ta": "சுகாதார வணிக உரிமம் (NDMC)"
       },
       {
         "id": "s8",
@@ -297,16 +614,26 @@
           "s3",
           "s6",
           "s9",
-          "s7"
+          "s7",
+          "s9_blr",
+          "s9_chn",
+          "s9_mcd",
+          "s9_ndmc"
         ],
         "scope": "national",
         "requirement": "required",
         "processing_time": null,
-        "verified_on": "2026-09-20"
+        "verified_on": "2026-09-20",
+        "name_kn": "ವ್ಯವಹಾರ ಆರಂಭ",
+        "name_gu": "વ્યવસાય શરૂ",
+        "name_ta": "தொழில் தொடக்கம்"
       }
     ],
     "category": "food",
-    "popular": 1
+    "popular": 1,
+    "title_kn": "ಸಣ್ಣ ಆಹಾರ ವ್ಯವಹಾರ ಆರಂಭಿಸಿ",
+    "title_gu": "નાનો ખાદ્ય વ્યવસાય શરૂ કરો",
+    "title_ta": "சிறு உணவுத் தொழில் தொடங்கு"
   },
   {
     "task_id": "small-business",
@@ -330,7 +657,13 @@
       "स्टार्टअप",
       "कंपनी",
       "नोंदणी",
-      "पंजीकरण"
+      "पंजीकरण",
+      "ಅಂಗಡಿ",
+      "ವ್ಯವಹಾರ",
+      "દુકાન",
+      "વ્યવસાય",
+      "கடை",
+      "தொழில்"
     ],
     "last_verified": "2026-09-20",
     "sample_data": true,
@@ -360,7 +693,10 @@
           "act": "Income-tax Act, 1961",
           "url": "https://www.indiacode.nic.in/",
           "verified": true
-        }
+        },
+        "name_kn": "ಪ್ಯಾನ್ ಕಾರ್ಡ್",
+        "name_gu": "પાન કાર્ડ",
+        "name_ta": "பான் அட்டை"
       },
       {
         "id": "b2",
@@ -385,7 +721,10 @@
         "scope": "national",
         "requirement": "required",
         "processing_time": null,
-        "verified_on": "2026-09-20"
+        "verified_on": "2026-09-20",
+        "name_kn": "ವ್ಯವಹಾರ ಬ್ಯಾಂಕ್ ಖಾತೆ",
+        "name_gu": "વ્યવસાયનું બેંક ખાતું",
+        "name_ta": "தொழில் வங்கிக் கணக்கு"
       },
       {
         "id": "b3",
@@ -414,7 +753,10 @@
           "act": "Micro, Small and Medium Enterprises Development Act, 2006",
           "url": "https://www.indiacode.nic.in/",
           "verified": true
-        }
+        },
+        "name_kn": "ಉದ್ಯಮ್ (MSME) ನೋಂದಣಿ",
+        "name_gu": "ઉદ્યમ (MSME) નોંધણી",
+        "name_ta": "உத்யம் (MSME) பதிவு"
       },
       {
         "id": "b4",
@@ -444,7 +786,10 @@
           "act": "Maharashtra Shops and Establishments (Regulation of Employment and Conditions of Service) Act, 2017",
           "url": "https://www.indiacode.nic.in/",
           "verified": true
-        }
+        },
+        "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
+        "name_gu": "દુકાન અને સંસ્થા નોંધણી",
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
       },
       {
         "id": "b5",
@@ -479,7 +824,142 @@
         },
         "condition": "Only if your turnover is above the GST registration limit",
         "condition_hi": "केवल तब, जब आपका टर्नओवर GST पंजीकरण सीमा से अधिक हो",
-        "condition_mr": "फक्त तुमची उलाढाल GST नोंदणी मर्यादेपेक्षा जास्त असल्यास"
+        "condition_mr": "फक्त तुमची उलाढाल GST नोंदणी मर्यादेपेक्षा जास्त असल्यास",
+        "name_kn": "GST ನೋಂದಣಿ (ಮಿತಿ ಮೀರಿದರೆ)",
+        "name_gu": "GST નોંધણી (મર્યાદાથી વધુ હોય તો)",
+        "name_ta": "GST பதிவு (வரம்பைத் தாண்டினால்)"
+      },
+      {
+        "id": "b4_ka",
+        "name": "Shop & Establishment registration",
+        "name_hi": "दुकान एवं प्रतिष्ठान पंजीकरण",
+        "name_mr": "दुकान व आस्थापना नोंदणी",
+        "type": "form",
+        "office": "Karnataka Labour Dept (e-Karmika, online)",
+        "office_hi": "कर्नाटक श्रम विभाग (ई-कार्मिका, ऑनलाइन)",
+        "office_mr": "कर्नाटक कामगार विभाग (ई-कार्मिका, ऑनलाइन)",
+        "documents": [
+          "PAN",
+          "Premises proof"
+        ],
+        "fee": null,
+        "link": "https://www.ekarmika.karnataka.gov.in/ekarmika/static/home.aspx",
+        "status": "approved",
+        "depends_on": [
+          "b1"
+        ],
+        "scope": "state",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "state": "Karnataka",
+        "legal": {
+          "act": "Karnataka Shops and Commercial Establishments Act, 1961",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": true
+        },
+        "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
+        "name_gu": "દુકાન અને સંસ્થા નોંધણી",
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
+      },
+      {
+        "id": "b4_gj",
+        "name": "Shop & Establishment registration",
+        "name_hi": "दुकान एवं प्रतिष्ठान पंजीकरण",
+        "name_mr": "दुकान व आस्थापना नोंदणी",
+        "type": "form",
+        "office": "Your municipal corporation (AMC in Ahmedabad)",
+        "office_hi": "आपकी नगर निगम (अहमदाबाद में AMC)",
+        "office_mr": "तुमची महानगरपालिका (अहमदाबादमध्ये AMC)",
+        "documents": [
+          "PAN",
+          "Premises proof"
+        ],
+        "fee": null,
+        "link": "https://ahmedabadcity.gov.in/portal/jsp/Static_pages/shops_establishment.jsp",
+        "status": "approved",
+        "depends_on": [
+          "b1"
+        ],
+        "scope": "state",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "state": "Gujarat",
+        "legal": {
+          "act": "Gujarat Shops and Establishments (Regulation of Employment and Conditions of Service) Act, 2019",
+          "url": "https://www.indiacode.nic.in/handle/123456789/15202",
+          "verified": true
+        },
+        "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
+        "name_gu": "દુકાન અને સંસ્થા નોંધણી",
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
+      },
+      {
+        "id": "b4_tn",
+        "name": "Shop & Establishment registration",
+        "name_hi": "दुकान एवं प्रतिष्ठान पंजीकरण",
+        "name_mr": "दुकान व आस्थापना नोंदणी",
+        "type": "form",
+        "office": "Tamil Nadu Labour Dept (online)",
+        "office_hi": "तमिलनाडु श्रम विभाग (ऑनलाइन)",
+        "office_mr": "तमिळनाडू कामगार विभाग (ऑनलाइन)",
+        "documents": [
+          "PAN",
+          "Premises proof"
+        ],
+        "fee": null,
+        "link": "https://labour.tn.gov.in/services/shop-establishments/registration",
+        "status": "approved",
+        "depends_on": [
+          "b1"
+        ],
+        "scope": "state",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "state": "Tamil Nadu",
+        "legal": {
+          "act": "Tamil Nadu Shops and Establishments Act, 1947",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": true
+        },
+        "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
+        "name_gu": "દુકાન અને સંસ્થા નોંધણી",
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
+      },
+      {
+        "id": "b4_dl",
+        "name": "Shop & Establishment registration",
+        "name_hi": "दुकान एवं प्रतिष्ठान पंजीकरण",
+        "name_mr": "दुकान व आस्थापना नोंदणी",
+        "type": "form",
+        "office": "Delhi Labour Dept (online)",
+        "office_hi": "दिल्ली श्रम विभाग (ऑनलाइन)",
+        "office_mr": "दिल्ली कामगार विभाग (ऑनलाइन)",
+        "documents": [
+          "PAN",
+          "Premises proof"
+        ],
+        "fee": null,
+        "link": "https://labour.delhi.gov.in/labour/delhi-shops-act-1954",
+        "status": "approved",
+        "depends_on": [
+          "b1"
+        ],
+        "scope": "state",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "state": "Delhi",
+        "legal": {
+          "act": "Delhi Shops and Establishments Act, 1954",
+          "url": "https://www.indiacode.nic.in/handle/123456789/13587",
+          "verified": true
+        },
+        "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
+        "name_gu": "દુકાન અને સંસ્થા નોંધણી",
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
       },
       {
         "id": "b6",
@@ -501,11 +981,17 @@
         "scope": "national",
         "requirement": "required",
         "processing_time": null,
-        "verified_on": "2026-09-20"
+        "verified_on": "2026-09-20",
+        "name_kn": "ವ್ಯಾಪಾರಕ್ಕೆ ಸಿದ್ಧ",
+        "name_gu": "વેપાર માટે તૈયાર",
+        "name_ta": "வணிகத்துக்குத் தயார்"
       }
     ],
     "category": "retail",
-    "popular": 2
+    "popular": 2,
+    "title_kn": "ಸಣ್ಣ ವ್ಯವಹಾರ ನೋಂದಣಿ (ಆಹಾರೇತರ)",
+    "title_gu": "નાના વ્યવસાયની નોંધણી (ખાદ્ય સિવાય)",
+    "title_ta": "சிறு தொழில் பதிவு (உணவு அல்லாதது)"
   },
   {
     "task_id": "salon",
@@ -526,7 +1012,13 @@
       "ब्यूटी",
       "नाई",
       "सलून",
-      "ब्युटी"
+      "ब्युटी",
+      "ಸಲೂನ್",
+      "ಬ್ಯೂಟಿ",
+      "સલૂન",
+      "પાર્લર",
+      "சலூன்",
+      "அழகு"
     ],
     "last_verified": "2026-09-20",
     "sample_data": true,
@@ -556,7 +1048,10 @@
           "act": "Income-tax Act, 1961",
           "url": "https://www.indiacode.nic.in/",
           "verified": true
-        }
+        },
+        "name_kn": "ಪ್ಯಾನ್ ಕಾರ್ಡ್",
+        "name_gu": "પાન કાર્ડ",
+        "name_ta": "பான் அட்டை"
       },
       {
         "id": "v2",
@@ -578,7 +1073,10 @@
         "scope": "national",
         "requirement": "required",
         "processing_time": null,
-        "verified_on": "2026-09-20"
+        "verified_on": "2026-09-20",
+        "name_kn": "ವ್ಯವಹಾರ ಸ್ಥಳದ ಪುರಾವೆ",
+        "name_gu": "વ્યવસાયના સ્થળનો પુરાવો",
+        "name_ta": "தொழில் இடத்துக்கான சான்று"
       },
       {
         "id": "v3",
@@ -607,7 +1105,10 @@
           "act": "Micro, Small and Medium Enterprises Development Act, 2006",
           "url": "https://www.indiacode.nic.in/",
           "verified": true
-        }
+        },
+        "name_kn": "ಉದ್ಯಮ್ (MSME) ನೋಂದಣಿ",
+        "name_gu": "ઉદ્યમ (MSME) નોંધણી",
+        "name_ta": "உத்யம் (MSME) பதிவு"
       },
       {
         "id": "v4",
@@ -639,7 +1140,10 @@
           "act": "Maharashtra Shops and Establishments (Regulation of Employment and Conditions of Service) Act, 2017",
           "url": "https://www.indiacode.nic.in/",
           "verified": true
-        }
+        },
+        "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
+        "name_gu": "દુકાન અને સંસ્થા નોંધણી",
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
       },
       {
         "id": "v7",
@@ -674,7 +1178,10 @@
         },
         "condition": "Only if your turnover is above the GST registration limit",
         "condition_hi": "केवल तब, जब आपका टर्नओवर GST पंजीकरण सीमा से अधिक हो",
-        "condition_mr": "फक्त तुमची उलाढाल GST नोंदणी मर्यादेपेक्षा जास्त असल्यास"
+        "condition_mr": "फक्त तुमची उलाढाल GST नोंदणी मर्यादेपेक्षा जास्त असल्यास",
+        "name_kn": "GST ನೋಂದಣಿ (ಮಿತಿ ಮೀರಿದರೆ)",
+        "name_gu": "GST નોંધણી (મર્યાદાથી વધુ હોય તો)",
+        "name_ta": "GST பதிவு (வரம்பைத் தாண்டினால்)"
       },
       {
         "id": "v6",
@@ -705,7 +1212,10 @@
           "act": "Mumbai Municipal Corporation Act, 1888",
           "url": "https://www.indiacode.nic.in/",
           "verified": false
-        }
+        },
+        "name_kn": "ವ್ಯಾಪಾರ ಪರವಾನಗಿ (BMC)",
+        "name_gu": "વેપાર લાઇસન્સ (BMC)",
+        "name_ta": "வணிக உரிமம் (BMC)"
       },
       {
         "id": "v9",
@@ -736,7 +1246,286 @@
           "act": "Maharashtra Municipal Corporations Act, 1949",
           "url": "https://www.indiacode.nic.in/",
           "verified": false
-        }
+        },
+        "name_kn": "ವ್ಯಾಪಾರ ಪರವಾನಗಿ (PMC)",
+        "name_gu": "વેપાર લાઇસન્સ (PMC)",
+        "name_ta": "வணிக உரிமம் (PMC)"
+      },
+      {
+        "id": "v4_ka",
+        "name": "Shop & Establishment registration",
+        "name_hi": "दुकान एवं प्रतिष्ठान पंजीकरण",
+        "name_mr": "दुकान व आस्थापना नोंदणी",
+        "type": "form",
+        "office": "Karnataka Labour Dept (e-Karmika, online)",
+        "office_hi": "कर्नाटक श्रम विभाग (ई-कार्मिका, ऑनलाइन)",
+        "office_mr": "कर्नाटक कामगार विभाग (ई-कार्मिका, ऑनलाइन)",
+        "documents": [
+          "PAN",
+          "Premises proof",
+          "Photo of shop with name board"
+        ],
+        "fee": null,
+        "link": "https://www.ekarmika.karnataka.gov.in/ekarmika/static/home.aspx",
+        "status": "approved",
+        "depends_on": [
+          "v1",
+          "v2"
+        ],
+        "scope": "state",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "state": "Karnataka",
+        "legal": {
+          "act": "Karnataka Shops and Commercial Establishments Act, 1961",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": true
+        },
+        "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
+        "name_gu": "દુકાન અને સંસ્થા નોંધણી",
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
+      },
+      {
+        "id": "v4_gj",
+        "name": "Shop & Establishment registration",
+        "name_hi": "दुकान एवं प्रतिष्ठान पंजीकरण",
+        "name_mr": "दुकान व आस्थापना नोंदणी",
+        "type": "form",
+        "office": "Your municipal corporation (AMC in Ahmedabad)",
+        "office_hi": "आपकी नगर निगम (अहमदाबाद में AMC)",
+        "office_mr": "तुमची महानगरपालिका (अहमदाबादमध्ये AMC)",
+        "documents": [
+          "PAN",
+          "Premises proof",
+          "Photo of shop with name board"
+        ],
+        "fee": null,
+        "link": "https://ahmedabadcity.gov.in/portal/jsp/Static_pages/shops_establishment.jsp",
+        "status": "approved",
+        "depends_on": [
+          "v1",
+          "v2"
+        ],
+        "scope": "state",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "state": "Gujarat",
+        "legal": {
+          "act": "Gujarat Shops and Establishments (Regulation of Employment and Conditions of Service) Act, 2019",
+          "url": "https://www.indiacode.nic.in/handle/123456789/15202",
+          "verified": true
+        },
+        "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
+        "name_gu": "દુકાન અને સંસ્થા નોંધણી",
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
+      },
+      {
+        "id": "v4_tn",
+        "name": "Shop & Establishment registration",
+        "name_hi": "दुकान एवं प्रतिष्ठान पंजीकरण",
+        "name_mr": "दुकान व आस्थापना नोंदणी",
+        "type": "form",
+        "office": "Tamil Nadu Labour Dept (online)",
+        "office_hi": "तमिलनाडु श्रम विभाग (ऑनलाइन)",
+        "office_mr": "तमिळनाडू कामगार विभाग (ऑनलाइन)",
+        "documents": [
+          "PAN",
+          "Premises proof",
+          "Photo of shop with name board"
+        ],
+        "fee": null,
+        "link": "https://labour.tn.gov.in/services/shop-establishments/registration",
+        "status": "approved",
+        "depends_on": [
+          "v1",
+          "v2"
+        ],
+        "scope": "state",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "state": "Tamil Nadu",
+        "legal": {
+          "act": "Tamil Nadu Shops and Establishments Act, 1947",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": true
+        },
+        "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
+        "name_gu": "દુકાન અને સંસ્થા નોંધણી",
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
+      },
+      {
+        "id": "v4_dl",
+        "name": "Shop & Establishment registration",
+        "name_hi": "दुकान एवं प्रतिष्ठान पंजीकरण",
+        "name_mr": "दुकान व आस्थापना नोंदणी",
+        "type": "form",
+        "office": "Delhi Labour Dept (online)",
+        "office_hi": "दिल्ली श्रम विभाग (ऑनलाइन)",
+        "office_mr": "दिल्ली कामगार विभाग (ऑनलाइन)",
+        "documents": [
+          "PAN",
+          "Premises proof",
+          "Photo of shop with name board"
+        ],
+        "fee": null,
+        "link": "https://labour.delhi.gov.in/labour/delhi-shops-act-1954",
+        "status": "approved",
+        "depends_on": [
+          "v1",
+          "v2"
+        ],
+        "scope": "state",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "state": "Delhi",
+        "legal": {
+          "act": "Delhi Shops and Establishments Act, 1954",
+          "url": "https://www.indiacode.nic.in/handle/123456789/13587",
+          "verified": true
+        },
+        "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
+        "name_gu": "દુકાન અને સંસ્થા નોંધણી",
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
+      },
+      {
+        "id": "v9_blr",
+        "name": "Trade licence (Bengaluru city corporation)",
+        "name_hi": "व्यापार लाइसेंस (बेंगलुरु नगर निगम)",
+        "name_mr": "व्यापार परवाना (बेंगळुरू महानगरपालिका)",
+        "type": "visit",
+        "office": "Your city corporation under the Greater Bengaluru Authority",
+        "office_hi": "ग्रेटर बेंगलुरु प्राधिकरण के तहत आपकी नगर निगम",
+        "office_mr": "ग्रेटर बेंगळुरू प्राधिकरणाअंतर्गत तुमची महानगरपालिका",
+        "documents": [
+          "Shop Act certificate",
+          "Premises proof"
+        ],
+        "fee": null,
+        "link": "https://gba.karnataka.gov.in",
+        "status": "approved",
+        "depends_on": [
+          "v4_ka"
+        ],
+        "scope": "local",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "state": "Karnataka",
+        "city": "Bengaluru",
+        "legal": {
+          "act": "Greater Bengaluru Governance Act, 2024",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": false
+        },
+        "name_kn": "ವ್ಯಾಪಾರ ಪರವಾನಗಿ (ಬೆಂಗಳೂರು ನಗರ ಪಾಲಿಕೆ)",
+        "name_gu": "વેપાર લાઇસન્સ (બેંગલુરુ મહાનગરપાલિકા)",
+        "name_ta": "வணிக உரிமம் (பெங்களூரு மாநகராட்சி)"
+      },
+      {
+        "id": "v9_chn",
+        "name": "Trade licence (Greater Chennai Corporation)",
+        "name_hi": "व्यापार लाइसेंस (ग्रेटर चेन्नई निगम)",
+        "name_mr": "व्यापार परवाना (ग्रेटर चेन्नई महानगरपालिका)",
+        "type": "visit",
+        "office": "Greater Chennai Corporation (online)",
+        "office_hi": "ग्रेटर चेन्नई निगम (ऑनलाइन)",
+        "office_mr": "ग्रेटर चेन्नई महानगरपालिका (ऑनलाइन)",
+        "documents": [
+          "Shop Act certificate",
+          "Premises proof"
+        ],
+        "fee": null,
+        "link": "https://chennaicorporation.gov.in",
+        "status": "approved",
+        "depends_on": [
+          "v4_tn"
+        ],
+        "scope": "local",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "state": "Tamil Nadu",
+        "city": "Chennai",
+        "legal": {
+          "act": "Chennai City Municipal Corporation Act, 1919",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": false
+        },
+        "name_kn": "ವ್ಯಾಪಾರ ಪರವಾನಗಿ (ಗ್ರೇಟರ್ ಚೆನ್ನೈ ಪಾಲಿಕೆ)",
+        "name_gu": "વેપાર લાઇસન્સ (ગ્રેટર ચેન્નાઈ કોર્પોરેશન)",
+        "name_ta": "வணிக உரிமம் (பெருநகர சென்னை மாநகராட்சி)"
+      },
+      {
+        "id": "v9_mcd",
+        "name": "Health trade licence (MCD)",
+        "name_hi": "हेल्थ ट्रेड लाइसेंस (MCD)",
+        "name_mr": "हेल्थ ट्रेड परवाना (MCD)",
+        "type": "visit",
+        "office": "Municipal Corporation of Delhi (online)",
+        "office_hi": "दिल्ली नगर निगम (ऑनलाइन)",
+        "office_mr": "दिल्ली महानगरपालिका (ऑनलाइन)",
+        "documents": [
+          "Shop Act certificate",
+          "Premises proof"
+        ],
+        "fee": null,
+        "link": "https://etl.mcdonline.nic.in/",
+        "status": "approved",
+        "depends_on": [
+          "v4_dl"
+        ],
+        "scope": "local",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "state": "Delhi",
+        "city": "Delhi (MCD area)",
+        "legal": {
+          "act": "Delhi Municipal Corporation Act, 1957",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": false
+        },
+        "name_kn": "ಆರೋಗ್ಯ ವ್ಯಾಪಾರ ಪರವಾನಗಿ (MCD)",
+        "name_gu": "હેલ્થ ટ્રેડ લાઇસન્સ (MCD)",
+        "name_ta": "சுகாதார வணிக உரிமம் (MCD)"
+      },
+      {
+        "id": "v9_ndmc",
+        "name": "Health trade licence (NDMC)",
+        "name_hi": "हेल्थ ट्रेड लाइसेंस (NDMC)",
+        "name_mr": "हेल्थ ट्रेड परवाना (NDMC)",
+        "type": "visit",
+        "office": "New Delhi Municipal Council (online)",
+        "office_hi": "नई दिल्ली नगर पालिका परिषद (ऑनलाइन)",
+        "office_mr": "नवी दिल्ली नगरपालिका परिषद (ऑनलाइन)",
+        "documents": [
+          "Shop Act certificate",
+          "Premises proof"
+        ],
+        "fee": null,
+        "link": "https://online.ndmc.gov.in/hl/",
+        "status": "approved",
+        "depends_on": [
+          "v4_dl"
+        ],
+        "scope": "local",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "state": "Delhi",
+        "city": "New Delhi (NDMC area)",
+        "legal": {
+          "act": "New Delhi Municipal Council Act, 1994",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": false
+        },
+        "name_kn": "ಆರೋಗ್ಯ ವ್ಯಾಪಾರ ಪರವಾನಗಿ (NDMC)",
+        "name_gu": "હેલ્થ ટ્રેડ લાઇસન્સ (NDMC)",
+        "name_ta": "சுகாதார வணிக உரிமம் (NDMC)"
       },
       {
         "id": "v8",
@@ -755,14 +1544,24 @@
           "v3",
           "v6",
           "v9",
-          "v7"
+          "v7",
+          "v9_blr",
+          "v9_chn",
+          "v9_mcd",
+          "v9_ndmc"
         ],
         "scope": "national",
         "requirement": "required",
         "processing_time": null,
-        "verified_on": "2026-09-20"
+        "verified_on": "2026-09-20",
+        "name_kn": "ವ್ಯವಹಾರ ಆರಂಭ",
+        "name_gu": "વ્યવસાય શરૂ",
+        "name_ta": "தொழில் தொடக்கம்"
       }
-    ]
+    ],
+    "title_kn": "ಸಲೂನ್ ಅಥವಾ ಬ್ಯೂಟಿ ಪಾರ್ಲರ್ ತೆರೆಯಿರಿ",
+    "title_gu": "સલૂન અથવા બ્યુટી પાર્લર ખોલો",
+    "title_ta": "சலூன் அல்லது அழகு நிலையம் திற"
   },
   {
     "task_id": "online-store",
@@ -782,7 +1581,10 @@
       "sell online",
       "ऑनलाइन",
       "वेबसाइट",
-      "ऑनलाइन दुकान"
+      "ऑनलाइन दुकान",
+      "ಆನ್‌ಲೈನ್",
+      "ઓનલાઇન",
+      "இணைய"
     ],
     "last_verified": "2026-09-20",
     "sample_data": true,
@@ -812,7 +1614,10 @@
           "act": "Income-tax Act, 1961",
           "url": "https://www.indiacode.nic.in/",
           "verified": true
-        }
+        },
+        "name_kn": "ಪ್ಯಾನ್ ಕಾರ್ಡ್",
+        "name_gu": "પાન કાર્ડ",
+        "name_ta": "பான் அட்டை"
       },
       {
         "id": "o2",
@@ -837,7 +1642,10 @@
         "scope": "national",
         "requirement": "required",
         "processing_time": null,
-        "verified_on": "2026-09-20"
+        "verified_on": "2026-09-20",
+        "name_kn": "ವ್ಯವಹಾರ ಬ್ಯಾಂಕ್ ಖಾತೆ",
+        "name_gu": "વ્યવસાયનું બેંક ખાતું",
+        "name_ta": "தொழில் வங்கிக் கணக்கு"
       },
       {
         "id": "o3",
@@ -866,7 +1674,10 @@
           "act": "Micro, Small and Medium Enterprises Development Act, 2006",
           "url": "https://www.indiacode.nic.in/",
           "verified": true
-        }
+        },
+        "name_kn": "ಉದ್ಯಮ್ (MSME) ನೋಂದಣಿ",
+        "name_gu": "ઉદ્યમ (MSME) નોંધણી",
+        "name_ta": "உத்யம் (MSME) பதிவு"
       },
       {
         "id": "o5",
@@ -900,7 +1711,10 @@
         },
         "condition": "Check on the GST portal whether registration is compulsory for you",
         "condition_hi": "GST पोर्टल पर देखें कि आपके लिए पंजीकरण अनिवार्य है या नहीं",
-        "condition_mr": "तुमच्यासाठी नोंदणी अनिवार्य आहे का ते GST पोर्टलवर तपासा"
+        "condition_mr": "तुमच्यासाठी नोंदणी अनिवार्य आहे का ते GST पोर्टलवर तपासा",
+        "name_kn": "GST ನೋಂದಣಿ (ಮಿತಿ ಮೀರಿದರೆ)",
+        "name_gu": "GST નોંધણી (મર્યાદાથી વધુ હોય તો)",
+        "name_ta": "GST பதிவு (வரம்பைத் தாண்டினால்)"
       },
       {
         "id": "o6",
@@ -922,9 +1736,15 @@
         "scope": "national",
         "requirement": "required",
         "processing_time": null,
-        "verified_on": "2026-09-20"
+        "verified_on": "2026-09-20",
+        "name_kn": "ಆನ್‌ಲೈನ್ ಮಾರಾಟಕ್ಕೆ ಸಿದ್ಧ",
+        "name_gu": "ઓનલાઇન વેચાણ માટે તૈયાર",
+        "name_ta": "இணையத்தில் விற்கத் தயார்"
       }
-    ]
+    ],
+    "title_kn": "ಆನ್‌ಲೈನ್ ಅಂಗಡಿ ಆರಂಭಿಸಿ",
+    "title_gu": "ઓનલાઇન સ્ટોર શરૂ કરો",
+    "title_ta": "இணையக் கடை தொடங்கு"
   },
   {
     "task_id": "home-bakery",
@@ -941,7 +1761,13 @@
       "घर से",
       "घरून",
       "केक",
-      "घरगुती"
+      "घरगुती",
+      "ಬೇಕರಿ",
+      "ಮನೆ",
+      "બેકરી",
+      "ઘરેથી",
+      "பேக்கரி",
+      "வீட்டு"
     ],
     "last_verified": "2026-09-20",
     "sample_data": true,
@@ -971,7 +1797,10 @@
           "act": "Income-tax Act, 1961",
           "url": "https://www.indiacode.nic.in/",
           "verified": true
-        }
+        },
+        "name_kn": "ಪ್ಯಾನ್ ಕಾರ್ಡ್",
+        "name_gu": "પાન કાર્ડ",
+        "name_ta": "பான் அட்டை"
       },
       {
         "id": "h3",
@@ -1000,7 +1829,10 @@
           "act": "Micro, Small and Medium Enterprises Development Act, 2006",
           "url": "https://www.indiacode.nic.in/",
           "verified": true
-        }
+        },
+        "name_kn": "ಉದ್ಯಮ್ (MSME) ನೋಂದಣಿ",
+        "name_gu": "ઉદ્યમ (MSME) નોંધણી",
+        "name_ta": "உத்யம் (MSME) பதிவு"
       },
       {
         "id": "h5",
@@ -1030,7 +1862,10 @@
           "act": "Food Safety and Standards Act, 2006",
           "url": "https://www.indiacode.nic.in/",
           "verified": true
-        }
+        },
+        "name_kn": "FSSAI ನೋಂದಣಿ / ಪರವಾನಗಿ",
+        "name_gu": "FSSAI નોંધણી / લાઇસન્સ",
+        "name_ta": "FSSAI பதிவு / உரிமம்"
       },
       {
         "id": "h7",
@@ -1064,7 +1899,10 @@
         },
         "condition": "Only if your turnover is above the GST registration limit",
         "condition_hi": "केवल तब, जब आपका टर्नओवर GST पंजीकरण सीमा से अधिक हो",
-        "condition_mr": "फक्त तुमची उलाढाल GST नोंदणी मर्यादेपेक्षा जास्त असल्यास"
+        "condition_mr": "फक्त तुमची उलाढाल GST नोंदणी मर्यादेपेक्षा जास्त असल्यास",
+        "name_kn": "GST ನೋಂದಣಿ (ಮಿತಿ ಮೀರಿದರೆ)",
+        "name_gu": "GST નોંધણી (મર્યાદાથી વધુ હોય તો)",
+        "name_ta": "GST பதிவு (வரம்பைத் தாண்டினால்)"
       },
       {
         "id": "h8",
@@ -1087,9 +1925,15 @@
         "scope": "national",
         "requirement": "required",
         "processing_time": null,
-        "verified_on": "2026-09-20"
+        "verified_on": "2026-09-20",
+        "name_kn": "ಮಾರಾಟ ಆರಂಭಿಸಿ",
+        "name_gu": "વેચાણ શરૂ કરો",
+        "name_ta": "விற்பனை தொடங்கு"
       }
-    ]
+    ],
+    "title_kn": "ಮನೆ ಬೇಕರಿ ಅಥವಾ ಟಿಫಿನ್ ಸೇವೆ ನಡೆಸಿ",
+    "title_gu": "ઘરેથી બેકરી અથવા ટિફિન સેવા ચલાવો",
+    "title_ta": "வீட்டு பேக்கரி அல்லது டிஃபின் சேவை நடத்து"
   },
   {
     "task_id": "small-manufacturing",
@@ -1109,7 +1953,13 @@
       "कारखाना",
       "उत्पादन",
       "निर्माण",
-      "उद्योग"
+      "उद्योग",
+      "ಕಾರ್ಖಾನೆ",
+      "ಉತ್ಪಾದನೆ",
+      "ફેક્ટરી",
+      "ઉત્પાદન",
+      "தொழிற்சாலை",
+      "உற்பத்தி"
     ],
     "last_verified": "2026-09-20",
     "sample_data": true,
@@ -1139,7 +1989,10 @@
           "act": "Income-tax Act, 1961",
           "url": "https://www.indiacode.nic.in/",
           "verified": true
-        }
+        },
+        "name_kn": "ಪ್ಯಾನ್ ಕಾರ್ಡ್",
+        "name_gu": "પાન કાર્ડ",
+        "name_ta": "பான் அட்டை"
       },
       {
         "id": "m2",
@@ -1161,7 +2014,10 @@
         "scope": "national",
         "requirement": "required",
         "processing_time": null,
-        "verified_on": "2026-09-20"
+        "verified_on": "2026-09-20",
+        "name_kn": "ವ್ಯವಹಾರ ಸ್ಥಳದ ಪುರಾವೆ",
+        "name_gu": "વ્યવસાયના સ્થળનો પુરાવો",
+        "name_ta": "தொழில் இடத்துக்கான சான்று"
       },
       {
         "id": "m3",
@@ -1190,7 +2046,10 @@
           "act": "Micro, Small and Medium Enterprises Development Act, 2006",
           "url": "https://www.indiacode.nic.in/",
           "verified": true
-        }
+        },
+        "name_kn": "ಉದ್ಯಮ್ (MSME) ನೋಂದಣಿ",
+        "name_gu": "ઉદ્યમ (MSME) નોંધણી",
+        "name_ta": "உத்யம் (MSME) பதிவு"
       },
       {
         "id": "m7",
@@ -1225,7 +2084,10 @@
         },
         "condition": "Only if your turnover is above the GST registration limit",
         "condition_hi": "केवल तब, जब आपका टर्नओवर GST पंजीकरण सीमा से अधिक हो",
-        "condition_mr": "फक्त तुमची उलाढाल GST नोंदणी मर्यादेपेक्षा जास्त असल्यास"
+        "condition_mr": "फक्त तुमची उलाढाल GST नोंदणी मर्यादेपेक्षा जास्त असल्यास",
+        "name_kn": "GST ನೋಂದಣಿ (ಮಿತಿ ಮೀರಿದರೆ)",
+        "name_gu": "GST નોંધણી (મર્યાદાથી વધુ હોય તો)",
+        "name_ta": "GST பதிவு (வரம்பைத் தாண்டினால்)"
       },
       {
         "id": "m4",
@@ -1250,7 +2112,10 @@
         "verified_on": "2026-09-20",
         "condition": "Manufacturing may also need permissions such as pollution control consent or a factory licence. We haven't mapped these yet.",
         "condition_hi": "निर्माण के लिए प्रदूषण नियंत्रण सहमति या फ़ैक्टरी लाइसेंस जैसी अनुमतियाँ भी लग सकती हैं। ये अभी शामिल नहीं हैं।",
-        "condition_mr": "उत्पादनासाठी प्रदूषण नियंत्रण संमती किंवा कारखाना परवाना यांसारख्या परवानग्याही लागू शकतात. त्या अजून समाविष्ट नाहीत."
+        "condition_mr": "उत्पादनासाठी प्रदूषण नियंत्रण संमती किंवा कारखाना परवाना यांसारख्या परवानग्याही लागू शकतात. त्या अजून समाविष्ट नाहीत.",
+        "name_kn": "ಉದ್ಯಮ-ನಿರ್ದಿಷ್ಟ ಅನುಮತಿಗಳು",
+        "name_gu": "ઉદ્યોગ સંબંધિત પરવાનગીઓ",
+        "name_ta": "தொழில் சார்ந்த அனுமதிகள்"
       },
       {
         "id": "m8",
@@ -1273,8 +2138,14 @@
         "scope": "national",
         "requirement": "required",
         "processing_time": null,
-        "verified_on": "2026-09-20"
+        "verified_on": "2026-09-20",
+        "name_kn": "ಉತ್ಪಾದನೆ ಆರಂಭಿಸಿ",
+        "name_gu": "ઉત્પાદન શરૂ કરો",
+        "name_ta": "உற்பத்தி தொடங்கு"
       }
-    ]
+    ],
+    "title_kn": "ಸಣ್ಣ ಉತ್ಪಾದನಾ ಘಟಕ ಸ್ಥಾಪಿಸಿ",
+    "title_gu": "નાનું ઉત્પાદન એકમ સ્થાપો",
+    "title_ta": "சிறு உற்பத்தி அலகு அமை"
   }
 ]

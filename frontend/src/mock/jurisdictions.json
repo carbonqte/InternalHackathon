@@ -27,62 +27,108 @@
         "city": "Nashik",
         "covered": false
       }
-    ]
+    ],
+    "lang": "mr",
+    "state_kn": "ಮಹಾರಾಷ್ಟ್ರ",
+    "state_gu": "મહારાષ્ટ્ર",
+    "state_ta": "மகாராஷ்டிரா"
   },
   {
     "state": "Karnataka",
     "state_hi": "कर्नाटक",
     "state_mr": "कर्नाटक",
-    "covered": false,
+    "covered": true,
     "cities": [
       {
         "city": "Bengaluru",
-        "covered": false
+        "covered": true
       },
       {
         "city": "Mysuru",
         "covered": false
       }
-    ]
+    ],
+    "rights": {
+      "url": "https://sakala.kar.nic.in",
+      "text": "Many services here have a guaranteed time limit under the Karnataka Sakala Services Act, 2011. If it's missed, you can complain.",
+      "text_hi": "कर्नाटक सकाल सेवा अधिनियम, 2011 के तहत कई सेवाओं की तय समय-सीमा है। समय पर न हो तो शिकायत कर सकते हैं।",
+      "text_mr": "कर्नाटक सकाल सेवा अधिनियम, 2011 अंतर्गत अनेक सेवांना ठरलेली कालमर्यादा आहे. ती पाळली नाही तर तक्रार करू शकता."
+    },
+    "lang": "kn",
+    "state_kn": "ಕರ್ನಾಟಕ",
+    "state_gu": "કર્ણાટક",
+    "state_ta": "கர்நாடகா"
   },
   {
     "state": "Gujarat",
     "state_hi": "गुजरात",
     "state_mr": "गुजरात",
-    "covered": false,
+    "covered": true,
     "cities": [
       {
         "city": "Ahmedabad",
-        "covered": false
+        "covered": true
       },
       {
         "city": "Surat",
         "covered": false
       }
-    ]
+    ],
+    "rights": {
+      "url": "https://artd.gujarat.gov.in/public-service-act.htm",
+      "text": "Many services here have a fixed time limit under the Gujarat (Right of Citizens to Public Services) Act, 2013. If it's missed, you can appeal.",
+      "text_hi": "गुजरात (नागरिकों का लोक सेवा अधिकार) अधिनियम, 2013 के तहत कई सेवाओं की तय समय-सीमा है। समय पर न हो तो अपील कर सकते हैं।",
+      "text_mr": "गुजरात (नागरिकांचा लोकसेवा हक्क) अधिनियम, 2013 अंतर्गत अनेक सेवांना ठरलेली कालमर्यादा आहे. ती पाळली नाही तर अपील करू शकता."
+    },
+    "lang": "gu",
+    "state_kn": "ಗುಜರಾತ್",
+    "state_gu": "ગુજરાત",
+    "state_ta": "குஜராத்"
   },
   {
     "state": "Delhi",
     "state_hi": "दिल्ली",
     "state_mr": "दिल्ली",
-    "covered": false,
+    "covered": true,
     "cities": [
       {
-        "city": "New Delhi",
-        "covered": false
+        "city": "Delhi (MCD area)",
+        "covered": true
+      },
+      {
+        "city": "New Delhi (NDMC area)",
+        "covered": true
       }
-    ]
+    ],
+    "rights": {
+      "url": "https://www.indiacode.nic.in/handle/123456789/13645",
+      "text": "Many services here have a fixed time limit under the Delhi (Right of Citizen to Time Bound Delivery of Services) Act, 2011.",
+      "text_hi": "दिल्ली (नागरिक को समयबद्ध सेवा का अधिकार) अधिनियम, 2011 के तहत कई सेवाओं की तय समय-सीमा है।",
+      "text_mr": "दिल्ली (नागरिकांना कालबद्ध सेवेचा हक्क) अधिनियम, 2011 अंतर्गत अनेक सेवांना ठरलेली कालमर्यादा आहे."
+    },
+    "lang": "hi",
+    "state_kn": "ದೆಹಲಿ",
+    "state_gu": "દિલ્હી",
+    "state_ta": "டெல்லி"
   },
   {
     "state": "Tamil Nadu",
     "state_hi": "तमिलनाडु",
     "state_mr": "तमिळनाडू",
-    "covered": false,
+    "covered": true,
     "cities": [
       {
         "city": "Chennai",
+        "covered": true
+      },
+      {
+        "city": "Coimbatore",
         "covered": false
       }
-    ]
+    ],
+    "lang": "ta",
+    "state_kn": "ತಮಿಳುನಾಡು",
+    "state_gu": "તમિલનાડુ",
+    "state_ta": "தமிழ்நாடு"
   }
 ]

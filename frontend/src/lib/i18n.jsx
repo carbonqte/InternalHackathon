@@ -1,9 +1,14 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 
+import { kn, gu, ta } from './i18n_more.js'
+
 export const LANGS = [
   { code: 'en', label: 'English' },
   { code: 'hi', label: 'हिन्दी' },
   { code: 'mr', label: 'मराठी' },
+  { code: 'kn', label: 'ಕನ್ನಡ', beta: true },
+  { code: 'gu', label: 'ગુજરાતી', beta: true },
+  { code: 'ta', label: 'தமிழ்', beta: true },
 ]
 
 // UI text only. Step content (names, offices) comes from the data, translated per language.
@@ -108,7 +113,7 @@ export function LangProvider({ children }) {
     document.documentElement.lang = lang
     try { localStorage.setItem('lang', lang) } catch { /* private mode */ }
   }, [lang])
-  return <Ctx.Provider value={{ lang, setLang, t: dict[lang] }}>{children}</Ctx.Provider>
+  return <Ctx.Provider value={{ lang, setLang, t: withFallback(lang) }}>{children}</Ctx.Provider>
 }
 
 export const useLang = () => useContext(Ctx)
@@ -260,3 +265,23 @@ Object.assign(dict.mr, {
   clearFilters: 'फिल्टर काढा', suggestionsLabel: 'सूचना',
   suggestCount: (n) => `${n} सूचना. निवडण्यासाठी खालचा बाण दाबा.`,
 })
+
+Object.assign(dict, { kn, gu, ta })
+Object.assign(dict.en, { rightsLink: 'Check time limits on the official portal ↗', viewIn: 'View in English',
+  onlyMumbai: 'Full coverage for Mumbai, Pune, Bengaluru, Ahmedabad, Chennai and Delhi. Other places get the all-India steps for now.', beta: 'Beta' })
+Object.assign(dict.hi, { rightsLink: 'आधिकारिक पोर्टल पर समय-सीमा देखें ↗', viewIn: 'हिन्दी में देखें',
+  onlyMumbai: 'मुंबई, पुणे, बेंगलुरु, अहमदाबाद, चेन्नई और दिल्ली पूरी तरह शामिल हैं। बाक़ी जगहों के लिए अभी पूरे भारत वाले कदम मिलेंगे।' })
+Object.assign(dict.mr, { rightsLink: 'अधिकृत पोर्टलवर कालमर्यादा पहा ↗', viewIn: 'मराठीत पहा',
+  onlyMumbai: 'मुंबई, पुणे, बेंगळुरू, अहमदाबाद, चेन्नई आणि दिल्ली पूर्णपणे समाविष्ट. इतर ठिकाणांसाठी सध्या संपूर्ण भारताचे टप्पे मिळतील.' })
+
+// English fills any gap in a translation, including nested groups like t.cats.
+const cache = {}
+function withFallback(lang) {
+  if (cache[lang]) return cache[lang]
+  const en = dict.en, x = dict[lang] || {}
+  const out = { ...en, ...x }
+  for (const k of Object.keys(en)) {
+    if (en[k] && typeof en[k] === 'object' && !Array.isArray(en[k])) out[k] = { ...en[k], ...(x[k] || {}) }
+  }
+  return (cache[lang] = out)
+}

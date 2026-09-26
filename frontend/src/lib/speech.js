@@ -2,7 +2,7 @@
 // The ElevenLabs API key never reaches the browser: the frontend only calls POST {VITE_API_BASE}/tts.
 const TTS_ON = import.meta.env.VITE_TTS === 'elevenlabs'
 const API = import.meta.env.VITE_API_BASE || ''
-const BCP = { en: 'en-IN', hi: 'hi-IN', mr: 'mr-IN' }
+const BCP = { en: 'en-IN', hi: 'hi-IN', mr: 'mr-IN', kn: 'kn-IN', gu: 'gu-IN', ta: 'ta-IN' }
 
 let audio = null
 let url = null

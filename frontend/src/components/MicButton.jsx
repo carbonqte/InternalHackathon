@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLang } from '../lib/i18n.jsx'
 
-const BCP = { en: 'en-IN', hi: 'hi-IN', mr: 'mr-IN' }
+const BCP = { en: 'en-IN', hi: 'hi-IN', mr: 'mr-IN', kn: 'kn-IN', gu: 'gu-IN', ta: 'ta-IN' }
 const Recognition = typeof window !== 'undefined' && (window.SpeechRecognition || window.webkitSpeechRecognition)
 
 // Voice search with the browser's speech recognition (Chrome, Edge, Safari). Hidden where unsupported.

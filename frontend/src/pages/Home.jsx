@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { listJurisdictions, listTasks, searchTask, getTask } from '../api/client.js'
-import { useLang, tr, CONTACT } from '../lib/i18n.jsx'
+import { useLang, tr, CONTACT, LANGS } from '../lib/i18n.jsx'
 import MicButton from '../components/MicButton.jsx'
 import { stages } from '../lib/graph.js'
 import { CATEGORIES, CatIcon, lastPlace, savePlace, placeQuery, suggest } from '../lib/categories.jsx'
 import Suggestions from '../components/Suggestions.jsx'
 
 export default function Home() {
-  const { lang, t } = useLang()
+  const { lang, setLang, t } = useLang()
   const [text, setText] = useState('')
   const [state, setState] = useState(() => lastPlace().state)
   const [city, setCity] = useState(() => lastPlace().city)
@@ -85,6 +85,16 @@ export default function Home() {
               </select>
             </label>
           </fieldset>
+          {(() => {
+            const want = places.find((p) => p.state === state)?.lang
+            const l = LANGS.find((x) => x.code === want)
+            return l && want !== lang ? (
+              <button type="button" lang={want} onClick={() => setLang(want)}
+                className="inline-flex items-center gap-2 min-h-11 rounded-full border border-line bg-card px-4 text-sm hover:border-accent">
+                {({ en: 'View in English', hi: 'हिन्दी में देखें', mr: 'मराठीत पहा', kn: 'ಕನ್ನಡದಲ್ಲಿ ನೋಡಿ', gu: 'ગુજરાતીમાં જુઓ', ta: 'தமிழில் பார்க்க' })[want]}{l.beta ? ' (Beta)' : ''}
+              </button>
+            ) : null
+          })()}
           <div className="flex">
             <button disabled={loading} className="flex-1 sm:flex-none sm:px-8 rounded-lg bg-accent text-on-accent py-3 text-sm font-medium disabled:opacity-60">
               {loading ? t.finding : t.showRoadmap}
