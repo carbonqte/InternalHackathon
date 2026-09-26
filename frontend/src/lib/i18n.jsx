@@ -213,3 +213,50 @@ Object.assign(dict.mr, { theme: 'थीम', themes: { system: 'आपोआप'
 Object.assign(dict.en, { listen: 'Listen', stopListen: 'Stop', micStart: 'Speak your request', micStop: 'Stop listening', micBlocked: 'Microphone access is blocked. Allow it in your browser settings, or type instead.', micFailed: "Didn't catch that. Please try again or type your request.", textSize: 'Text size', sizes: ['Normal text', 'Large text', 'Extra large text'], skip: 'Skip to main content' })
 Object.assign(dict.hi, { listen: 'सुनें', stopListen: 'रोकें', micStart: 'बोलकर बताइए', micStop: 'सुनना बंद करें', micBlocked: 'माइक्रोफ़ोन की अनुमति नहीं है। ब्राउज़र सेटिंग में अनुमति दें, या टाइप करें।', micFailed: 'ठीक से सुनाई नहीं दिया। फिर कोशिश करें या टाइप करें।', textSize: 'अक्षर का आकार', sizes: ['सामान्य अक्षर', 'बड़े अक्षर', 'बहुत बड़े अक्षर'], skip: 'मुख्य सामग्री पर जाएँ' })
 Object.assign(dict.mr, { listen: 'ऐका', stopListen: 'थांबा', micStart: 'बोलून सांगा', micStop: 'ऐकणे थांबवा', micBlocked: 'मायक्रोफोनला परवानगी नाही. ब्राउझर सेटिंगमध्ये परवानगी द्या, किंवा टाइप करा.', micFailed: 'नीट ऐकू आले नाही. पुन्हा प्रयत्न करा किंवा टाइप करा.', textSize: 'अक्षरांचा आकार', sizes: ['सामान्य अक्षरे', 'मोठी अक्षरे', 'खूप मोठी अक्षरे'], skip: 'मुख्य मजकुराकडे जा' })
+
+// Categories, browsing, suggestions + plainer wording.
+Object.assign(dict.en, {
+  heroTitle: 'Starting a business? See every step, in the right order.',
+  heroSub: 'Tell us what you want to start. We show each form, office and fee, and link to the official website for every step.',
+  askPlaceholder: 'For example: I want to open a tea stall',
+  previewTitle: 'Popular right now', previewSub: 'Open one to see every step in order.',
+  seeAll: (n) => `See all ${n} procedures`,
+  catTitle: 'What kind of business?', catSub: 'Pick the closest match. You can change it later.',
+  cats: { food: 'Food & drinks', retail: 'Shop & retail', services: 'Services', manufacturing: 'Manufacturing', online: 'Online business', home: 'From home' },
+  catHint: { food: 'Restaurant, café, tiffin', retail: 'Kirana, clothes, hardware', services: 'Salon, repair, tuition', manufacturing: 'Workshop, small factory', online: 'Website, social media', home: 'Home bakery, crafts' },
+  nProcedures: (n) => (n === 1 ? '1 procedure' : `${n} procedures`),
+  browseTitle: 'All procedures', browseSub: (city, state) => `Showing steps for ${city}, ${state}.`,
+  filterLabel: 'Filter by name', filterPlaceholder: 'Type a word, e.g. salon', allCats: 'All',
+  clearFilters: 'Clear filters', suggestionsLabel: 'Suggestions',
+  suggestCount: (n) => `${n} suggestions. Use the down arrow to choose.`,
+})
+Object.assign(dict.hi, {
+  heroTitle: 'व्यवसाय शुरू कर रहे हैं? हर कदम सही क्रम में देखें।',
+  heroSub: 'बताइए आप क्या शुरू करना चाहते हैं। हम हर फ़ॉर्म, दफ़्तर और फ़ीस दिखाते हैं, और हर कदम के लिए आधिकारिक वेबसाइट का लिंक देते हैं।',
+  askPlaceholder: 'जैसे: मुझे चाय की दुकान खोलनी है',
+  previewTitle: 'अभी लोकप्रिय', previewSub: 'कोई एक खोलें और हर कदम क्रम से देखें।',
+  seeAll: (n) => `सभी ${n} प्रक्रियाएँ देखें`,
+  catTitle: 'किस तरह का व्यवसाय?', catSub: 'सबसे मिलता-जुलता चुनें। बाद में बदल सकते हैं।',
+  cats: { food: 'खाना-पीना', retail: 'दुकान', services: 'सेवाएँ', manufacturing: 'निर्माण', online: 'ऑनलाइन व्यवसाय', home: 'घर से' },
+  catHint: { food: 'रेस्टोरेंट, कैफ़े, टिफ़िन', retail: 'किराना, कपड़े, हार्डवेयर', services: 'सैलून, मरम्मत, ट्यूशन', manufacturing: 'वर्कशॉप, छोटी फ़ैक्टरी', online: 'वेबसाइट, सोशल मीडिया', home: 'घर की बेकरी, हस्तशिल्प' },
+  nProcedures: (n) => `${n} प्रक्रिया${n === 1 ? '' : 'एँ'}`,
+  browseTitle: 'सभी प्रक्रियाएँ', browseSub: (city, state) => `${city}, ${state} के कदम दिखाए जा रहे हैं।`,
+  filterLabel: 'नाम से खोजें', filterPlaceholder: 'कोई शब्द लिखें, जैसे सैलून', allCats: 'सभी',
+  clearFilters: 'फ़िल्टर हटाएँ', suggestionsLabel: 'सुझाव',
+  suggestCount: (n) => `${n} सुझाव। चुनने के लिए नीचे वाला तीर दबाएँ।`,
+})
+Object.assign(dict.mr, {
+  heroTitle: 'व्यवसाय सुरू करताय? प्रत्येक टप्पा योग्य क्रमाने पहा.',
+  heroSub: 'तुम्हाला काय सुरू करायचे आहे ते सांगा. आम्ही प्रत्येक अर्ज, कार्यालय आणि शुल्क दाखवतो, आणि प्रत्येक टप्प्यासाठी अधिकृत संकेतस्थळाची लिंक देतो.',
+  askPlaceholder: 'उदा. मला चहाची टपरी सुरू करायची आहे',
+  previewTitle: 'सध्या लोकप्रिय', previewSub: 'एक उघडा आणि प्रत्येक टप्पा क्रमाने पहा.',
+  seeAll: (n) => `सर्व ${n} प्रक्रिया पहा`,
+  catTitle: 'कोणत्या प्रकारचा व्यवसाय?', catSub: 'सर्वात जवळचा पर्याय निवडा. नंतर बदलता येईल.',
+  cats: { food: 'खाद्यपदार्थ', retail: 'दुकान', services: 'सेवा', manufacturing: 'उत्पादन', online: 'ऑनलाइन व्यवसाय', home: 'घरून' },
+  catHint: { food: 'हॉटेल, कॅफे, टिफिन', retail: 'किराणा, कपडे, हार्डवेअर', services: 'सलून, दुरुस्ती, शिकवणी', manufacturing: 'वर्कशॉप, छोटा कारखाना', online: 'वेबसाइट, सोशल मीडिया', home: 'घरगुती बेकरी, हस्तकला' },
+  nProcedures: (n) => `${n} प्रक्रिया`,
+  browseTitle: 'सर्व प्रक्रिया', browseSub: (city, state) => `${city}, ${state} साठीचे टप्पे दाखवत आहोत.`,
+  filterLabel: 'नावाने शोधा', filterPlaceholder: 'एखादा शब्द लिहा, उदा. सलून', allCats: 'सर्व',
+  clearFilters: 'फिल्टर काढा', suggestionsLabel: 'सूचना',
+  suggestCount: (n) => `${n} सूचना. निवडण्यासाठी खालचा बाण दाबा.`,
+})

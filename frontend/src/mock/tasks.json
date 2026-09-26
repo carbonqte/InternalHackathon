@@ -22,7 +22,18 @@
       "रेस्टॉरंट",
       "कैफ़े",
       "खाद्य",
-      "बेकरी"
+      "बेकरी",
+      "tea",
+      "chai",
+      "stall",
+      "dhaba",
+      "snacks",
+      "चाय",
+      "ठेला",
+      "ढाबा",
+      "टपरी",
+      "चहा",
+      "नाश्ता"
     ],
     "last_verified": "2026-09-20",
     "sample_data": true,
@@ -293,7 +304,9 @@
         "processing_time": null,
         "verified_on": "2026-09-20"
       }
-    ]
+    ],
+    "category": "food",
+    "popular": 1
   },
   {
     "task_id": "small-business",
@@ -484,6 +497,778 @@
         "depends_on": [
           "b3",
           "b5"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20"
+      }
+    ],
+    "category": "retail",
+    "popular": 2
+  },
+  {
+    "task_id": "salon",
+    "category": "services",
+    "popular": 3,
+    "title": "Open a salon or beauty parlour",
+    "title_hi": "सैलून या ब्यूटी पार्लर खोलें",
+    "title_mr": "सलून किंवा ब्युटी पार्लर सुरू करा",
+    "keywords": [
+      "salon",
+      "parlour",
+      "parlor",
+      "beauty",
+      "barber",
+      "spa",
+      "सैलून",
+      "पार्लर",
+      "ब्यूटी",
+      "नाई",
+      "सलून",
+      "ब्युटी"
+    ],
+    "last_verified": "2026-09-20",
+    "sample_data": true,
+    "steps": [
+      {
+        "id": "v1",
+        "name": "PAN card",
+        "name_hi": "पैन कार्ड",
+        "name_mr": "पॅन कार्ड",
+        "type": "document",
+        "office": "Income Tax Dept (online)",
+        "office_hi": "आयकर विभाग (ऑनलाइन)",
+        "office_mr": "आयकर विभाग (ऑनलाइन)",
+        "documents": [
+          "Aadhaar",
+          "Photograph"
+        ],
+        "fee": null,
+        "link": "https://www.incometax.gov.in",
+        "status": "approved",
+        "depends_on": [],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "legal": {
+          "act": "Income-tax Act, 1961",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": true
+        }
+      },
+      {
+        "id": "v2",
+        "name": "Proof of business premises",
+        "name_hi": "व्यवसाय परिसर का प्रमाण",
+        "name_mr": "व्यवसाय जागेचा पुरावा",
+        "type": "document",
+        "office": "Owner / landlord",
+        "office_hi": "मालिक / मकान मालिक",
+        "office_mr": "मालक / घरमालक",
+        "documents": [
+          "Rent agreement or ownership proof",
+          "Recent electricity bill"
+        ],
+        "fee": "No government fee",
+        "link": "",
+        "status": "approved",
+        "depends_on": [],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20"
+      },
+      {
+        "id": "v3",
+        "name": "Udyam (MSME) registration",
+        "name_hi": "उद्यम (MSME) पंजीकरण",
+        "name_mr": "उद्यम (MSME) नोंदणी",
+        "type": "form",
+        "office": "Ministry of MSME (online)",
+        "office_hi": "MSME मंत्रालय (ऑनलाइन)",
+        "office_mr": "MSME मंत्रालय (ऑनलाइन)",
+        "documents": [
+          "Aadhaar",
+          "PAN"
+        ],
+        "fee": "Free",
+        "link": "https://udyamregistration.gov.in",
+        "status": "approved",
+        "depends_on": [
+          "v1"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "legal": {
+          "act": "Micro, Small and Medium Enterprises Development Act, 2006",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": true
+        }
+      },
+      {
+        "id": "v4",
+        "name": "Shop & Establishment registration",
+        "name_hi": "दुकान एवं प्रतिष्ठान पंजीकरण",
+        "name_mr": "दुकान व आस्थापना नोंदणी",
+        "type": "form",
+        "office": "Maharashtra Labour Dept (online)",
+        "office_hi": "महाराष्ट्र श्रम विभाग (ऑनलाइन)",
+        "office_mr": "महाराष्ट्र कामगार विभाग (ऑनलाइन)",
+        "documents": [
+          "PAN",
+          "Premises proof",
+          "Photo of shop with name board"
+        ],
+        "fee": null,
+        "link": "https://mahakamgar.maharashtra.gov.in",
+        "status": "approved",
+        "depends_on": [
+          "v1",
+          "v2"
+        ],
+        "scope": "state",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "state": "Maharashtra",
+        "legal": {
+          "act": "Maharashtra Shops and Establishments (Regulation of Employment and Conditions of Service) Act, 2017",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": true
+        }
+      },
+      {
+        "id": "v7",
+        "name": "GST registration (if above threshold)",
+        "name_hi": "GST पंजीकरण (सीमा से ऊपर होने पर)",
+        "name_mr": "GST नोंदणी (मर्यादेपेक्षा जास्त असल्यास)",
+        "type": "form",
+        "office": "GST portal (online)",
+        "office_hi": "GST पोर्टल (ऑनलाइन)",
+        "office_mr": "GST पोर्टल (ऑनलाइन)",
+        "documents": [
+          "PAN",
+          "Aadhaar",
+          "Premises proof",
+          "Bank details"
+        ],
+        "fee": "Free",
+        "link": "https://www.gst.gov.in",
+        "status": "approved",
+        "depends_on": [
+          "v1",
+          "v2"
+        ],
+        "scope": "national",
+        "requirement": "conditional",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "legal": {
+          "act": "Central Goods and Services Tax Act, 2017",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": true
+        },
+        "condition": "Only if your turnover is above the GST registration limit",
+        "condition_hi": "केवल तब, जब आपका टर्नओवर GST पंजीकरण सीमा से अधिक हो",
+        "condition_mr": "फक्त तुमची उलाढाल GST नोंदणी मर्यादेपेक्षा जास्त असल्यास"
+      },
+      {
+        "id": "v6",
+        "name": "Trade licence (BMC)",
+        "name_hi": "व्यापार लाइसेंस (BMC)",
+        "name_mr": "व्यापार परवाना (BMC)",
+        "type": "visit",
+        "office": "BMC ward office",
+        "office_hi": "BMC वार्ड कार्यालय",
+        "office_mr": "BMC प्रभाग कार्यालय",
+        "documents": [
+          "Shop Act certificate",
+          "Premises proof"
+        ],
+        "fee": null,
+        "link": "https://portal.mcgm.gov.in",
+        "status": "pending",
+        "depends_on": [
+          "v4"
+        ],
+        "scope": "local",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "state": "Maharashtra",
+        "city": "Mumbai",
+        "legal": {
+          "act": "Mumbai Municipal Corporation Act, 1888",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": false
+        }
+      },
+      {
+        "id": "v9",
+        "name": "Trade licence (PMC)",
+        "name_hi": "व्यापार लाइसेंस (PMC)",
+        "name_mr": "व्यापार परवाना (PMC)",
+        "type": "visit",
+        "office": "Pune Municipal Corporation",
+        "office_hi": "पुणे नगर निगम",
+        "office_mr": "पुणे महानगरपालिका",
+        "documents": [
+          "Shop Act certificate",
+          "Premises proof"
+        ],
+        "fee": null,
+        "link": "https://www.pmc.gov.in",
+        "status": "approved",
+        "depends_on": [
+          "v4"
+        ],
+        "scope": "local",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "state": "Maharashtra",
+        "city": "Pune",
+        "legal": {
+          "act": "Maharashtra Municipal Corporations Act, 1949",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": false
+        }
+      },
+      {
+        "id": "v8",
+        "name": "Open for business",
+        "name_hi": "व्यवसाय शुरू",
+        "name_mr": "व्यवसाय सुरू",
+        "type": "milestone",
+        "office": "",
+        "office_hi": "",
+        "office_mr": "",
+        "documents": [],
+        "fee": "",
+        "link": "",
+        "status": "approved",
+        "depends_on": [
+          "v3",
+          "v6",
+          "v9",
+          "v7"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20"
+      }
+    ]
+  },
+  {
+    "task_id": "online-store",
+    "category": "online",
+    "popular": 4,
+    "title": "Start an online store",
+    "title_hi": "ऑनलाइन स्टोर शुरू करें",
+    "title_mr": "ऑनलाइन स्टोअर सुरू करा",
+    "keywords": [
+      "online",
+      "ecommerce",
+      "e-commerce",
+      "website",
+      "instagram",
+      "amazon",
+      "flipkart",
+      "sell online",
+      "ऑनलाइन",
+      "वेबसाइट",
+      "ऑनलाइन दुकान"
+    ],
+    "last_verified": "2026-09-20",
+    "sample_data": true,
+    "steps": [
+      {
+        "id": "o1",
+        "name": "PAN card",
+        "name_hi": "पैन कार्ड",
+        "name_mr": "पॅन कार्ड",
+        "type": "document",
+        "office": "Income Tax Dept (online)",
+        "office_hi": "आयकर विभाग (ऑनलाइन)",
+        "office_mr": "आयकर विभाग (ऑनलाइन)",
+        "documents": [
+          "Aadhaar",
+          "Photograph"
+        ],
+        "fee": null,
+        "link": "https://www.incometax.gov.in",
+        "status": "approved",
+        "depends_on": [],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "legal": {
+          "act": "Income-tax Act, 1961",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": true
+        }
+      },
+      {
+        "id": "o2",
+        "name": "Business bank account",
+        "name_hi": "व्यावसायिक बैंक खाता",
+        "name_mr": "व्यावसायिक बँक खाते",
+        "type": "visit",
+        "office": "Any bank branch",
+        "office_hi": "कोई भी बैंक शाखा",
+        "office_mr": "कोणतीही बँक शाखा",
+        "documents": [
+          "PAN",
+          "Aadhaar",
+          "Address proof"
+        ],
+        "fee": "No government fee",
+        "link": "",
+        "status": "approved",
+        "depends_on": [
+          "o1"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20"
+      },
+      {
+        "id": "o3",
+        "name": "Udyam (MSME) registration",
+        "name_hi": "उद्यम (MSME) पंजीकरण",
+        "name_mr": "उद्यम (MSME) नोंदणी",
+        "type": "form",
+        "office": "Ministry of MSME (online)",
+        "office_hi": "MSME मंत्रालय (ऑनलाइन)",
+        "office_mr": "MSME मंत्रालय (ऑनलाइन)",
+        "documents": [
+          "Aadhaar",
+          "PAN"
+        ],
+        "fee": "Free",
+        "link": "https://udyamregistration.gov.in",
+        "status": "approved",
+        "depends_on": [
+          "o1"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "legal": {
+          "act": "Micro, Small and Medium Enterprises Development Act, 2006",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": true
+        }
+      },
+      {
+        "id": "o5",
+        "name": "GST registration (if above threshold)",
+        "name_hi": "GST पंजीकरण (सीमा से ऊपर होने पर)",
+        "name_mr": "GST नोंदणी (मर्यादेपेक्षा जास्त असल्यास)",
+        "type": "form",
+        "office": "GST portal (online)",
+        "office_hi": "GST पोर्टल (ऑनलाइन)",
+        "office_mr": "GST पोर्टल (ऑनलाइन)",
+        "documents": [
+          "PAN",
+          "Aadhaar",
+          "Premises proof",
+          "Bank details"
+        ],
+        "fee": "Free",
+        "link": "https://www.gst.gov.in",
+        "status": "approved",
+        "depends_on": [
+          "o2"
+        ],
+        "scope": "national",
+        "requirement": "conditional",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "legal": {
+          "act": "Central Goods and Services Tax Act, 2017",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": true
+        },
+        "condition": "Check on the GST portal whether registration is compulsory for you",
+        "condition_hi": "GST पोर्टल पर देखें कि आपके लिए पंजीकरण अनिवार्य है या नहीं",
+        "condition_mr": "तुमच्यासाठी नोंदणी अनिवार्य आहे का ते GST पोर्टलवर तपासा"
+      },
+      {
+        "id": "o6",
+        "name": "Ready to sell online",
+        "name_hi": "ऑनलाइन बेचने के लिए तैयार",
+        "name_mr": "ऑनलाइन विक्रीसाठी तयार",
+        "type": "milestone",
+        "office": "",
+        "office_hi": "",
+        "office_mr": "",
+        "documents": [],
+        "fee": "",
+        "link": "",
+        "status": "approved",
+        "depends_on": [
+          "o3",
+          "o5"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20"
+      }
+    ]
+  },
+  {
+    "task_id": "home-bakery",
+    "category": "home",
+    "popular": 5,
+    "title": "Run a home bakery or tiffin service",
+    "title_hi": "घर से बेकरी या टिफ़िन सेवा चलाएँ",
+    "title_mr": "घरून बेकरी किंवा टिफिन सेवा चालवा",
+    "keywords": [
+      "home bakery",
+      "home",
+      "cake",
+      "homemade",
+      "घर से",
+      "घरून",
+      "केक",
+      "घरगुती"
+    ],
+    "last_verified": "2026-09-20",
+    "sample_data": true,
+    "steps": [
+      {
+        "id": "h1",
+        "name": "PAN card",
+        "name_hi": "पैन कार्ड",
+        "name_mr": "पॅन कार्ड",
+        "type": "document",
+        "office": "Income Tax Dept (online)",
+        "office_hi": "आयकर विभाग (ऑनलाइन)",
+        "office_mr": "आयकर विभाग (ऑनलाइन)",
+        "documents": [
+          "Aadhaar",
+          "Photograph"
+        ],
+        "fee": null,
+        "link": "https://www.incometax.gov.in",
+        "status": "approved",
+        "depends_on": [],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "legal": {
+          "act": "Income-tax Act, 1961",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": true
+        }
+      },
+      {
+        "id": "h3",
+        "name": "Udyam (MSME) registration",
+        "name_hi": "उद्यम (MSME) पंजीकरण",
+        "name_mr": "उद्यम (MSME) नोंदणी",
+        "type": "form",
+        "office": "Ministry of MSME (online)",
+        "office_hi": "MSME मंत्रालय (ऑनलाइन)",
+        "office_mr": "MSME मंत्रालय (ऑनलाइन)",
+        "documents": [
+          "Aadhaar",
+          "PAN"
+        ],
+        "fee": "Free",
+        "link": "https://udyamregistration.gov.in",
+        "status": "approved",
+        "depends_on": [
+          "h1"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "legal": {
+          "act": "Micro, Small and Medium Enterprises Development Act, 2006",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": true
+        }
+      },
+      {
+        "id": "h5",
+        "name": "FSSAI registration / licence",
+        "name_hi": "FSSAI पंजीकरण / लाइसेंस",
+        "name_mr": "FSSAI नोंदणी / परवाना",
+        "type": "form",
+        "office": "FSSAI – FoSCoS portal",
+        "office_hi": "FSSAI – FoSCoS पोर्टल",
+        "office_mr": "FSSAI – FoSCoS पोर्टल",
+        "documents": [
+          "Photo ID",
+          "Address proof",
+          "List of food products"
+        ],
+        "fee": null,
+        "link": "https://foscos.fssai.gov.in",
+        "status": "approved",
+        "depends_on": [
+          "h1"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "legal": {
+          "act": "Food Safety and Standards Act, 2006",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": true
+        }
+      },
+      {
+        "id": "h7",
+        "name": "GST registration (if above threshold)",
+        "name_hi": "GST पंजीकरण (सीमा से ऊपर होने पर)",
+        "name_mr": "GST नोंदणी (मर्यादेपेक्षा जास्त असल्यास)",
+        "type": "form",
+        "office": "GST portal (online)",
+        "office_hi": "GST पोर्टल (ऑनलाइन)",
+        "office_mr": "GST पोर्टल (ऑनलाइन)",
+        "documents": [
+          "PAN",
+          "Aadhaar",
+          "Premises proof",
+          "Bank details"
+        ],
+        "fee": "Free",
+        "link": "https://www.gst.gov.in",
+        "status": "approved",
+        "depends_on": [
+          "h1"
+        ],
+        "scope": "national",
+        "requirement": "conditional",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "legal": {
+          "act": "Central Goods and Services Tax Act, 2017",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": true
+        },
+        "condition": "Only if your turnover is above the GST registration limit",
+        "condition_hi": "केवल तब, जब आपका टर्नओवर GST पंजीकरण सीमा से अधिक हो",
+        "condition_mr": "फक्त तुमची उलाढाल GST नोंदणी मर्यादेपेक्षा जास्त असल्यास"
+      },
+      {
+        "id": "h8",
+        "name": "Start selling",
+        "name_hi": "बिक्री शुरू करें",
+        "name_mr": "विक्री सुरू करा",
+        "type": "milestone",
+        "office": "",
+        "office_hi": "",
+        "office_mr": "",
+        "documents": [],
+        "fee": "",
+        "link": "",
+        "status": "approved",
+        "depends_on": [
+          "h3",
+          "h5",
+          "h7"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20"
+      }
+    ]
+  },
+  {
+    "task_id": "small-manufacturing",
+    "category": "manufacturing",
+    "popular": 6,
+    "title": "Set up a small manufacturing unit",
+    "title_hi": "छोटी निर्माण इकाई लगाएँ",
+    "title_mr": "छोटा उत्पादन उद्योग सुरू करा",
+    "keywords": [
+      "manufacturing",
+      "factory",
+      "workshop",
+      "unit",
+      "production",
+      "फ़ैक्टरी",
+      "फैक्टरी",
+      "कारखाना",
+      "उत्पादन",
+      "निर्माण",
+      "उद्योग"
+    ],
+    "last_verified": "2026-09-20",
+    "sample_data": true,
+    "steps": [
+      {
+        "id": "m1",
+        "name": "PAN card",
+        "name_hi": "पैन कार्ड",
+        "name_mr": "पॅन कार्ड",
+        "type": "document",
+        "office": "Income Tax Dept (online)",
+        "office_hi": "आयकर विभाग (ऑनलाइन)",
+        "office_mr": "आयकर विभाग (ऑनलाइन)",
+        "documents": [
+          "Aadhaar",
+          "Photograph"
+        ],
+        "fee": null,
+        "link": "https://www.incometax.gov.in",
+        "status": "approved",
+        "depends_on": [],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "legal": {
+          "act": "Income-tax Act, 1961",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": true
+        }
+      },
+      {
+        "id": "m2",
+        "name": "Proof of business premises",
+        "name_hi": "व्यवसाय परिसर का प्रमाण",
+        "name_mr": "व्यवसाय जागेचा पुरावा",
+        "type": "document",
+        "office": "Owner / landlord",
+        "office_hi": "मालिक / मकान मालिक",
+        "office_mr": "मालक / घरमालक",
+        "documents": [
+          "Rent agreement or ownership proof",
+          "Recent electricity bill"
+        ],
+        "fee": "No government fee",
+        "link": "",
+        "status": "approved",
+        "depends_on": [],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20"
+      },
+      {
+        "id": "m3",
+        "name": "Udyam (MSME) registration",
+        "name_hi": "उद्यम (MSME) पंजीकरण",
+        "name_mr": "उद्यम (MSME) नोंदणी",
+        "type": "form",
+        "office": "Ministry of MSME (online)",
+        "office_hi": "MSME मंत्रालय (ऑनलाइन)",
+        "office_mr": "MSME मंत्रालय (ऑनलाइन)",
+        "documents": [
+          "Aadhaar",
+          "PAN"
+        ],
+        "fee": "Free",
+        "link": "https://udyamregistration.gov.in",
+        "status": "approved",
+        "depends_on": [
+          "m1"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "legal": {
+          "act": "Micro, Small and Medium Enterprises Development Act, 2006",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": true
+        }
+      },
+      {
+        "id": "m7",
+        "name": "GST registration (if above threshold)",
+        "name_hi": "GST पंजीकरण (सीमा से ऊपर होने पर)",
+        "name_mr": "GST नोंदणी (मर्यादेपेक्षा जास्त असल्यास)",
+        "type": "form",
+        "office": "GST portal (online)",
+        "office_hi": "GST पोर्टल (ऑनलाइन)",
+        "office_mr": "GST पोर्टल (ऑनलाइन)",
+        "documents": [
+          "PAN",
+          "Aadhaar",
+          "Premises proof",
+          "Bank details"
+        ],
+        "fee": "Free",
+        "link": "https://www.gst.gov.in",
+        "status": "approved",
+        "depends_on": [
+          "m1",
+          "m2"
+        ],
+        "scope": "national",
+        "requirement": "conditional",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "legal": {
+          "act": "Central Goods and Services Tax Act, 2017",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": true
+        },
+        "condition": "Only if your turnover is above the GST registration limit",
+        "condition_hi": "केवल तब, जब आपका टर्नओवर GST पंजीकरण सीमा से अधिक हो",
+        "condition_mr": "फक्त तुमची उलाढाल GST नोंदणी मर्यादेपेक्षा जास्त असल्यास"
+      },
+      {
+        "id": "m4",
+        "name": "Industry-specific permissions",
+        "name_hi": "उद्योग से जुड़ी अनुमतियाँ",
+        "name_mr": "उद्योगासंबंधी परवानग्या",
+        "type": "document",
+        "office": "Depends on your industry",
+        "office_hi": "आपके उद्योग पर निर्भर",
+        "office_mr": "तुमच्या उद्योगावर अवलंबून",
+        "documents": [],
+        "fee": null,
+        "link": "",
+        "status": "approved",
+        "depends_on": [
+          "m3"
+        ],
+        "scope": "state",
+        "state": "Maharashtra",
+        "requirement": "conditional",
+        "processing_time": null,
+        "verified_on": "2026-09-20",
+        "condition": "Manufacturing may also need permissions such as pollution control consent or a factory licence. We haven't mapped these yet.",
+        "condition_hi": "निर्माण के लिए प्रदूषण नियंत्रण सहमति या फ़ैक्टरी लाइसेंस जैसी अनुमतियाँ भी लग सकती हैं। ये अभी शामिल नहीं हैं।",
+        "condition_mr": "उत्पादनासाठी प्रदूषण नियंत्रण संमती किंवा कारखाना परवाना यांसारख्या परवानग्याही लागू शकतात. त्या अजून समाविष्ट नाहीत."
+      },
+      {
+        "id": "m8",
+        "name": "Start production",
+        "name_hi": "उत्पादन शुरू करें",
+        "name_mr": "उत्पादन सुरू करा",
+        "type": "milestone",
+        "office": "",
+        "office_hi": "",
+        "office_mr": "",
+        "documents": [],
+        "fee": "",
+        "link": "",
+        "status": "approved",
+        "depends_on": [
+          "m3",
+          "m7",
+          "m4"
         ],
         "scope": "national",
         "requirement": "required",

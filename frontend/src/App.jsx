@@ -4,6 +4,8 @@ import Roadmap from './pages/Roadmap.jsx'
 import Admin from './pages/Admin.jsx'
 import Privacy from './pages/Privacy.jsx'
 import NotFound from './pages/NotFound.jsx'
+import Browse from './pages/Browse.jsx'
+import LangChooser from './components/LangChooser.jsx'
 import { LANGS, useLang } from './lib/i18n.jsx'
 import ThemeMenu from './components/ThemeMenu.jsx'
 import TextSize from './components/TextSize.jsx'
@@ -12,6 +14,7 @@ export default function App() {
   const { lang, setLang, t } = useLang()
   return (
     <div className="min-h-screen flex flex-col">
+      <LangChooser />
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-accent focus:text-on-accent focus:px-4 focus:py-3">{t.skip}</a>
       <header className="border-b border-line">
         <nav className="max-w-6xl mx-auto px-4 min-h-16 py-2 flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
@@ -36,6 +39,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/task/:taskId" element={<Roadmap />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/browse" element={<Browse />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

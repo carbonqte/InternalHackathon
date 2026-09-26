@@ -17,7 +17,9 @@ export async function listJurisdictions() {
 /** GET /tasks → [{task_id, title, ...}] */
 export async function listTasks() {
   await delay()
-  return db.map(({ task_id, title, title_hi, title_mr }) => ({ task_id, title, title_hi, title_mr }))
+  return db
+    .map(({ task_id, title, title_hi, title_mr, category, popular, keywords }) => ({ task_id, title, title_hi, title_mr, category, popular, keywords }))
+    .sort((a, b) => (a.popular ?? 99) - (b.popular ?? 99))
 }
 
 /** POST /query {text, state, city} → {task_id} | {task_id: null}  (backend will use an LLM / embeddings) */

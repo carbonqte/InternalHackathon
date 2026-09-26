@@ -4,12 +4,15 @@ import { listJurisdictions, listTasks, searchTask, getTask } from '../api/client
 import { useLang, tr, CONTACT } from '../lib/i18n.jsx'
 import MicButton from '../components/MicButton.jsx'
 import { stages } from '../lib/graph.js'
+import { CATEGORIES, CatIcon, lastPlace, savePlace, placeQuery, suggest } from '../lib/categories.jsx'
+import Suggestions from '../components/Suggestions.jsx'
 
 export default function Home() {
   const { lang, t } = useLang()
   const [text, setText] = useState('')
-  const [state, setState] = useState('Maharashtra')
-  const [city, setCity] = useState('Mumbai')
+  const [state, setState] = useState(() => lastPlace().state)
+  const [city, setCity] = useState(() => lastPlace().city)
+  const [showSug, setShowSug] = useState(false)
   const [places, setPlaces] = useState([])
   const [error, setError] = useState('')
   const [miss, setMiss] = useState(false)
@@ -21,11 +24,15 @@ export default function Home() {
   useEffect(() => { document.title = 'Civic Navigator' }, [])
   useEffect(() => { listTasks().then(setJourneys).catch(() => {}); listJurisdictions().then(setPlaces).catch(() => {}) }, [])
   useEffect(() => {
-    Promise.all(journeys.map((j) => getTask(j.task_id, state, city).catch(() => null)))
+    Promise.all(journeys.slice(0, 4).map((j) => getTask(j.task_id, state, city).catch(() => null)))
       .then((all) => setDetails(Object.fromEntries(all.filter(Boolean).map((x) => [x.task_id, x]))))
   }, [journeys, state, city])
   const cities = places.find((p) => p.state === state)?.cities || []
-  const loc = `?state=${encodeURIComponent(state)}&city=${encodeURIComponent(city)}`
+  const loc = placeQuery({ state, city })
+  useEffect(() => { savePlace({ state, city }) }, [state, city])
+  const popular = journeys.slice(0, 4)
+  const sugg = showSug ? suggest(journeys, text, lang).map((j) => ({ ...j, href: `/task/${j.task_id}${loc}` })) : []
+  const count = (c) => journeys.filter((j) => j.category === c).length
 
   async function go(q = text) {
     if (!q.trim()) return
@@ -50,13 +57,19 @@ export default function Home() {
           <label htmlFor="q" className="sr-only">{t.askLabel}</label>
           <div className="flex gap-2 items-start">
           <textarea
-            id="q" rows={2} maxLength={300} value={text} onChange={(e) => setText(e.target.value)}
-            onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); go() } }}
+            id="q" rows={2} maxLength={300} value={text} onChange={(e) => { setText(e.target.value); setShowSug(true) }}
+            aria-autocomplete="list" aria-controls="q-suggest" aria-expanded={sugg.length > 0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); go() }
+              if (e.key === 'ArrowDown' && sugg.length) { e.preventDefault(); document.querySelector('#q-suggest a')?.focus() }
+              if (e.key === 'Escape') setShowSug(false)
+            }}
             placeholder={t.askPlaceholder}
             className="w-full rounded-lg border border-line bg-card px-4 py-3 text-base resize-none focus:border-accent outline-none"
           />
           <MicButton onText={(said) => { setText(said); go(said) }} onError={setError} />
           </div>
+          <Suggestions id="q-suggest" items={sugg} query={text} onClose={() => setShowSug(false)} />
           <fieldset className="grid grid-cols-2 gap-3">
             <legend className="text-sm text-muted mb-1.5">{t.whereBiz}</legend>
             <label className="text-xs text-muted">{t.state}
@@ -95,13 +108,31 @@ export default function Home() {
               className="mt-4 inline-block text-sm underline underline-offset-2 text-muted hover:text-ink">{t.suggest}</a>
           </div>
         )}
+        <section aria-labelledby="cats" className="mt-12">
+            <h2 id="cats" className="text-xl">{t.catTitle}</h2>
+            <p className="text-muted mt-1">{t.catSub}</p>
+            <ul className="mt-6 grid gap-3 grid-cols-[repeat(auto-fill,minmax(min(100%,9.5rem),1fr))] sm:grid-cols-2">
+              {CATEGORIES.map((c) => (
+                <li key={c}>
+                  <Link to={`/browse?cat=${c}`}
+                    className="h-full flex flex-col sm:flex-row sm:items-center gap-3 rounded-xl border border-line bg-card p-4 hover:border-accent group">
+                    <span className="shrink-0 grid place-items-center w-12 h-12 rounded-lg bg-accent-soft text-accent"><CatIcon k={c} /></span>
+                    <span className="min-w-0">
+                      <span className="block font-semibold group-hover:text-accent [overflow-wrap:anywhere] hyphens-auto">{t.cats[c]}</span>
+                      <span className="block text-sm text-muted">{t.catHint[c]} · {t.nProcedures(count(c))}</span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+        </section>
       </section>
 
       <section aria-labelledby="ready" className="rounded-xl border border-line bg-card p-5 sm:p-6">
         <h2 id="ready" className="text-lg">{t.previewTitle}</h2>
         <p className="text-sm text-muted mt-1">{t.previewSub}</p>
         <ul className="mt-5 space-y-3">
-          {journeys.map((j) => {
+          {popular.map((j) => {
             const d = details[j.task_id]
             const groups = d ? stages(d.steps) : []
             const forms = d ? d.steps.filter((x) => x.type === 'form').length : 0
@@ -135,11 +166,16 @@ export default function Home() {
             )
           })}
         </ul>
+        <Link to="/browse" className="mt-4 flex items-center justify-center min-h-11 rounded-lg border border-line text-sm font-medium text-accent hover:border-accent">
+          {t.seeAll(journeys.length)} <span aria-hidden className="ml-1.5">→</span>
+        </Link>
         <ul className="mt-5 pt-4 border-t border-line flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted">
           {t.trust.map((line) => <li key={line}>✓ {line}</li>)}
         </ul>
       </section>
       </div>
+
+
     </>
   )
 }
