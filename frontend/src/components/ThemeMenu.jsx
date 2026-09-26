@@ -39,7 +39,7 @@ export default function ThemeMenu() {
     <div ref={box} className="relative">
       <button ref={btn} type="button" onClick={() => setOpen((o) => !o)}
         aria-haspopup="menu" aria-expanded={open} aria-label={`${t.theme}: ${t.themes[theme]}`}
-        className="flex items-center gap-1.5 rounded-md border border-line bg-card px-2.5 py-1.5 text-sm hover:border-muted">
+        className="flex items-center gap-1.5 min-h-11 rounded-md border border-line bg-card px-2.5 text-sm hover:border-muted">
         <Icon k={theme} />
         <span className="hidden sm:inline">{t.theme}</span>
       </button>

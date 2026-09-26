@@ -88,13 +88,13 @@ export default function Roadmap() {
         </div>
         <div className="flex flex-wrap items-center gap-2 no-print">
           <button onClick={async () => { try { await navigator.clipboard.writeText(location.href); setCopied(true); setTimeout(() => setCopied(false), 2000) } catch { /* clipboard blocked */ } }}
-            className="rounded-lg border border-line bg-card px-3 py-1.5 text-sm">{copied ? t.copied : t.copyLink}</button>
+            className="min-h-11 rounded-lg border border-line bg-card px-3 text-sm">{copied ? t.copied : t.copyLink}</button>
           <button onClick={() => { setView('list'); setTimeout(() => window.print(), 100) }}
-            className="rounded-lg border border-line bg-card px-3 py-1.5 text-sm">{t.print}</button>
+            className="min-h-11 rounded-lg border border-line bg-card px-3 text-sm">{t.print}</button>
         <div role="tablist" className="flex rounded-lg border border-line bg-card p-1 text-sm">
           {['graph', 'list'].map((v) => (
             <button key={v} role="tab" aria-selected={view === v} onClick={() => setView(v)}
-              className={`px-3 py-1 rounded-md ${view === v ? 'bg-accent text-on-accent' : 'text-muted'}`}>{t[v]}</button>
+              className={`min-h-9 px-3 rounded-md ${view === v ? 'bg-accent text-on-accent' : 'text-muted'}`}>{t[v]}</button>
           ))}
         </div>
         </div>

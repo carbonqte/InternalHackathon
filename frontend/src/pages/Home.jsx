@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { listJurisdictions, listTasks, searchTask } from '../api/client.js'
 import { useLang, tr, CONTACT } from '../lib/i18n.jsx'
+import MicButton from '../components/MicButton.jsx'
 
 export default function Home() {
   const { lang, t } = useLang()
@@ -40,12 +41,15 @@ export default function Home() {
 
         <form onSubmit={(e) => { e.preventDefault(); go() }} className="mt-8 space-y-3">
           <label htmlFor="q" className="sr-only">{t.askLabel}</label>
+          <div className="flex gap-2 items-start">
           <textarea
             id="q" rows={2} maxLength={300} value={text} onChange={(e) => setText(e.target.value)}
             onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); go() } }}
             placeholder={t.askPlaceholder}
             className="w-full rounded-lg border border-line bg-card px-4 py-3 text-base resize-none focus:border-accent outline-none"
           />
+          <MicButton onText={(said) => { setText(said); go(said) }} onError={setError} />
+          </div>
           <fieldset className="grid grid-cols-2 gap-3">
             <legend className="text-sm text-muted mb-1.5">{t.whereBiz}</legend>
             <label className="text-xs text-muted">{t.state}

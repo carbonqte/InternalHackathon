@@ -4,15 +4,17 @@ import '@xyflow/react/dist/style.css'
 import StepNode from './StepNode.jsx'
 import { toFlow } from '../lib/graph.js'
 import { useLang } from '../lib/i18n.jsx'
+import { useTextScale } from '../lib/textsize.js'
 
 const nodeTypes = { step: StepNode }
 
 export default function RoadmapGraph({ steps, done, selectedId, onSelect, fresh }) {
   const { t } = useLang()
-  const { nodes, edges } = useMemo(() => toFlow(steps, done, selectedId, fresh), [steps, done, selectedId, fresh])
+  const scale = useTextScale()
+  const { nodes, edges } = useMemo(() => toFlow(steps, done, selectedId, fresh, scale), [steps, done, selectedId, fresh, scale])
   return (
     <div>
-    <div className="h-[520px] rounded-xl border border-line bg-card/60">
+    <div style={{ height: Math.round(560 * scale * scale) }} className="rounded-xl border border-line bg-card/60">
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -21,6 +23,8 @@ export default function RoadmapGraph({ steps, done, selectedId, onSelect, fresh 
         nodesDraggable={false}
         nodesConnectable={false}
         fitView
+        fitViewOptions={{ padding: 0.08, maxZoom: 1 }}
+        key={scale}
         proOptions={{ hideAttribution: true }}
       >
         <Background variant={BackgroundVariant.Lines} color="var(--color-grid)" gap={40} />

@@ -1,5 +1,6 @@
 import { stepState } from '../lib/graph.js'
 import { useLang, tr, fmtDate, CONTACT } from '../lib/i18n.jsx'
+import ListenButton from './ListenButton.jsx'
 
 export function hostOf(u) {
   try { const x = new URL(u); return ['https:', 'http:'].includes(x.protocol) ? x.hostname.replace(/^www\./, '') : null } catch { return null }
@@ -13,6 +14,14 @@ export default function StepPanel({ step, steps, done, onToggle, taskTitle, righ
   const blockers = step.depends_on.filter((d) => !done.has(d)).map((d) => tr(steps.find((s) => s.id === d), 'name', lang))
   const host = hostOf(step.link)
   const fee = step.fee == null ? null : step.fee === 'Free' ? t.free : step.fee === 'No government fee' ? t.noFee : step.fee
+  // What "Listen" reads: the same facts the panel shows, in the UI language.
+  const spoken = [
+    tr(step, 'name', lang) + '.',
+    step.office && `${t.where}: ${tr(step, 'office', lang)}.`,
+    step.type !== 'milestone' && `${t.fee}: ${fee ?? t.feeUnknown}`,
+    step.documents?.length && `${t.bring}: ${step.documents.join(', ')}.`,
+    state === 'locked' && `${t.finishFirst} ${blockers.join(', ')}.`,
+  ].filter(Boolean).join(' ')
   const report = `mailto:${CONTACT}?subject=${encodeURIComponent(`Outdated info: ${taskTitle} / ${step.name}`)}`
 
   return (
@@ -31,6 +40,7 @@ export default function StepPanel({ step, steps, done, onToggle, taskTitle, righ
         )}
         <h2 className="font-display text-xl mt-1">{tr(step, 'name', lang)}</h2>
         {step.condition && <p className="text-sm text-warn mt-1">{tr(step, 'condition', lang)}</p>}
+        <div className="mt-3"><ListenButton text={spoken} id={step.id} /></div>
       </div>
 
       {step.type !== 'milestone' && (

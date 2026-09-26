@@ -9,12 +9,13 @@ const styles = {
 }
 
 export default function StepNode({ data }) {
-  const { step, state, selected, fresh, stage, first } = data
+  const { step, state, selected, fresh, stage, first, w, h } = data
   const { lang, t } = useLang()
   return (
     <div className="animate-reveal" style={{ animationDelay: `${(stage - 1) * 140}ms` }}>
     <div
-      className={`relative w-[220px] h-[72px] rounded-lg border-2 pl-4 pr-3 py-2 flex gap-2 items-start cursor-pointer transition ${styles[state]} ${selected ? 'ring-2 ring-offset-2 ring-offset-paper ring-accent' : ''} ${fresh ? 'animate-unlock' : ''}`}
+      style={{ width: w, height: h }}
+      className={`relative rounded-lg border-2 pl-4 pr-3 py-2 flex gap-2 items-start cursor-pointer transition ${styles[state]} ${selected ? 'ring-2 ring-offset-2 ring-offset-paper ring-accent' : ''} ${fresh ? 'animate-unlock' : ''}`}
     >
       <Handle type="target" position={Position.Top} className="!opacity-0" />
       <span className="absolute -top-2.5 -left-2.5 w-6 h-6 rounded-full bg-paper border-2 border-current grid place-items-center text-[11px] font-semibold text-ink">{stage}</span>

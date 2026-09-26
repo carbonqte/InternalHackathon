@@ -6,29 +6,32 @@ import Privacy from './pages/Privacy.jsx'
 import NotFound from './pages/NotFound.jsx'
 import { LANGS, useLang } from './lib/i18n.jsx'
 import ThemeMenu from './components/ThemeMenu.jsx'
+import TextSize from './components/TextSize.jsx'
 
 export default function App() {
   const { lang, setLang, t } = useLang()
   return (
     <div className="min-h-screen flex flex-col">
+      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-accent focus:text-on-accent focus:px-4 focus:py-3">{t.skip}</a>
       <header className="border-b border-line">
-        <nav className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+        <nav className="max-w-6xl mx-auto px-4 min-h-16 py-2 flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
           <span className="flex items-baseline gap-3 min-w-0">
-            <Link to="/" className="font-display text-lg shrink-0">Civic Navigator</Link>
+            <Link to="/" className="font-display text-lg shrink-0 flex items-center min-h-11">Civic Navigator</Link>
             <span className="hidden md:inline text-xs text-muted truncate">{t.notGov}</span>
           </span>
-          <div className="flex items-center gap-2 sm:gap-4">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-4">
+            <TextSize />
             <ThemeMenu />
             <label htmlFor="lang" className="sr-only">{t.language}</label>
             <select id="lang" value={lang} onChange={(e) => setLang(e.target.value)}
-              className="rounded-md border border-line bg-card px-2 py-1 text-sm">
+              className="min-h-11 rounded-md border border-line bg-card px-2 text-sm">
               {LANGS.map((l) => <option key={l.code} value={l.code}>{l.label}</option>)}
             </select>
-            <Link to="/admin" className="text-sm text-muted hover:text-ink hidden sm:inline">{t.admin}</Link>
+            <Link to="/admin" className="text-sm text-muted hover:text-ink hidden sm:flex items-center min-h-11">{t.admin}</Link>
           </div>
         </nav>
       </header>
-      <main className="flex-1">
+      <main id="main" tabIndex={-1} className="flex-1 outline-none">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/task/:taskId" element={<Roadmap />} />

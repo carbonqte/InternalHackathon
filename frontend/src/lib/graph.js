@@ -26,11 +26,12 @@ export function topoOrder(steps) {
 }
 
 /** Convert steps → React Flow nodes/edges with a top-to-bottom dagre layout. */
-export function toFlow(steps, done, selectedId, fresh) {
+export function toFlow(steps, done, selectedId, fresh, scale = 1) {
+  const W = Math.round(NODE_W * scale), H = Math.round(NODE_H * scale * scale * 1.12)
   const g = new dagre.graphlib.Graph()
-  g.setGraph({ rankdir: 'TB', nodesep: 40, ranksep: 60 })
+  g.setGraph({ rankdir: 'TB', nodesep: 40 * scale, ranksep: 60 * scale })
   g.setDefaultEdgeLabel(() => ({}))
-  steps.forEach((s) => g.setNode(s.id, { width: NODE_W, height: NODE_H }))
+  steps.forEach((s) => g.setNode(s.id, { width: W, height: H }))
   steps.forEach((s) => s.depends_on.forEach((d) => g.setEdge(d, s.id)))
   dagre.layout(g)
   const stageOf = new Map()
@@ -41,8 +42,8 @@ export function toFlow(steps, done, selectedId, fresh) {
     return {
       id: s.id,
       type: 'step',
-      position: { x: x - NODE_W / 2, y: y - NODE_H / 2 },
-      data: { step: s, state: stepState(s, done), selected: s.id === selectedId, fresh: fresh?.has(s.id), stage: stageOf.get(s.id), first: s.depends_on.length === 0 && done.size === 0 },
+      position: { x: x - W / 2, y: y - H / 2 },
+      data: { step: s, state: stepState(s, done), selected: s.id === selectedId, fresh: fresh?.has(s.id), stage: stageOf.get(s.id), first: s.depends_on.length === 0 && done.size === 0, w: W, h: H },
     }
   })
   const edges = steps.flatMap((s) =>
