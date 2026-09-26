@@ -62,7 +62,7 @@ export default function Browse() {
         {groups.map(({ c, items }) => (
           <section key={c} aria-labelledby={`g-${c}`}>
             <h2 id={`g-${c}`} className="flex items-center gap-3 text-lg">
-              <span className="grid place-items-center w-9 h-9 rounded-lg bg-accent-soft text-accent [&>svg]:w-5 [&>svg]:h-5"><CatIcon k={c} /></span>
+              <span className="text-accent"><CatIcon k={c} size={26} /></span>
               {t.cats[c]}
             </h2>
             <ul className="mt-3 space-y-2">

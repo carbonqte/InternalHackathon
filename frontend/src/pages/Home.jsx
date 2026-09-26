@@ -125,13 +125,14 @@ export default function Home() {
               {CATEGORIES.map((c) => (
                 <li key={c}>
                   <Link to={`/browse?cat=${c}`}
-                    className="h-full flex flex-col sm:flex-row sm:items-center gap-3 rounded-xl border border-line bg-card p-4 hover:border-accent group">
-                    <span className="shrink-0 grid place-items-center w-12 h-12 rounded-lg bg-accent-soft text-accent"><CatIcon k={c} /></span>
-                    <span className="min-w-0">
-                      <span className="block font-semibold group-hover:text-accent [overflow-wrap:anywhere] hyphens-auto">{t.cats[c]}</span>
-                      <span className="block text-sm text-muted">{t.catHint[c]} · {t.nProcedures(count(c))}</span>
-                    </span>
-                  </Link>
+                  className="group h-full flex flex-col gap-3 rounded-xl border border-line bg-card p-4 hover:border-ink transition-colors">
+                  <span className="text-accent"><CatIcon k={c} size={34} /></span>
+                  <span className="min-w-0">
+                    <span className="block font-semibold leading-snug group-hover:underline underline-offset-4">{t.cats[c]}</span>
+                    <span className="block text-sm text-muted mt-0.5">{t.catHint[c]}</span>
+                    <span className="block text-xs text-muted mt-2 tabular-nums">{t.nProcedures(count(c))}</span>
+                  </span>
+                </Link>
                 </li>
               ))}
             </ul>
