@@ -2962,9 +2962,9 @@
         "requirement": "required",
         "processing_time": null,
         "verified_on": "2026-09-26",
-        "why": "There is a minimum waiting period before the driving test. Use it to practise.",
-        "why_hi": "ड्राइविंग टेस्ट से पहले न्यूनतम प्रतीक्षा अवधि होती है। इसमें अभ्यास करें।",
-        "why_mr": "ड्रायव्हिंग चाचणीपूर्वी किमान प्रतीक्षा कालावधी असतो. त्यात सराव करा."
+        "why": "You can apply for the permanent licence only 30 days after getting your learner's licence. Use the time to practise.",
+        "why_hi": "स्थायी लाइसेंस के लिए लर्नर लाइसेंस मिलने के 30 दिन बाद ही आवेदन कर सकते हैं। इस समय में अभ्यास करें।",
+        "why_mr": "कायम लायसन्ससाठी लर्नर लायसन्स मिळाल्यानंतर 30 दिवसांनीच अर्ज करता येतो. या काळात सराव करा."
       },
       {
         "id": "d4",
@@ -3077,9 +3077,9 @@
         "condition": "Report within 21 days of the birth. Later registration is possible but needs extra steps.",
         "condition_hi": "जन्म के 21 दिनों के भीतर सूचना दें। बाद में भी हो सकता है, पर अतिरिक्त प्रक्रिया लगती है।",
         "condition_mr": "जन्मानंतर 21 दिवसांत माहिती द्या. नंतरही होते, पण अतिरिक्त प्रक्रिया लागते.",
-        "why": "Hospitals often do this for you. Check with them before going yourself.",
-        "why_hi": "अस्पताल अक्सर यह ख़ुद करते हैं। ख़ुद जाने से पहले उनसे पूछ लें।",
-        "why_mr": "रुग्णालये अनेकदा हे स्वतः करतात. स्वतः जाण्यापूर्वी त्यांना विचारा."
+        "why": "For hospital births, the hospital must report the birth. For births at home, the family reports it.",
+        "why_hi": "अस्पताल में जन्म होने पर अस्पताल को सूचना देनी होती है। घर पर जन्म होने पर परिवार सूचना देता है।",
+        "why_mr": "रुग्णालयात जन्म झाल्यास रुग्णालयाने नोंद करायची असते. घरी जन्म झाल्यास कुटुंब नोंद करते."
       },
       {
         "id": "c2",
