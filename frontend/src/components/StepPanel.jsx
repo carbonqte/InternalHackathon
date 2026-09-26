@@ -7,7 +7,7 @@ export default function StepPanel({ step, steps, done, onToggle }) {
   const blockers = step.depends_on.filter((d) => !done.has(d)).map((d) => steps.find((s) => s.id === d)?.name)
 
   return (
-    <div className="space-y-4">
+    <div key={step.id} className="space-y-4 animate-enter">
       <div>
         <p className="text-xs uppercase tracking-wide text-muted">{typeLabel[step.type]}</p>
         <h2 className="font-display text-xl mt-1">{step.name}</h2>

@@ -6,8 +6,8 @@ import { toFlow } from '../lib/graph.js'
 
 const nodeTypes = { step: StepNode }
 
-export default function RoadmapGraph({ steps, done, selectedId, onSelect }) {
-  const { nodes, edges } = useMemo(() => toFlow(steps, done, selectedId), [steps, done, selectedId])
+export default function RoadmapGraph({ steps, done, selectedId, onSelect, fresh }) {
+  const { nodes, edges } = useMemo(() => toFlow(steps, done, selectedId, fresh), [steps, done, selectedId, fresh])
   return (
     <div className="h-[520px] rounded-xl border border-line bg-white/60">
       <ReactFlow

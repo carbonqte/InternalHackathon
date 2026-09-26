@@ -8,10 +8,10 @@ const styles = {
 }
 
 export default function StepNode({ data }) {
-  const { step, state, selected } = data
+  const { step, state, selected, fresh } = data
   return (
     <div
-      className={`w-[220px] h-[72px] rounded-lg border-2 px-3 py-2 flex gap-2 items-start cursor-pointer transition ${styles[state]} ${selected ? 'ring-2 ring-offset-2 ring-accent' : ''}`}
+      className={`w-[220px] h-[72px] rounded-lg border-2 px-3 py-2 flex gap-2 items-start cursor-pointer transition ${styles[state]} ${selected ? 'ring-2 ring-offset-2 ring-accent' : ''} ${fresh ? 'animate-unlock' : ''}`}
     >
       <Handle type="target" position={Position.Top} className="!opacity-0" />
       <span className={`mt-0.5 ${state === 'done' ? 'text-done' : state === 'available' ? 'text-accent' : ''}`}>

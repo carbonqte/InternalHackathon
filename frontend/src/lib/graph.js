@@ -26,7 +26,7 @@ export function topoOrder(steps) {
 }
 
 /** Convert steps → React Flow nodes/edges with a top-to-bottom dagre layout. */
-export function toFlow(steps, done, selectedId) {
+export function toFlow(steps, done, selectedId, fresh) {
   const g = new dagre.graphlib.Graph()
   g.setGraph({ rankdir: 'TB', nodesep: 40, ranksep: 60 })
   g.setDefaultEdgeLabel(() => ({}))
@@ -40,7 +40,7 @@ export function toFlow(steps, done, selectedId) {
       id: s.id,
       type: 'step',
       position: { x: x - NODE_W / 2, y: y - NODE_H / 2 },
-      data: { step: s, state: stepState(s, done), selected: s.id === selectedId },
+      data: { step: s, state: stepState(s, done), selected: s.id === selectedId, fresh: fresh?.has(s.id) },
     }
   })
   const edges = steps.flatMap((s) =>
@@ -53,4 +53,18 @@ export function toFlow(steps, done, selectedId) {
     })),
   )
   return { nodes, edges }
+}
+
+/** Group steps into numbered stages: a step's stage = 1 + deepest dependency. Same stage = can be done in parallel. */
+export function stages(steps) {
+  const byId = new Map(steps.map((s) => [s.id, s]))
+  const memo = new Map()
+  const depth = (id) => {
+    if (memo.has(id)) return memo.get(id)
+    const d = Math.max(0, ...byId.get(id).depends_on.filter((x) => byId.has(x)).map((x) => depth(x) + 1))
+    memo.set(id, d); return d
+  }
+  const out = []
+  topoOrder(steps).forEach((s) => { (out[depth(s.id)] ||= []).push(s) })
+  return out
 }
