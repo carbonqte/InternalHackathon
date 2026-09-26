@@ -46,24 +46,32 @@ export default function Home() {
     } finally { setLoading(false) }
   }
 
+  const qi = t.heroTitle.search(/[?？]/)
+  const h1a = qi > 0 ? t.heroTitle.slice(0, qi + 1) : t.heroTitle
+  const h1b = qi > 0 ? t.heroTitle.slice(qi + 1).trim() : ''
+
   return (
     <>
-      <div className="max-w-6xl mx-auto px-4 pt-10 sm:pt-16 pb-12 grid gap-10 lg:grid-cols-[1.15fr_1fr] items-start">
+      <div className="bg-band text-on-band">
+      <div className="max-w-6xl mx-auto px-4 pt-8 sm:pt-12 pb-10 sm:pb-14 grid gap-8 lg:gap-12 lg:grid-cols-[1.2fr_1fr] items-start">
       <section>
-        <h1 className="font-display text-[1.7rem] sm:text-[2.75rem] leading-[1.15] max-w-xl">{t.heroTitle}</h1>
-        <p className="mt-3 sm:mt-4 text-muted">{t.heroSub}</p>
+        <p className="eyebrow flex items-center gap-2 text-band-muted"><span aria-hidden className="h-2 w-2 rounded-full bg-next" />{t.eyebrow}</p>
+        <h1 className="mt-3 font-display text-[1.85rem] sm:text-[2.9rem] leading-[1.06] max-w-2xl">
+          {h1a}{h1b && <> <span className="text-next">{h1b}</span></>}
+        </h1>
+        <p className="mt-4 text-band-muted max-w-xl">{t.heroSub}</p>
 
-        <nav aria-label={t.catTitle} className="lg:hidden mt-5 grid grid-cols-2 gap-2">
+        <nav aria-label={t.catTitle} className="lg:hidden mt-6 grid grid-cols-2 gap-2">
           {AREAS.filter((a) => !SOON.includes(a)).map((a) => (
             <Link key={a} to={`/browse?area=${a}`}
-              className="flex items-center gap-2.5 min-h-12 rounded-lg border border-line bg-card px-3 text-sm font-medium hover:border-ink">
-              <span className="text-accent shrink-0"><CatIcon k={a} size={22} /></span>
+              className="flex items-center gap-2.5 min-h-12 rounded-lg border border-on-band/20 bg-on-band/5 px-3 text-sm font-medium text-on-band hover:bg-on-band/10">
+              <span className="text-next shrink-0"><CatIcon k={a} size={22} /></span>
               <span className="leading-tight">{t.areas[a]}</span>
             </Link>
           ))}
         </nav>
 
-        <form onSubmit={(e) => { e.preventDefault(); go() }} className="mt-8 space-y-3">
+        <form onSubmit={(e) => { e.preventDefault(); go() }} className="mt-7 space-y-3 rounded-2xl bg-card text-ink p-3 sm:p-4 shadow-2xl shadow-black/20">
           <label htmlFor="q" className="sr-only">{t.askLabel}</label>
           <div className="flex gap-2 items-start">
           <textarea
@@ -75,12 +83,12 @@ export default function Home() {
               if (e.key === 'Escape') setShowSug(false)
             }}
             placeholder={t.askPlaceholder}
-            className="w-full rounded-lg border border-line bg-card px-4 py-3 text-base resize-none focus:border-accent outline-none"
+            className="w-full rounded-lg border border-line bg-paper px-4 py-3 text-base resize-none focus:border-accent outline-none"
           />
           <MicButton onText={(said) => { setText(said); go(said) }} onError={setError} />
           </div>
           <Suggestions id="q-suggest" items={sugg} query={text} onClose={() => setShowSug(false)} />
-          <fieldset className="grid grid-cols-2 gap-3">
+          <fieldset className="grid grid-cols-2 gap-3 pt-1">
             <legend className="text-sm text-muted mb-1.5">{t.whereBiz}</legend>
             <label className="text-xs text-muted">{t.state}
               <select value={state} onChange={(e) => { const s = e.target.value; setState(s); setCity(places.find((p) => p.state === s)?.cities[0]?.city || '') }}
@@ -105,15 +113,14 @@ export default function Home() {
               </button>
             ) : null
           })()}
-          <div className="flex">
-            <button disabled={loading} className="flex-1 sm:flex-none sm:px-8 rounded-lg bg-accent text-on-accent py-3 text-sm font-medium disabled:opacity-60">
-              {loading ? t.finding : t.showRoadmap}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+            <button disabled={loading} className="sm:shrink-0 sm:px-8 min-h-12 rounded-lg bg-accent text-on-accent text-base font-semibold disabled:opacity-60 inline-flex items-center justify-center gap-2">
+              {loading ? t.finding : t.showRoadmap}<span aria-hidden>→</span>
             </button>
+            <p className="text-xs text-muted">{t.onlyMumbai}</p>
           </div>
-          <p className="text-xs text-muted">{t.onlyMumbai}</p>
+          {error && <p role="alert" className="text-sm text-warn">{error}</p>}
         </form>
-
-        {error && <p role="alert" className="mt-4 text-sm text-warn">{error}</p>}
 
         {miss && (
           <div role="status" className="mt-6 rounded-xl border border-warn/40 bg-card p-5">
@@ -128,38 +135,10 @@ export default function Home() {
               className="mt-4 inline-block text-sm underline underline-offset-2 text-muted hover:text-ink">{t.suggest}</a>
           </div>
         )}
-        <section aria-labelledby="cats" className="hidden lg:block mt-12">
-            <h2 id="cats" className="text-xl">{t.catTitle}</h2>
-            <p className="text-muted mt-1">{t.catSub}</p>
-            <ul className="mt-6 grid gap-3 grid-cols-[repeat(auto-fill,minmax(min(100%,9.5rem),1fr))] sm:grid-cols-2">
-            {AREAS.map((a) => {
-              const soon = SOON.includes(a)
-              const inner = (
-                <>
-                  <span className={soon ? 'text-muted' : 'text-accent'}><CatIcon k={a} size={34} /></span>
-                  <span className="min-w-0">
-                    <span className="block font-semibold leading-snug group-hover:underline underline-offset-4">{t.areas[a]}</span>
-                    <span className="block text-sm text-muted mt-0.5">{t.areaHint[a]}</span>
-                    <span className="block text-xs text-muted mt-2 tabular-nums">{soon ? t.comingSoon : t.nProcedures(count(a))}</span>
-                  </span>
-                </>
-              )
-              return (
-                <li key={a}>
-                  {soon ? (
-                    <div className="h-full flex flex-col gap-3 rounded-xl border border-dashed border-line p-4">{inner}</div>
-                  ) : (
-                    <Link to={`/browse?area=${a}`} className="group h-full flex flex-col gap-3 rounded-xl border border-line bg-card p-4 hover:border-ink transition-colors">{inner}</Link>
-                  )}
-                </li>
-              )
-            })}
-          </ul>
-        </section>
       </section>
 
-      <section aria-labelledby="ready" className="rounded-xl border border-line bg-card p-5 sm:p-6">
-        <h2 id="ready" className="text-lg">{t.previewTitle}</h2>
+      <section aria-labelledby="ready" className="rounded-2xl bg-card text-ink p-5 sm:p-6 shadow-2xl shadow-black/20">
+        <h2 id="ready" className="text-xl">{t.previewTitle}</h2>
         <p className="text-sm text-muted mt-1">{t.previewSub}</p>
         <ul className="mt-5 space-y-3">
           {popular.map((j) => {
@@ -204,8 +183,35 @@ export default function Home() {
         </ul>
       </section>
       </div>
-
-
+      </div>
+        <section aria-labelledby="cats" className="max-w-6xl mx-auto px-4 py-12 sm:py-16">
+            <p className="eyebrow text-accent">{t.catSub.replace(/[.।]$/, "")}</p>
+            <h2 id="cats" className="mt-2 text-2xl sm:text-3xl">{t.catTitle}</h2>
+            <ul className="mt-6 grid gap-3 grid-cols-[repeat(auto-fill,minmax(min(100%,9.5rem),1fr))] sm:grid-cols-2 lg:grid-cols-3">
+            {AREAS.map((a) => {
+              const soon = SOON.includes(a)
+              const inner = (
+                <>
+                  <span className={soon ? 'text-muted' : 'text-accent'}><CatIcon k={a} size={34} /></span>
+                  <span className="min-w-0">
+                    <span className="block font-semibold leading-snug group-hover:underline underline-offset-4">{t.areas[a]}</span>
+                    <span className="block text-sm text-muted mt-0.5">{t.areaHint[a]}</span>
+                    <span className="block text-xs text-muted mt-2 tabular-nums">{soon ? t.comingSoon : t.nProcedures(count(a))}</span>
+                  </span>
+                </>
+              )
+              return (
+                <li key={a}>
+                  {soon ? (
+                    <div className="h-full flex flex-col gap-3 rounded-xl border border-dashed border-line p-4">{inner}</div>
+                  ) : (
+                    <Link to={`/browse?area=${a}`} className="group h-full flex flex-col gap-3 rounded-xl border border-line bg-card p-4 hover:border-ink transition-colors">{inner}</Link>
+                  )}
+                </li>
+              )
+            })}
+          </ul>
+        </section>
     </>
   )
 }

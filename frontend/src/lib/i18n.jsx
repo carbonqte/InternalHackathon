@@ -283,6 +283,14 @@ Object.assign(dict.kn, {"heroTitle": "ಸರ್ಕಾರದಿಂದ ಏನಾ�
 Object.assign(dict.gu, {"heroTitle": "સરકારનું કોઈ કામ છે? દરેક પગલું સાચા ક્રમમાં જુઓ.", "heroSub": "તમારે શું કરવું છે તે કહો. અમે દરેક ફોર્મ, કચેરી અને ફી બતાવીએ છીએ, અને દરેક પગલા માટે સત્તાવાર વેબસાઇટની લિંક આપીએ છીએ.", "askPlaceholder": "ઉદા. મારે પાસપોર્ટ કઢાવવો છે", "whereBiz": "તમે ક્યાં રહો છો અથવા કામ કરો છો?", "catTitle": "તમારે શું કરવું છે?", "catSub": "સૌથી નજીકનો વિકલ્પ પસંદ કરો.", "comingSoon": "ટૂંક સમયમાં", "bizTypes": "વ્યવસાયના પ્રકાર", "allTypes": "બધા પ્રકાર", "whyTitle": "આ પગલું કેમ:", "areas": {"business": "વ્યવસાય શરૂ કરો", "ids": "પાસપોર્ટ અને ઓળખપત્રો", "vehicles": "વાહન અને ડ્રાઇવિંગ", "certificates": "પ્રમાણપત્રો", "property": "ઘર અને મિલકત", "welfare": "શિક્ષણ અને કલ્યાણ"}, "areaHint": {"business": "દુકાન, ખાણી-પીણી, સલૂન, ઓનલાઇન, ફેક્ટરી", "ids": "પાસપોર્ટ, આધાર અપડેટ", "vehicles": "ડ્રાઇવિંગ લાઇસન્સ", "certificates": "જન્મ પ્રમાણપત્ર", "property": "ભાડા કરાર, મિલકત નોંધણી", "welfare": "શિષ્યવૃત્તિ, રેશન કાર્ડ"}})
 Object.assign(dict.ta, {"heroTitle": "அரசிடம் ஏதாவது வேலை இருக்கிறதா? ஒவ்வொரு படியையும் சரியான வரிசையில் பாருங்கள்.", "heroSub": "நீங்கள் என்ன செய்ய வேண்டும் என்று சொல்லுங்கள். ஒவ்வொரு படிவம், அலுவலகம், கட்டணம் ஆகியவற்றைக் காட்டி, ஒவ்வொரு படிக்கும் அதிகாரப்பூர்வ இணையதள இணைப்பைத் தருகிறோம்.", "askPlaceholder": "உதா: எனக்குப் பாஸ்போர்ட் வேண்டும்", "whereBiz": "நீங்கள் எங்கே வசிக்கிறீர்கள் அல்லது வேலை செய்கிறீர்கள்?", "catTitle": "நீங்கள் என்ன செய்ய வேண்டும்?", "catSub": "மிக நெருக்கமானதைத் தேர்ந்தெடுங்கள்.", "comingSoon": "விரைவில்", "bizTypes": "தொழில் வகைகள்", "allTypes": "எல்லா வகைகளும்", "whyTitle": "இந்தப் படி ஏன்:", "areas": {"business": "தொழில் தொடங்கு", "ids": "பாஸ்போர்ட் மற்றும் அடையாள அட்டைகள்", "vehicles": "வாகனம் மற்றும் ஓட்டுதல்", "certificates": "சான்றிதழ்கள்", "property": "வீடு மற்றும் சொத்து", "welfare": "கல்வி மற்றும் நலன்"}, "areaHint": {"business": "கடை, உணவு, சலூன், இணையம், தொழிற்சாலை", "ids": "பாஸ்போர்ட், ஆதார் புதுப்பிப்பு", "vehicles": "ஓட்டுநர் உரிமம்", "certificates": "பிறப்புச் சான்றிதழ்", "property": "வாடகை ஒப்பந்தம், சொத்துப் பதிவு", "welfare": "உதவித்தொகை, குடும்ப அட்டை"}})
 
+
+Object.assign(dict.en, { eyebrow: 'Your guide to Indian government services', display: 'Display' })
+Object.assign(dict.hi, { eyebrow: 'भारतीय सरकारी सेवाओं की आपकी गाइड', display: 'दिखावट' })
+Object.assign(dict.mr, { eyebrow: 'भारतीय सरकारी सेवांसाठी तुमचा मार्गदर्शक', display: 'प्रदर्शन' })
+Object.assign(dict.kn, { eyebrow: 'ಭಾರತೀಯ ಸರ್ಕಾರಿ ಸೇವೆಗಳಿಗೆ ನಿಮ್ಮ ಮಾರ್ಗದರ್ಶಿ', display: 'ಪ್ರದರ್ಶನ' })
+Object.assign(dict.gu, { eyebrow: 'ભારતીય સરકારી સેવાઓ માટે તમારી માર્ગદર્શિકા', display: 'દેખાવ' })
+Object.assign(dict.ta, { eyebrow: 'இந்திய அரசு சேவைகளுக்கான உங்கள் வழிகாட்டி', display: 'காட்சி' })
+
 // English fills any gap in a translation, including nested groups like t.cats.
 const cache = {}
 function withFallback(lang) {

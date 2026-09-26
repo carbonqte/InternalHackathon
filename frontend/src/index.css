@@ -2,19 +2,22 @@
 
 @theme {
   --font-sans: "Mukta", "Noto Sans Kannada", "Noto Sans Gujarati", "Noto Sans Tamil", system-ui, sans-serif;
-  --font-display: "Mukta", "Noto Sans Kannada", "Noto Sans Gujarati", "Noto Sans Tamil", system-ui, sans-serif;
-  --color-paper: #f4f6f9;
-  --color-ink: #0f1b2d;
-  --color-muted: #4d5b6e;
-  --color-line: #d3dae4;
-  --color-accent: #1747a6;
-  --color-accent-soft: #e6edfb;
+  --font-display: "Bricolage Grotesque", "Mukta", "Noto Sans Kannada", "Noto Sans Gujarati", "Noto Sans Tamil", system-ui, sans-serif;
+  --color-paper: #f7f5f0;
+  --color-ink: #14203a;
+  --color-muted: #4f5a6b;
+  --color-line: #dcd7cc;
+  --color-accent: #1f45a0;
+  --color-accent-soft: #e7ecf8;
+  --color-band: #13223f;
+  --color-on-band: #f7f5f0;
+  --color-band-muted: #c3cbdb;
   --color-done: #1e7a46;
   --color-lock: #4d5b6e;
   --color-warn: #a4430a;
   --color-card: #ffffff;
   --color-on-accent: #ffffff;
-  --color-grid: #e9edf3;
+  --color-grid: #ece8df;
   --color-next: #f0a020;
   --color-on-next: #0f1b2d; /* orange keeps dark text in every theme */
 }
@@ -24,12 +27,12 @@
   color-scheme: dark;
   --color-paper: #0d1420; --color-card: #151e2d; --color-ink: #e8edf5; --color-muted: #a3afc0;
   --color-line: #2c384b; --color-grid: #182232; --color-accent: #8fb1ff; --color-accent-soft: #1b2a4a;
-  --color-on-accent: #0a1222; --color-done: #6fd39a; --color-lock: #a3afc0; --color-warn: #f2a867;
+  --color-on-accent: #0a1222; --color-band: #182a4d; --color-on-band: #eef2f8; --color-band-muted: #aab6c9; --color-done: #6fd39a; --color-lock: #a3afc0; --color-warn: #f2a867;
 }
 :root[data-theme="contrast"] {
   --color-paper: #ffffff; --color-card: #ffffff; --color-ink: #000000; --color-muted: #262626;
   --color-line: #000000; --color-grid: #e6e6e6; --color-accent: #0a2f80; --color-accent-soft: #dbe5fb;
-  --color-on-accent: #ffffff; --color-done: #0a5a2b; --color-lock: #3a3a3a; --color-warn: #7a3300;
+  --color-on-accent: #ffffff; --color-band: #000000; --color-on-band: #ffffff; --color-band-muted: #ffffff; --color-done: #0a5a2b; --color-lock: #3a3a3a; --color-warn: #7a3300;
 }
 :root[data-theme="contrast"] :focus-visible { outline-width: 3px; }
 /* React Flow's zoom buttons use their own colours */
@@ -37,7 +40,7 @@
 
 html[data-textsize="l"] { font-size: 112.5%; }
 html[data-textsize="xl"] { font-size: 125%; }
-h1, h2, .font-display { font-weight: 700; letter-spacing: -0.015em; }
+h1, h2, .font-display { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.025em; }
 body { background: var(--color-paper); color: var(--color-ink); font-family: var(--font-sans); }
 :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
 
@@ -70,3 +73,8 @@ body { background: #fff; }
 
 /* Long words (Tamil, Kannada, German-style compounds) may wrap only when they would otherwise overflow. */
 main :where(h1, h2, h3, p, li, a, button, label, span, dd) { overflow-wrap: anywhere; }
+
+/* Small spaced-out label above a section. */
+.eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
+:lang(hi) .eyebrow, :lang(mr) .eyebrow, :lang(kn) .eyebrow, :lang(gu) .eyebrow, :lang(ta) .eyebrow { letter-spacing: 0.02em; font-size: 0.85rem; }
+:lang(hi) :is(h1, h2, .font-display), :lang(mr) :is(h1, h2, .font-display), :lang(kn) :is(h1, h2, .font-display), :lang(gu) :is(h1, h2, .font-display), :lang(ta) :is(h1, h2, .font-display) { letter-spacing: 0; font-weight: 700; }
