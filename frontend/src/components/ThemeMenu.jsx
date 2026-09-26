@@ -45,7 +45,7 @@ export default function ThemeMenu() {
       </button>
       {open && (
         <div role="menu" aria-label={t.theme} onKeyDown={onKey}
-          className="absolute right-0 mt-2 w-48 rounded-lg border border-line bg-card p-1 shadow-lg z-50 animate-enter">
+          className="absolute left-1/2 -translate-x-1/2 sm:left-auto sm:right-0 sm:translate-x-0 mt-2 w-48 rounded-lg border border-line bg-card p-1 shadow-lg z-50 animate-enter">
           {THEMES.map((k) => (
             <button key={k} type="button" role="menuitemradio" aria-checked={theme === k}
               onClick={() => { setTheme(k); setOpen(false); btn.current?.focus() }}

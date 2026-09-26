@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { ReactFlow, Background, BackgroundVariant, Controls } from '@xyflow/react'
+import { ReactFlow, Controls } from '@xyflow/react'
 import '@xyflow/react/dist/style.css'
 import StepNode from './StepNode.jsx'
 import { toFlow } from '../lib/graph.js'
@@ -14,7 +14,7 @@ export default function RoadmapGraph({ steps, done, selectedId, onSelect, fresh 
   const { nodes, edges } = useMemo(() => toFlow(steps, done, selectedId, fresh, scale), [steps, done, selectedId, fresh, scale])
   return (
     <div>
-    <div style={{ height: Math.round(560 * scale * scale) }} className="rounded-xl border border-line bg-card/60">
+    <div style={{ height: Math.round(560 * scale * scale) }} className="rounded-xl border border-line bg-card">
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -27,14 +27,13 @@ export default function RoadmapGraph({ steps, done, selectedId, onSelect, fresh 
         key={scale}
         proOptions={{ hideAttribution: true }}
       >
-        <Background variant={BackgroundVariant.Lines} color="var(--color-grid)" gap={40} />
         <Controls showInteractive={false} aria-label="Zoom controls" />
       </ReactFlow>
     </div>
     <p className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted" aria-label={t.legend}>
       <span className="flex items-center gap-1.5"><i className="w-3 h-3 rounded-sm border-2 border-accent bg-card" />{t.legAvail}</span>
       <span className="flex items-center gap-1.5"><i className="w-3 h-3 rounded-sm border-2 border-done bg-card" />{t.legDone}</span>
-      <span className="flex items-center gap-1.5"><i className="w-3 h-3 rounded-sm border-2 border-line bg-paper" />{t.legLocked}</span>
+      <span className="flex items-center gap-1.5"><i className="w-3 h-3 rounded-sm border-2 border-dashed border-muted bg-card" />{t.legLocked}</span>
     </p>
     </div>
   )

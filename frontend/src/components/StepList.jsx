@@ -1,7 +1,7 @@
 import { stages, stepState } from '../lib/graph.js'
 import { useLang, tr } from '../lib/i18n.jsx'
 
-const tagCls = { done: 'bg-done/10 text-done', available: 'bg-accent text-on-accent', locked: 'bg-line/70 text-lock' }
+const tagCls = { done: 'bg-done/10 text-done', available: 'bg-accent text-on-accent', locked: 'bg-paper text-lock border border-line' }
 
 // Modelled on GOV.UK's step-by-step pattern: numbered stages, "and" for steps you can do in parallel.
 export default function StepList({ steps, done, selectedId, onSelect, fresh }) {
@@ -21,7 +21,7 @@ export default function StepList({ steps, done, selectedId, onSelect, fresh }) {
               const label = tagText[st], cls = tagCls[st]
               return (
                 <div key={s.id}>
-                  {j > 0 && <p className="text-xs font-semibold text-muted uppercase tracking-wide py-1">{t.and}</p>}
+                  {j > 0 && <p className="text-xs font-semibold text-muted py-1">{t.and}</p>}
                   <button
                     onClick={() => onSelect(s.id)}
                     aria-current={s.id === selectedId ? 'step' : undefined}

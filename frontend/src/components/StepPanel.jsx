@@ -27,7 +27,7 @@ export default function StepPanel({ step, steps, done, onToggle, taskTitle, righ
   return (
     <div key={step.id} className="space-y-4 animate-enter">
       <div>
-        <p className="text-xs uppercase tracking-wide text-muted">
+        <p className="text-sm font-semibold text-ink">
           {t.types[step.type]}
           {step.type !== 'milestone' && (
             <span className={`ml-2 normal-case tracking-normal rounded px-1.5 py-0.5 ${step.requirement === 'conditional' ? 'bg-warn/10 text-warn' : 'bg-accent-soft text-accent'}`}>
@@ -82,7 +82,7 @@ export default function StepPanel({ step, steps, done, onToggle, taskTitle, righ
 
       {step.legal && (
         <div className="border-t border-line pt-4 text-sm space-y-1">
-          <p className="text-xs uppercase tracking-wide text-muted">{t.lawTitle}</p>
+          <p className="text-sm font-semibold text-ink">{t.lawTitle}</p>
           <p>{step.legal.act}{!step.legal.verified && <span className="ml-2 text-xs rounded bg-warn/10 text-warn px-1.5 py-0.5">{t.lawUnverified}</span>}</p>
           <a href={step.legal.url} target="_blank" rel="noopener noreferrer" className="text-xs text-accent underline underline-offset-2">{t.lawSearch}</a>
         </div>
@@ -90,7 +90,7 @@ export default function StepPanel({ step, steps, done, onToggle, taskTitle, righ
 
       {step.type !== 'milestone' && (step.scope === 'state' || step.scope === 'local') && rights && (
         <div className="border-t border-line pt-4 text-sm space-y-1.5">
-          <p className="text-xs uppercase tracking-wide text-muted">{t.rightsTitle}</p>
+          <p className="text-sm font-semibold text-ink">{t.rightsTitle}</p>
           <p>{tr(rights, 'text', lang)}</p>
           <a href={rights.url} target="_blank" rel="noopener noreferrer" className="block text-xs text-accent underline underline-offset-2">{t.rightsLink}</a>
           <a href="https://pgportal.gov.in" target="_blank" rel="noopener noreferrer" className="block text-xs text-accent underline underline-offset-2">{t.grievance}</a>

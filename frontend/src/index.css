@@ -1,32 +1,34 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "IBM Plex Sans", "Noto Sans Devanagari", system-ui, sans-serif;
-  --font-display: "Fraunces", "Noto Sans Devanagari", Georgia, serif;
-  --color-paper: #f7f4ee;
-  --color-ink: #1c2321;
-  --color-muted: #5b6561;
-  --color-line: #ddd6c8;
-  --color-accent: #1f5f4f;
-  --color-accent-soft: #e2eee9;
-  --color-done: #2f7d4f;
-  --color-lock: #656d69;
-  --color-warn: #a45a1c;
+  --font-sans: "Mukta", system-ui, sans-serif;
+  --font-display: "Mukta", system-ui, sans-serif;
+  --color-paper: #f4f6f9;
+  --color-ink: #0f1b2d;
+  --color-muted: #4d5b6e;
+  --color-line: #d3dae4;
+  --color-accent: #1747a6;
+  --color-accent-soft: #e6edfb;
+  --color-done: #1e7a46;
+  --color-lock: #4d5b6e;
+  --color-warn: #a4430a;
   --color-card: #ffffff;
   --color-on-accent: #ffffff;
-  --color-grid: #efe9dd;
+  --color-grid: #e9edf3;
+  --color-next: #f0a020;
+  --color-on-next: #0f1b2d; /* orange keeps dark text in every theme */
 }
 
 /* Themes: the same tokens, redefined. data-theme is set on <html> by lib/theme.js. */
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --color-paper: #141816; --color-card: #1c211f; --color-ink: #e7ebe8; --color-muted: #a2aba6;
-  --color-line: #343d39; --color-grid: #1f2522; --color-accent: #7cc9b0; --color-accent-soft: #1f3a32;
-  --color-on-accent: #0c1713; --color-done: #74c793; --color-lock: #8f9893; --color-warn: #e5a563;
+  --color-paper: #0d1420; --color-card: #151e2d; --color-ink: #e8edf5; --color-muted: #a3afc0;
+  --color-line: #2c384b; --color-grid: #182232; --color-accent: #8fb1ff; --color-accent-soft: #1b2a4a;
+  --color-on-accent: #0a1222; --color-done: #6fd39a; --color-lock: #a3afc0; --color-warn: #f2a867;
 }
 :root[data-theme="contrast"] {
   --color-paper: #ffffff; --color-card: #ffffff; --color-ink: #000000; --color-muted: #262626;
-  --color-line: #000000; --color-grid: #e6e6e6; --color-accent: #00553f; --color-accent-soft: #d4efe5;
+  --color-line: #000000; --color-grid: #e6e6e6; --color-accent: #0a2f80; --color-accent-soft: #dbe5fb;
   --color-on-accent: #ffffff; --color-done: #0a5a2b; --color-lock: #3a3a3a; --color-warn: #7a3300;
 }
 :root[data-theme="contrast"] :focus-visible { outline-width: 3px; }
@@ -35,6 +37,7 @@
 
 html[data-textsize="l"] { font-size: 112.5%; }
 html[data-textsize="xl"] { font-size: 125%; }
+h1, h2, .font-display { font-weight: 700; letter-spacing: -0.015em; }
 body { background: var(--color-paper); color: var(--color-ink); font-family: var(--font-sans); }
 :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
 
@@ -45,9 +48,9 @@ body { background: var(--color-paper); color: var(--color-ink); font-family: var
   --animate-reveal: enter 360ms ease-out both;
 }
 @keyframes unlock {
-  0% { box-shadow: 0 0 0 0 rgb(31 95 79 / 0.45); }
-  70% { box-shadow: 0 0 0 10px rgb(31 95 79 / 0); }
-  100% { box-shadow: 0 0 0 0 rgb(31 95 79 / 0); }
+  0% { box-shadow: 0 0 0 0 rgb(23 71 166 / 0.45); }
+  70% { box-shadow: 0 0 0 10px rgb(23 71 166 / 0); }
+  100% { box-shadow: 0 0 0 0 rgb(23 71 166 / 0); }
 }
 @keyframes enter { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
 .react-flow__edge-path { transition: stroke 300ms ease; }
@@ -57,9 +60,10 @@ body { background: var(--color-paper); color: var(--color-ink); font-family: var
 
 @media print {
   header, footer, .no-print, .react-flow__controls { display: none !important; }
-  body { background: #fff; }
+  h1, h2, .font-display { font-weight: 700; letter-spacing: -0.015em; }
+body { background: #fff; }
   main section { padding-top: 0; }
 }
 
-.react-flow__controls-button { width: 40px; height: 40px; }
-.react-flow__controls-button svg { max-width: 16px; max-height: 16px; }
+.react-flow .react-flow__controls-button { width: 40px; height: 40px; }
+.react-flow .react-flow__controls-button svg { max-width: 16px; max-height: 16px; }

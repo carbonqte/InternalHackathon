@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { listJurisdictions, listTasks, searchTask } from '../api/client.js'
+import { listJurisdictions, listTasks, searchTask, getTask } from '../api/client.js'
 import { useLang, tr, CONTACT } from '../lib/i18n.jsx'
 import MicButton from '../components/MicButton.jsx'
+import { stages } from '../lib/graph.js'
 
 export default function Home() {
   const { lang, t } = useLang()
@@ -14,10 +15,15 @@ export default function Home() {
   const [miss, setMiss] = useState(false)
   const [loading, setLoading] = useState(false)
   const [journeys, setJourneys] = useState([])
+  const [details, setDetails] = useState({})
   const nav = useNavigate()
 
   useEffect(() => { document.title = 'Civic Navigator' }, [])
   useEffect(() => { listTasks().then(setJourneys).catch(() => {}); listJurisdictions().then(setPlaces).catch(() => {}) }, [])
+  useEffect(() => {
+    Promise.all(journeys.map((j) => getTask(j.task_id, state, city).catch(() => null)))
+      .then((all) => setDetails(Object.fromEntries(all.filter(Boolean).map((x) => [x.task_id, x]))))
+  }, [journeys, state, city])
   const cities = places.find((p) => p.state === state)?.cities || []
   const loc = `?state=${encodeURIComponent(state)}&city=${encodeURIComponent(city)}`
 
@@ -35,8 +41,9 @@ export default function Home() {
 
   return (
     <>
-      <section className="max-w-2xl mx-auto px-4 pt-14 sm:pt-20 pb-10">
-        <h1 className="font-display text-3xl sm:text-5xl leading-tight">{t.heroTitle}</h1>
+      <div className="max-w-6xl mx-auto px-4 pt-10 sm:pt-16 pb-12 grid gap-10 lg:grid-cols-[1.15fr_1fr] items-start">
+      <section>
+        <h1 className="font-display text-3xl sm:text-[2.75rem] leading-[1.1] max-w-xl">{t.heroTitle}</h1>
         <p className="mt-4 text-muted">{t.heroSub}</p>
 
         <form onSubmit={(e) => { e.preventDefault(); go() }} className="mt-8 space-y-3">
@@ -90,41 +97,49 @@ export default function Home() {
         )}
       </section>
 
-      <section className="max-w-2xl mx-auto px-4 pb-10">
-        <h2 className="text-xs uppercase tracking-wide text-muted">{t.popular}</h2>
-        <div className="mt-3 grid gap-2 sm:grid-cols-2">
-          {journeys.map((j) => (
-            <Link key={j.task_id} to={`/task/${j.task_id}${loc}`}
-              className="rounded-lg border border-line bg-card px-4 py-3 hover:border-accent">
-              <span className="block text-sm font-medium">{tr(j, 'title', lang)}</span>
-              <span className="block text-xs text-muted mt-0.5">{city}, {state}</span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="border-t border-line">
-        <div className="max-w-5xl mx-auto px-4 py-12 grid gap-10 md:grid-cols-[1.4fr_1fr]">
-          <div>
-            <h2 className="font-display text-2xl">{t.howTitle}</h2>
-            <ol className="mt-5 space-y-4">
-              {t.how.map((line, i) => (
-                <li key={i} className="flex gap-4">
-                  <span className="shrink-0 w-8 h-8 rounded-full border-2 border-ink grid place-items-center text-sm font-semibold">{i + 1}</span>
-                  <p className="pt-1">{line}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
-          <ul className="space-y-3 text-sm self-center">
-            {t.trust.map((line) => (
-              <li key={line} className="flex items-baseline gap-3 border-b border-line pb-3 last:border-0">
-                <span aria-hidden className="w-1.5 h-1.5 rounded-full bg-accent translate-y-[-2px]" />{line}
+      <section aria-labelledby="ready" className="rounded-xl border border-line bg-card p-5 sm:p-6">
+        <h2 id="ready" className="text-lg">{t.previewTitle}</h2>
+        <p className="text-sm text-muted mt-1">{t.previewSub}</p>
+        <ul className="mt-5 space-y-3">
+          {journeys.map((j) => {
+            const d = details[j.task_id]
+            const groups = d ? stages(d.steps) : []
+            const forms = d ? d.steps.filter((x) => x.type === 'form').length : 0
+            const visits = d ? d.steps.filter((x) => x.type === 'visit').length : 0
+            return (
+              <li key={j.task_id}>
+                <Link to={`/task/${j.task_id}${loc}`} className="group block rounded-lg border border-line hover:border-accent p-4">
+                  <span className="flex items-baseline justify-between gap-3">
+                    <span className="font-semibold group-hover:text-accent">{tr(j, 'title', lang)}</span>
+                    <span aria-hidden className="text-accent">→</span>
+                  </span>
+                  {d && (
+                    <>
+                      <span aria-hidden className="mt-3 flex items-center gap-1">
+                        {groups.map((g, i) => (
+                          <span key={i} className="flex items-center gap-1">
+                            {i > 0 && <span className="w-3 h-0.5 bg-line" />}
+                            <span className={`h-6 min-w-6 px-1.5 rounded-full grid place-items-center text-[11px] font-semibold ${i === 0 ? 'bg-next text-on-next' : 'border border-line text-muted'}`}>{g.length}</span>
+                          </span>
+                        ))}
+                      </span>
+                      <span className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted tabular-nums">
+                        <span><b className="text-ink">{d.steps.length}</b> {t.stepsWord}</span>
+                        <span><b className="text-ink">{forms}</b> {t.onlineForms}</span>
+                        <span><b className="text-ink">{visits}</b> {t.officeVisits}</span>
+                      </span>
+                    </>
+                  )}
+                </Link>
               </li>
-            ))}
-          </ul>
-        </div>
+            )
+          })}
+        </ul>
+        <ul className="mt-5 pt-4 border-t border-line flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted">
+          {t.trust.map((line) => <li key={line}>✓ {line}</li>)}
+        </ul>
       </section>
+      </div>
     </>
   )
 }
