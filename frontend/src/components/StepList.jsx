@@ -1,14 +1,12 @@
 import { stages, stepState } from '../lib/graph.js'
-import { typeLabel } from './icons.jsx'
+import { useLang, tr } from '../lib/i18n.jsx'
 
-const tag = {
-  done: ['Done', 'bg-done/10 text-done'],
-  available: ['Start now', 'bg-accent text-white'],
-  locked: ['Cannot start yet', 'bg-line/70 text-lock'],
-}
+const tagCls = { done: 'bg-done/10 text-done', available: 'bg-accent text-white', locked: 'bg-line/70 text-lock' }
 
 // Modelled on GOV.UK's step-by-step pattern: numbered stages, "and" for steps you can do in parallel.
 export default function StepList({ steps, done, selectedId, onSelect, fresh }) {
+  const { lang, t } = useLang()
+  const tagText = { done: t.tagDone, available: t.tagStart, locked: t.tagLocked }
   return (
     <ol className="relative">
       {stages(steps).map((group, i, all) => (
@@ -20,18 +18,18 @@ export default function StepList({ steps, done, selectedId, onSelect, fresh }) {
           <div className="space-y-2">
             {group.map((s, j) => {
               const st = stepState(s, done)
-              const [label, cls] = tag[st]
+              const label = tagText[st], cls = tagCls[st]
               return (
                 <div key={s.id}>
-                  {j > 0 && <p className="text-xs font-semibold text-muted uppercase tracking-wide py-1">and</p>}
+                  {j > 0 && <p className="text-xs font-semibold text-muted uppercase tracking-wide py-1">{t.and}</p>}
                   <button
                     onClick={() => onSelect(s.id)}
                     aria-current={s.id === selectedId ? 'step' : undefined}
                     className={`w-full text-left rounded-lg border px-4 py-3 flex items-center justify-between gap-3 transition-colors ${s.id === selectedId ? 'border-accent bg-accent-soft' : 'border-line bg-white hover:border-muted'} ${fresh?.has(s.id) ? 'animate-unlock' : ''}`}
                   >
                     <span className="min-w-0">
-                      <span className={`block text-sm font-medium ${st === 'locked' ? 'text-lock' : ''} ${st === 'done' ? 'line-through decoration-done/60' : ''}`}>{s.name}</span>
-                      <span className="block text-xs text-muted mt-0.5">{typeLabel[s.type]}{s.office ? ` · ${s.office}` : ''}</span>
+                      <span className={`block text-sm font-medium ${st === 'locked' ? 'text-lock' : ''} ${st === 'done' ? 'line-through decoration-done/60' : ''}`}>{tr(s, 'name', lang)}</span>
+                      <span className="block text-xs text-muted mt-0.5">{t.types[s.type]}{s.office ? ` · ${tr(s, 'office', lang)}` : ''}</span>
                     </span>
                     <span className={`shrink-0 text-[11px] font-medium rounded px-2 py-1 ${cls}`}>{label}</span>
                   </button>

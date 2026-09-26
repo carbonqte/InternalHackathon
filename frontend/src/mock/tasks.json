@@ -3,34 +3,341 @@
     "task_id": "food-business",
     "title": "Start a small food business",
     "city": "Mumbai",
-    "keywords": ["food", "restaurant", "cafe", "fssai", "tiffin", "cloud kitchen", "bakery"],
+    "keywords": [
+      "food",
+      "restaurant",
+      "cafe",
+      "fssai",
+      "tiffin",
+      "cloud kitchen",
+      "bakery",
+      "खाना",
+      "फ़ूड",
+      "फूड",
+      "टिफ़िन",
+      "टिफिन",
+      "किचन",
+      "रेस्टोरेंट",
+      "रेस्टॉरंट",
+      "कैफ़े",
+      "खाद्य",
+      "बेकरी"
+    ],
     "last_verified": "2026-09-20",
     "sample_data": true,
     "steps": [
-      { "id": "s1", "name": "PAN card", "type": "document", "office": "Income Tax Dept (online)", "documents": ["Aadhaar", "Photograph"], "fee": "Check source", "link": "https://www.incometax.gov.in", "status": "approved", "depends_on": [] },
-      { "id": "s2", "name": "Proof of business premises", "type": "document", "office": "Owner / landlord", "documents": ["Rent agreement or ownership proof", "Recent electricity bill"], "fee": "—", "link": "", "status": "approved", "depends_on": [] },
-      { "id": "s3", "name": "Udyam (MSME) registration", "type": "form", "office": "Ministry of MSME (online)", "documents": ["Aadhaar", "PAN"], "fee": "Free", "link": "https://udyamregistration.gov.in", "status": "approved", "depends_on": ["s1"] },
-      { "id": "s4", "name": "Shop & Establishment registration", "type": "form", "office": "Maharashtra Labour Dept (online)", "documents": ["PAN", "Premises proof", "Photo of shop with name board"], "fee": "Check source", "link": "https://mahakamgar.maharashtra.gov.in", "status": "approved", "depends_on": ["s1", "s2"] },
-      { "id": "s5", "name": "FSSAI registration / licence", "type": "form", "office": "FSSAI — FoSCoS portal", "documents": ["Photo ID", "Premises proof", "List of food products"], "fee": "Depends on turnover", "link": "https://foscos.fssai.gov.in", "status": "pending", "depends_on": ["s1", "s2"] },
-      { "id": "s6", "name": "Health / trade licence", "type": "visit", "office": "BMC ward office", "documents": ["FSSAI certificate", "Shop Act certificate", "Premises proof"], "fee": "Check source", "link": "https://portal.mcgm.gov.in", "status": "pending", "depends_on": ["s4", "s5"] },
-      { "id": "s7", "name": "GST registration (if above threshold)", "type": "form", "office": "GST portal (online)", "documents": ["PAN", "Aadhaar", "Premises proof", "Bank details"], "fee": "Free", "link": "https://www.gst.gov.in", "status": "approved", "depends_on": ["s1", "s2"] },
-      { "id": "s8", "name": "Open for business", "type": "milestone", "office": "", "documents": [], "fee": "", "link": "", "status": "approved", "depends_on": ["s3", "s6", "s7"] }
-    ]
+      {
+        "id": "s1",
+        "name": "PAN card",
+        "type": "document",
+        "office": "Income Tax Dept (online)",
+        "documents": [
+          "Aadhaar",
+          "Photograph"
+        ],
+        "fee": "Check source",
+        "link": "https://www.incometax.gov.in",
+        "status": "approved",
+        "depends_on": [],
+        "name_hi": "पैन कार्ड",
+        "name_mr": "पॅन कार्ड",
+        "office_hi": "आयकर विभाग (ऑनलाइन)",
+        "office_mr": "आयकर विभाग (ऑनलाइन)"
+      },
+      {
+        "id": "s2",
+        "name": "Proof of business premises",
+        "type": "document",
+        "office": "Owner / landlord",
+        "documents": [
+          "Rent agreement or ownership proof",
+          "Recent electricity bill"
+        ],
+        "fee": "—",
+        "link": "",
+        "status": "approved",
+        "depends_on": [],
+        "name_hi": "व्यवसाय परिसर का प्रमाण",
+        "name_mr": "व्यवसाय जागेचा पुरावा",
+        "office_hi": "मालिक / मकान मालिक",
+        "office_mr": "मालक / घरमालक"
+      },
+      {
+        "id": "s3",
+        "name": "Udyam (MSME) registration",
+        "type": "form",
+        "office": "Ministry of MSME (online)",
+        "documents": [
+          "Aadhaar",
+          "PAN"
+        ],
+        "fee": "Free",
+        "link": "https://udyamregistration.gov.in",
+        "status": "approved",
+        "depends_on": [
+          "s1"
+        ],
+        "name_hi": "उद्यम (MSME) पंजीकरण",
+        "name_mr": "उद्यम (MSME) नोंदणी",
+        "office_hi": "MSME मंत्रालय (ऑनलाइन)",
+        "office_mr": "MSME मंत्रालय (ऑनलाइन)"
+      },
+      {
+        "id": "s4",
+        "name": "Shop & Establishment registration",
+        "type": "form",
+        "office": "Maharashtra Labour Dept (online)",
+        "documents": [
+          "PAN",
+          "Premises proof",
+          "Photo of shop with name board"
+        ],
+        "fee": "Check source",
+        "link": "https://mahakamgar.maharashtra.gov.in",
+        "status": "approved",
+        "depends_on": [
+          "s1",
+          "s2"
+        ],
+        "name_hi": "दुकान एवं प्रतिष्ठान पंजीकरण",
+        "name_mr": "दुकान व आस्थापना नोंदणी",
+        "office_hi": "महाराष्ट्र श्रम विभाग (ऑनलाइन)",
+        "office_mr": "महाराष्ट्र कामगार विभाग (ऑनलाइन)"
+      },
+      {
+        "id": "s5",
+        "name": "FSSAI registration / licence",
+        "type": "form",
+        "office": "FSSAI – FoSCoS portal",
+        "documents": [
+          "Photo ID",
+          "Premises proof",
+          "List of food products"
+        ],
+        "fee": "Depends on turnover",
+        "link": "https://foscos.fssai.gov.in",
+        "status": "pending",
+        "depends_on": [
+          "s1",
+          "s2"
+        ],
+        "name_hi": "FSSAI पंजीकरण / लाइसेंस",
+        "name_mr": "FSSAI नोंदणी / परवाना",
+        "office_hi": "FSSAI – FoSCoS पोर्टल",
+        "office_mr": "FSSAI – FoSCoS पोर्टल"
+      },
+      {
+        "id": "s6",
+        "name": "Health / trade licence",
+        "type": "visit",
+        "office": "BMC ward office",
+        "documents": [
+          "FSSAI certificate",
+          "Shop Act certificate",
+          "Premises proof"
+        ],
+        "fee": "Check source",
+        "link": "https://portal.mcgm.gov.in",
+        "status": "pending",
+        "depends_on": [
+          "s4",
+          "s5"
+        ],
+        "name_hi": "स्वास्थ्य / व्यापार लाइसेंस",
+        "name_mr": "आरोग्य / व्यापार परवाना",
+        "office_hi": "BMC वार्ड कार्यालय",
+        "office_mr": "BMC प्रभाग कार्यालय"
+      },
+      {
+        "id": "s7",
+        "name": "GST registration (if above threshold)",
+        "type": "form",
+        "office": "GST portal (online)",
+        "documents": [
+          "PAN",
+          "Aadhaar",
+          "Premises proof",
+          "Bank details"
+        ],
+        "fee": "Free",
+        "link": "https://www.gst.gov.in",
+        "status": "approved",
+        "depends_on": [
+          "s1",
+          "s2"
+        ],
+        "name_hi": "GST पंजीकरण (सीमा से ऊपर होने पर)",
+        "name_mr": "GST नोंदणी (मर्यादेपेक्षा जास्त असल्यास)",
+        "office_hi": "GST पोर्टल (ऑनलाइन)",
+        "office_mr": "GST पोर्टल (ऑनलाइन)"
+      },
+      {
+        "id": "s8",
+        "name": "Open for business",
+        "type": "milestone",
+        "office": "",
+        "documents": [],
+        "fee": "",
+        "link": "",
+        "status": "approved",
+        "depends_on": [
+          "s3",
+          "s6",
+          "s7"
+        ],
+        "name_hi": "व्यवसाय शुरू",
+        "name_mr": "व्यवसाय सुरू"
+      }
+    ],
+    "title_hi": "छोटा फ़ूड बिज़नेस शुरू करें",
+    "title_mr": "छोटा खाद्य व्यवसाय सुरू करा"
   },
   {
     "task_id": "small-business",
     "title": "Register a small business (non-food)",
     "city": "Mumbai",
-    "keywords": ["business", "shop", "startup", "company", "store", "register", "msme", "gst"],
+    "keywords": [
+      "business",
+      "shop",
+      "startup",
+      "company",
+      "store",
+      "register",
+      "msme",
+      "gst",
+      "दुकान",
+      "व्यवसाय",
+      "व्यापार",
+      "बिज़नेस",
+      "बिझनेस",
+      "स्टार्टअप",
+      "कंपनी",
+      "नोंदणी",
+      "पंजीकरण"
+    ],
     "last_verified": "2026-09-20",
     "sample_data": true,
     "steps": [
-      { "id": "b1", "name": "PAN card", "type": "document", "office": "Income Tax Dept (online)", "documents": ["Aadhaar", "Photograph"], "fee": "Check source", "link": "https://www.incometax.gov.in", "status": "approved", "depends_on": [] },
-      { "id": "b2", "name": "Business bank account", "type": "visit", "office": "Any bank branch", "documents": ["PAN", "Aadhaar", "Address proof"], "fee": "—", "link": "", "status": "approved", "depends_on": ["b1"] },
-      { "id": "b3", "name": "Udyam (MSME) registration", "type": "form", "office": "Ministry of MSME (online)", "documents": ["Aadhaar", "PAN"], "fee": "Free", "link": "https://udyamregistration.gov.in", "status": "approved", "depends_on": ["b1"] },
-      { "id": "b4", "name": "Shop & Establishment registration", "type": "form", "office": "Maharashtra Labour Dept (online)", "documents": ["PAN", "Premises proof"], "fee": "Check source", "link": "https://mahakamgar.maharashtra.gov.in", "status": "approved", "depends_on": ["b1"] },
-      { "id": "b5", "name": "GST registration (if above threshold)", "type": "form", "office": "GST portal (online)", "documents": ["PAN", "Aadhaar", "Premises proof", "Bank details"], "fee": "Free", "link": "https://www.gst.gov.in", "status": "pending", "depends_on": ["b2", "b4"] },
-      { "id": "b6", "name": "Ready to trade", "type": "milestone", "office": "", "documents": [], "fee": "", "link": "", "status": "approved", "depends_on": ["b3", "b5"] }
-    ]
+      {
+        "id": "b1",
+        "name": "PAN card",
+        "type": "document",
+        "office": "Income Tax Dept (online)",
+        "documents": [
+          "Aadhaar",
+          "Photograph"
+        ],
+        "fee": "Check source",
+        "link": "https://www.incometax.gov.in",
+        "status": "approved",
+        "depends_on": [],
+        "name_hi": "पैन कार्ड",
+        "name_mr": "पॅन कार्ड",
+        "office_hi": "आयकर विभाग (ऑनलाइन)",
+        "office_mr": "आयकर विभाग (ऑनलाइन)"
+      },
+      {
+        "id": "b2",
+        "name": "Business bank account",
+        "type": "visit",
+        "office": "Any bank branch",
+        "documents": [
+          "PAN",
+          "Aadhaar",
+          "Address proof"
+        ],
+        "fee": "—",
+        "link": "",
+        "status": "approved",
+        "depends_on": [
+          "b1"
+        ],
+        "name_hi": "व्यावसायिक बैंक खाता",
+        "name_mr": "व्यावसायिक बँक खाते",
+        "office_hi": "कोई भी बैंक शाखा",
+        "office_mr": "कोणतीही बँक शाखा"
+      },
+      {
+        "id": "b3",
+        "name": "Udyam (MSME) registration",
+        "type": "form",
+        "office": "Ministry of MSME (online)",
+        "documents": [
+          "Aadhaar",
+          "PAN"
+        ],
+        "fee": "Free",
+        "link": "https://udyamregistration.gov.in",
+        "status": "approved",
+        "depends_on": [
+          "b1"
+        ],
+        "name_hi": "उद्यम (MSME) पंजीकरण",
+        "name_mr": "उद्यम (MSME) नोंदणी",
+        "office_hi": "MSME मंत्रालय (ऑनलाइन)",
+        "office_mr": "MSME मंत्रालय (ऑनलाइन)"
+      },
+      {
+        "id": "b4",
+        "name": "Shop & Establishment registration",
+        "type": "form",
+        "office": "Maharashtra Labour Dept (online)",
+        "documents": [
+          "PAN",
+          "Premises proof"
+        ],
+        "fee": "Check source",
+        "link": "https://mahakamgar.maharashtra.gov.in",
+        "status": "approved",
+        "depends_on": [
+          "b1"
+        ],
+        "name_hi": "दुकान एवं प्रतिष्ठान पंजीकरण",
+        "name_mr": "दुकान व आस्थापना नोंदणी",
+        "office_hi": "महाराष्ट्र श्रम विभाग (ऑनलाइन)",
+        "office_mr": "महाराष्ट्र कामगार विभाग (ऑनलाइन)"
+      },
+      {
+        "id": "b5",
+        "name": "GST registration (if above threshold)",
+        "type": "form",
+        "office": "GST portal (online)",
+        "documents": [
+          "PAN",
+          "Aadhaar",
+          "Premises proof",
+          "Bank details"
+        ],
+        "fee": "Free",
+        "link": "https://www.gst.gov.in",
+        "status": "pending",
+        "depends_on": [
+          "b2",
+          "b4"
+        ],
+        "name_hi": "GST पंजीकरण (सीमा से ऊपर होने पर)",
+        "name_mr": "GST नोंदणी (मर्यादेपेक्षा जास्त असल्यास)",
+        "office_hi": "GST पोर्टल (ऑनलाइन)",
+        "office_mr": "GST पोर्टल (ऑनलाइन)"
+      },
+      {
+        "id": "b6",
+        "name": "Ready to trade",
+        "type": "milestone",
+        "office": "",
+        "documents": [],
+        "fee": "",
+        "link": "",
+        "status": "approved",
+        "depends_on": [
+          "b3",
+          "b5"
+        ],
+        "name_hi": "व्यापार के लिए तैयार",
+        "name_mr": "व्यापारासाठी तयार"
+      }
+    ],
+    "title_hi": "छोटे व्यवसाय का पंजीकरण (खाद्य के अलावा)",
+    "title_mr": "छोट्या व्यवसायाची नोंदणी (अन्नाव्यतिरिक्त)"
   }
 ]

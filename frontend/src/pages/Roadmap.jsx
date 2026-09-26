@@ -5,9 +5,11 @@ import RoadmapGraph from '../components/RoadmapGraph.jsx'
 import StepList from '../components/StepList.jsx'
 import StepPanel from '../components/StepPanel.jsx'
 import { stepState } from '../lib/graph.js'
+import { useLang, tr } from '../lib/i18n.jsx'
 
 export default function Roadmap() {
   const { taskId } = useParams()
+  const { lang, t } = useLang()
   const [task, setTask] = useState(null)
   const [error, setError] = useState('')
   const [done, setDone] = useState(() => loadProgress(taskId))
@@ -18,9 +20,11 @@ export default function Roadmap() {
 
   useEffect(() => {
     getTask(taskId)
-      .then((t) => { document.title = `${t.title} · Civic Navigator`; setTask(t); setSelected(t.steps.find((s) => s.depends_on.length === 0)?.id) })
-      .catch(() => setError('This roadmap could not be loaded.'))
+      .then((x) => { setTask(x); setSelected(x.steps.find((s) => s.depends_on.length === 0)?.id) })
+      .catch(() => setError('load'))
   }, [taskId])
+
+  useEffect(() => { if (task) document.title = `${tr(task, 'title', lang)} · Civic Navigator` }, [task, lang])
 
   function toggle(id) {
     const next = new Set(done)
@@ -44,7 +48,7 @@ export default function Roadmap() {
     setDone(next); saveProgress(taskId, next)
   }
 
-  if (error) return <p className="max-w-6xl mx-auto px-4 py-12">{error} <Link to="/" className="text-accent underline">Go back</Link></p>
+  if (error) return <p className="max-w-6xl mx-auto px-4 py-12">{t.loadError} <Link to="/" className="text-accent underline">{t.goBack}</Link></p>
   if (!task) return (
     <section aria-busy="true" aria-label="Loading roadmap" className="max-w-6xl mx-auto px-4 py-8 animate-pulse">
       <div className="h-4 w-24 rounded bg-line" />
@@ -65,42 +69,42 @@ export default function Roadmap() {
 
   return (
     <section className="max-w-6xl mx-auto px-4 py-8">
-      <Link to="/" className="text-sm text-muted hover:text-ink">← New search</Link>
+      <Link to="/" className="text-sm text-muted hover:text-ink">{t.newSearch}</Link>
       <div className="mt-3 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="font-display text-2xl sm:text-3xl">{task.title}</h1>
+          <h1 className="font-display text-2xl sm:text-3xl">{tr(task, 'title', lang)}</h1>
           <p className="text-sm text-muted mt-1">
-            {task.city} · Last verified {task.last_verified}
-            {task.sample_data && <span className="ml-2 rounded bg-warn/10 text-warn px-1.5 py-0.5 text-xs">Sample data</span>}
+            {task.city} · {t.lastVerified} {task.last_verified}
+            {task.sample_data && <span className="ml-2 rounded bg-warn/10 text-warn px-1.5 py-0.5 text-xs">{t.sampleData}</span>}
           </p>
         </div>
         <div role="tablist" className="flex rounded-lg border border-line bg-white p-1 text-sm">
           {['graph', 'list'].map((v) => (
             <button key={v} role="tab" aria-selected={view === v} onClick={() => setView(v)}
-              className={`px-3 py-1 rounded-md capitalize ${view === v ? 'bg-accent text-white' : 'text-muted'}`}>{v}</button>
+              className={`px-3 py-1 rounded-md ${view === v ? 'bg-accent text-white' : 'text-muted'}`}>{t[v]}</button>
           ))}
         </div>
       </div>
 
       <div className="mt-5" aria-label={`${pct}% complete`}>
-        <div className="flex justify-between text-xs text-muted mb-1"><span>{done.size} of {task.steps.length} steps done</span><span>{pct}%</span></div>
+        <div className="flex justify-between text-xs text-muted mb-1"><span>{t.stepsDone(done.size, task.steps.length)}</span><span>{pct}%</span></div>
         <div className="h-2 rounded-full bg-line overflow-hidden"><div className="h-full bg-done transition-all" style={{ width: `${pct}%` }} /></div>
       </div>
 
       <div className="mt-5 rounded-xl border border-line bg-white px-5 py-4 flex flex-wrap gap-x-8 gap-y-3 text-sm">
         <div className="min-w-0">
-          <p className="text-xs text-muted">{nextUp.length ? 'Do next' : 'Status'}</p>
+          <p className="text-xs text-muted">{nextUp.length ? t.doNext : t.status}</p>
           <p className="font-medium mt-0.5">
             {nextUp.length
               ? nextUp.map((s, i) => (
-                  <span key={s.id}>{i > 0 && <span className="text-muted font-normal"> and </span>}
-                    <button onClick={() => setSelected(s.id)} className="underline decoration-line underline-offset-4 hover:decoration-accent">{s.name}</button>
+                  <span key={s.id}>{i > 0 && <span className="text-muted font-normal"> {t.and} </span>}
+                    <button onClick={() => setSelected(s.id)} className="underline decoration-line underline-offset-4 hover:decoration-accent">{tr(s, 'name', lang)}</button>
                   </span>))
-              : 'All steps complete'}
+              : t.allDone}
           </p>
         </div>
-        <div><p className="text-xs text-muted">Online forms</p><p className="font-medium mt-0.5 tabular-nums">{online}</p></div>
-        <div><p className="text-xs text-muted">Office visits</p><p className="font-medium mt-0.5 tabular-nums">{visits}</p></div>
+        <div><p className="text-xs text-muted">{t.onlineForms}</p><p className="font-medium mt-0.5 tabular-nums">{online}</p></div>
+        <div><p className="text-xs text-muted">{t.officeVisits}</p><p className="font-medium mt-0.5 tabular-nums">{visits}</p></div>
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_320px]">
