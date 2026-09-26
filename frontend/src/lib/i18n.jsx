@@ -305,6 +305,13 @@ Object.assign(dict.kn, { moreDetails: 'ಕಾನೂನು, ನಿಮ್ಮ ಹ�
 Object.assign(dict.gu, { moreDetails: 'કાયદો, તમારા અધિકારો અને છેલ્લી તપાસ' })
 Object.assign(dict.ta, { moreDetails: 'சட்டம், உங்கள் உரிமைகள், கடைசிச் சரிபார்ப்பு' })
 
+Object.assign(dict.en, { noVoice: (l) => `This device has no ${l} voice installed, so it can't read aloud in ${l} yet. You can switch to English or Hindi above.`, voiceFallback: (l, v) => `No ${l} voice on this device, so it reads with a ${v} voice.`, voiceError: 'Could not play the audio. Check your volume and internet, then try again.' })
+Object.assign(dict.hi, { noVoice: (l) => `इस डिवाइस में ${l} आवाज़ नहीं है, इसलिए अभी ${l} में पढ़कर नहीं सुना सकते। ऊपर अंग्रेज़ी या हिन्दी चुन सकते हैं।`, voiceFallback: (l, v) => `इस डिवाइस में ${l} आवाज़ नहीं है, इसलिए ${v} आवाज़ में पढ़ा जाएगा।`, voiceError: 'आवाज़ नहीं चल सकी। वॉल्यूम और इंटरनेट जाँचें, फिर कोशिश करें।' })
+Object.assign(dict.mr, { noVoice: (l) => `या डिव्हाइसमध्ये ${l} आवाज नाही, त्यामुळे ${l} मध्ये वाचून दाखवता येत नाही. वर इंग्रजी किंवा हिन्दी निवडा.`, voiceFallback: (l, v) => `या डिव्हाइसमध्ये ${l} आवाज नाही, त्यामुळे ${v} आवाजात वाचले जाईल.`, voiceError: 'आवाज वाजवता आला नाही. आवाज व इंटरनेट तपासा आणि पुन्हा प्रयत्न करा.' })
+Object.assign(dict.kn, { noVoice: (l) => `ಈ ಸಾಧನದಲ್ಲಿ ${l} ಧ್ವನಿ ಇಲ್ಲ, ಹಾಗಾಗಿ ${l} ನಲ್ಲಿ ಓದಲು ಆಗುವುದಿಲ್ಲ. ಮೇಲೆ English ಅಥವಾ हिन्दी ಆಯ್ಕೆಮಾಡಿ.`, voiceError: 'ಧ್ವನಿ ಪ್ಲೇ ಆಗಲಿಲ್ಲ. ವಾಲ್ಯೂಮ್ ಮತ್ತು ಇಂಟರ್ನೆಟ್ ಪರಿಶೀಲಿಸಿ.' })
+Object.assign(dict.gu, { noVoice: (l) => `આ ઉપકરણમાં ${l} અવાજ નથી, તેથી ${l}માં વાંચી શકાતું નથી. ઉપર English અથવા हिन्दी પસંદ કરો.`, voiceError: 'અવાજ વાગી શક્યો નહીં. વોલ્યુમ અને ઇન્ટરનેટ તપાસો.' })
+Object.assign(dict.ta, { noVoice: (l) => `இந்தச் சாதனத்தில் ${l} குரல் இல்லை, அதனால் ${l}-ல் படிக்க முடியாது. மேலே English அல்லது हिन्दी தேர்ந்தெடுக்கவும்.`, voiceError: 'ஒலியை இயக்க முடியவில்லை. ஒலியளவு, இணையத்தைச் சரிபார்க்கவும்.' })
+
 // English fills any gap in a translation, including nested groups like t.cats.
 const cache = {}
 function withFallback(lang) {
