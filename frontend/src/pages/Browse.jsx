@@ -2,13 +2,15 @@ import { useEffect, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { listTasks } from '../api/client.js'
 import { useLang, tr } from '../lib/i18n.jsx'
-import { CATEGORIES, CatIcon, lastPlace, placeQuery, suggest } from '../lib/categories.jsx'
+import { AREAS, SOON, CATEGORIES, CatIcon, lastPlace, placeQuery, suggest } from '../lib/categories.jsx'
 
 // All procedures, grouped by business type, with a filter box. Works the same for 6 or 600 procedures.
 export default function Browse() {
   const { lang, t } = useLang()
   const [params, setParams] = useSearchParams()
-  const cat = CATEGORIES.includes(params.get('cat')) ? params.get('cat') : 'all'
+  const LIVE = AREAS.filter((a) => !SOON.includes(a))
+  const area = LIVE.includes(params.get('area')) ? params.get('area') : CATEGORIES.includes(params.get('cat')) ? 'business' : 'all'
+  const cat = area === 'business' && CATEGORIES.includes(params.get('cat')) ? params.get('cat') : 'all'
   const [q, setQ] = useState('')
   const [all, setAll] = useState(null)
   const [error, setError] = useState(false)
@@ -20,11 +22,14 @@ export default function Browse() {
   const shown = useMemo(() => {
     if (!all) return []
     const base = q.trim().length >= 2 ? suggest(all, q, lang, 999) : all
-    return base.filter((j) => cat === 'all' || j.category === cat)
-  }, [all, q, cat, lang])
+    return base.filter((j) => (area === 'all' || j.area === area) && (cat === 'all' || j.category === cat))
+  }, [all, q, area, cat, lang])
 
-  const groups = CATEGORIES.filter((c) => cat === 'all' || c === cat)
-    .map((c) => ({ c, items: shown.filter((j) => j.category === c) }))
+  // Business is split into its types; other areas are one group each.
+  const keys = [...CATEGORIES, ...LIVE.filter((a) => a !== 'business')]
+  const label = (k) => (CATEGORIES.includes(k) ? `${t.areas.business} · ${t.cats[k]}` : t.areas[k])
+  const groups = keys
+    .map((c) => ({ c, items: shown.filter((j) => (j.area === 'business' ? j.category : j.area) === c) }))
     .filter((g) => g.items.length)
 
   return (
@@ -39,14 +44,25 @@ export default function Browse() {
         className="mt-1 w-full min-h-11 rounded-lg border border-line bg-card px-4 focus:border-accent outline-none" />
 
       <div role="group" aria-label={t.catTitle} className="mt-4 flex flex-wrap gap-2">
-        {['all', ...CATEGORIES].map((c) => (
-          <button key={c} type="button" aria-pressed={cat === c}
-            onClick={() => setParams(c === 'all' ? {} : { cat: c })}
-            className={`min-h-11 rounded-full border px-4 text-sm ${cat === c ? 'border-accent bg-accent text-on-accent' : 'border-line bg-card hover:border-muted'}`}>
-            {c === 'all' ? t.allCats : t.cats[c]}
+        {['all', ...LIVE].map((a) => (
+          <button key={a} type="button" aria-pressed={area === a}
+            onClick={() => setParams(a === 'all' ? {} : { area: a })}
+            className={`min-h-11 rounded-full border px-4 text-sm ${area === a ? 'border-accent bg-accent text-on-accent' : 'border-line bg-card hover:border-muted'}`}>
+            {a === 'all' ? t.allCats : t.areas[a]}
           </button>
         ))}
       </div>
+      {area === 'business' && (
+        <div role="group" aria-label={t.bizTypes} className="mt-3 flex flex-wrap gap-2 pl-3 border-l-2 border-line">
+          {['all', ...CATEGORIES].map((c) => (
+            <button key={c} type="button" aria-pressed={cat === c}
+              onClick={() => setParams(c === 'all' ? { area: 'business' } : { area: 'business', cat: c })}
+              className={`min-h-10 rounded-full border px-3 text-sm ${cat === c ? 'border-ink bg-ink text-paper' : 'border-line bg-card hover:border-muted'}`}>
+              {c === 'all' ? t.allTypes : t.cats[c]}
+            </button>
+          ))}
+        </div>
+      )}
 
       {error && <p role="alert" className="mt-8 text-warn">{t.genericError}</p>}
       {!all && !error && <div aria-busy="true" className="mt-8 space-y-3 animate-pulse">{[0, 1, 2].map((i) => <div key={i} className="h-16 rounded-lg bg-line/60" />)}</div>}
@@ -63,7 +79,7 @@ export default function Browse() {
           <section key={c} aria-labelledby={`g-${c}`}>
             <h2 id={`g-${c}`} className="flex items-center gap-3 text-lg">
               <span className="text-accent"><CatIcon k={c} size={26} /></span>
-              {t.cats[c]}
+              {label(c)}
             </h2>
             <ul className="mt-3 space-y-2">
               {items.map((j) => (

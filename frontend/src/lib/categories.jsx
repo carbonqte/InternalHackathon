@@ -1,9 +1,14 @@
-import { CookingPot, Storefront, Scissors, Factory, DeviceMobile, HouseLine } from '@phosphor-icons/react'
+import { CookingPot, Storefront, Scissors, Factory, DeviceMobile, HouseLine, Briefcase, IdentificationCard, Car, Certificate, Buildings, HandHeart } from '@phosphor-icons/react'
 // Business categories. Labels live in i18n (t.cats[key]).
 export const CATEGORIES = ['food', 'retail', 'services', 'manufacturing', 'online', 'home']
 
+// Top level: what the citizen needs to do. Business is one of these; property and welfare are not mapped yet.
+export const AREAS = ['business', 'ids', 'vehicles', 'certificates', 'property', 'welfare']
+export const SOON = ['property', 'welfare']
+
 // Icons: Phosphor Icons (MIT, https://phosphoricons.com), duotone weight.
-const ICONS = { food: CookingPot, retail: Storefront, services: Scissors, manufacturing: Factory, online: DeviceMobile, home: HouseLine }
+const ICONS = { food: CookingPot, retail: Storefront, services: Scissors, manufacturing: Factory, online: DeviceMobile, home: HouseLine,
+  business: Briefcase, ids: IdentificationCard, vehicles: Car, certificates: Certificate, property: Buildings, welfare: HandHeart }
 export function CatIcon({ k, size = 32 }) {
   const I = ICONS[k] || HouseLine
   return <I size={size} weight="duotone" aria-hidden="true" />

@@ -19,7 +19,7 @@ export default function Suggestions({ items, query, onClose, id }) {
         <li key={j.task_id}>
           <Link to={j.href} className="flex items-center justify-between gap-3 px-4 min-h-11 hover:bg-accent-soft focus:bg-accent-soft outline-none">
             <span>{tr(j, 'title', lang)}</span>
-            <span className="text-xs text-muted shrink-0">{t.cats[j.category]}</span>
+            <span className="text-xs text-muted shrink-0">{j.area === 'business' ? t.cats[j.category] : t.areas[j.area]}</span>
           </Link>
         </li>
       ))}

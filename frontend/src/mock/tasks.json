@@ -48,6 +48,31 @@
     "sample_data": true,
     "steps": [
       {
+        "id": "sx0",
+        "name": "Choose your business structure",
+        "name_hi": "अपने व्यवसाय का ढाँचा चुनें",
+        "name_mr": "तुमच्या व्यवसायाची रचना निवडा",
+        "name_kn": "ವ್ಯವಹಾರದ ರಚನೆ ಆಯ್ಕೆಮಾಡಿ",
+        "name_gu": "વ્યવસાયનું માળખું પસંદ કરો",
+        "name_ta": "தொழில் அமைப்பைத் தேர்ந்தெடு",
+        "type": "document",
+        "office": "You decide. Companies and LLPs register with MCA",
+        "office_hi": "आप तय करें। कंपनी और LLP का पंजीकरण MCA पर",
+        "office_mr": "तुम्ही ठरवा. कंपनी आणि LLP ची नोंदणी MCA वर",
+        "documents": [],
+        "fee": null,
+        "link": "https://www.mca.gov.in",
+        "status": "approved",
+        "depends_on": [],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-26",
+        "why": "Everything else depends on this: a sole proprietor, partnership, LLP or company each registers differently.",
+        "why_hi": "बाक़ी सब इसी पर निर्भर है: प्रोप्राइटरशिप, पार्टनरशिप, LLP या कंपनी, हर एक का पंजीकरण अलग है।",
+        "why_mr": "बाकी सर्व यावर अवलंबून आहे: प्रोप्रायटरशिप, भागीदारी, LLP किंवा कंपनी, प्रत्येकाची नोंदणी वेगळी आहे."
+      },
+      {
         "id": "s1",
         "name": "PAN card",
         "name_hi": "पैन कार्ड",
@@ -63,7 +88,9 @@
         "fee": null,
         "link": "https://www.incometax.gov.in",
         "status": "approved",
-        "depends_on": [],
+        "depends_on": [
+          "sx0"
+        ],
         "scope": "national",
         "requirement": "required",
         "processing_time": null,
@@ -75,7 +102,10 @@
         },
         "name_kn": "ಪ್ಯಾನ್ ಕಾರ್ಡ್",
         "name_gu": "પાન કાર્ડ",
-        "name_ta": "பான் அட்டை"
+        "name_ta": "பான் அட்டை",
+        "why": "Almost every registration after this asks for your PAN.",
+        "why_hi": "इसके बाद लगभग हर पंजीकरण में PAN माँगा जाता है।",
+        "why_mr": "यानंतर जवळजवळ प्रत्येक नोंदणीत PAN मागितला जातो."
       },
       {
         "id": "s2",
@@ -100,7 +130,10 @@
         "verified_on": "2026-09-20",
         "name_kn": "ವ್ಯವಹಾರ ಸ್ಥಳದ ಪುರಾವೆ",
         "name_gu": "વ્યવસાયના સ્થળનો પુરાવો",
-        "name_ta": "தொழில் இடத்துக்கான சான்று"
+        "name_ta": "தொழில் இடத்துக்கான சான்று",
+        "why": "Licences are tied to a place, so you need proof of where you'll operate.",
+        "why_hi": "लाइसेंस किसी जगह से जुड़े होते हैं, इसलिए व्यवसाय की जगह का प्रमाण चाहिए।",
+        "why_mr": "परवाने जागेशी जोडलेले असतात, म्हणून व्यवसायाच्या जागेचा पुरावा लागतो."
       },
       {
         "id": "s3",
@@ -132,7 +165,10 @@
         },
         "name_kn": "ಉದ್ಯಮ್ (MSME) ನೋಂದಣಿ",
         "name_gu": "ઉદ્યમ (MSME) નોંધણી",
-        "name_ta": "உத்யம் (MSME) பதிவு"
+        "name_ta": "உத்யம் (MSME) பதிவு",
+        "why": "Free, and it makes you eligible for MSME schemes and loans. Needs your PAN.",
+        "why_hi": "मुफ़्त है और MSME योजनाओं व लोन के लिए पात्र बनाता है। PAN चाहिए।",
+        "why_mr": "मोफत आहे आणि MSME योजना व कर्जासाठी पात्र बनवते. PAN लागतो."
       },
       {
         "id": "s5",
@@ -166,7 +202,10 @@
         },
         "name_kn": "FSSAI ನೋಂದಣಿ / ಪರವಾನಗಿ",
         "name_gu": "FSSAI નોંધણી / લાઇસન્સ",
-        "name_ta": "FSSAI பதிவு / உரிமம்"
+        "name_ta": "FSSAI பதிவு / உரிமம்",
+        "why": "Required before you sell any food. Which one you need depends on your turnover.",
+        "why_hi": "खाना बेचने से पहले ज़रूरी। कौन-सा चाहिए, यह टर्नओवर पर निर्भर है।",
+        "why_mr": "अन्न विकण्यापूर्वी आवश्यक. कोणते लागेल ते उलाढालीवर अवलंबून आहे."
       },
       {
         "id": "s7",
@@ -204,7 +243,10 @@
         "condition_mr": "फक्त तुमची उलाढाल GST नोंदणी मर्यादेपेक्षा जास्त असल्यास",
         "name_kn": "GST ನೋಂದಣಿ (ಮಿತಿ ಮೀರಿದರೆ)",
         "name_gu": "GST નોંધણી (મર્યાદાથી વધુ હોય તો)",
-        "name_ta": "GST பதிவு (வரம்பைத் தாண்டினால்)"
+        "name_ta": "GST பதிவு (வரம்பைத் தாண்டினால்)",
+        "why": "Only compulsory above a turnover limit, but it needs PAN and premises proof when you do.",
+        "why_hi": "केवल एक टर्नओवर सीमा से ऊपर अनिवार्य, और तब PAN व परिसर प्रमाण चाहिए।",
+        "why_mr": "फक्त ठराविक उलाढालीपेक्षा जास्त असल्यास अनिवार्य, आणि तेव्हा PAN व जागेचा पुरावा लागतो."
       },
       {
         "id": "s4",
@@ -239,7 +281,10 @@
         },
         "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
         "name_gu": "દુકાન અને સંસ્થા નોંધણી",
-        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு",
+        "why": "Your state's basic registration for any shop or office. It needs your PAN and premises proof.",
+        "why_hi": "किसी भी दुकान या दफ़्तर का राज्य-स्तरीय मूल पंजीकरण। PAN और परिसर प्रमाण चाहिए।",
+        "why_mr": "कोणत्याही दुकान किंवा कार्यालयाची राज्यस्तरीय मूळ नोंदणी. PAN आणि जागेचा पुरावा लागतो."
       },
       {
         "id": "s6",
@@ -275,7 +320,10 @@
         },
         "name_kn": "ಆರೋಗ್ಯ / ವ್ಯಾಪಾರ ಪರವಾನಗಿ (BMC)",
         "name_gu": "આરોગ્ય / વેપાર લાઇસન્સ (BMC)",
-        "name_ta": "சுகாதார / வணிக உரிமம் (BMC)"
+        "name_ta": "சுகாதார / வணிக உரிமம் (BMC)",
+        "why": "Your city's licence to trade from these premises. It needs your state registration first.",
+        "why_hi": "इस परिसर से व्यापार के लिए शहर का लाइसेंस। पहले राज्य पंजीकरण चाहिए।",
+        "why_mr": "या जागेतून व्यापारासाठी शहराचा परवाना. आधी राज्य नोंदणी लागते."
       },
       {
         "id": "s9",
@@ -311,7 +359,10 @@
         },
         "name_kn": "ವ್ಯಾಪಾರ ಪರವಾನಗಿ (PMC)",
         "name_gu": "વેપાર લાઇસન્સ (PMC)",
-        "name_ta": "வணிக உரிமம் (PMC)"
+        "name_ta": "வணிக உரிமம் (PMC)",
+        "why": "Your city's licence to trade from these premises. It needs your state registration first.",
+        "why_hi": "इस परिसर से व्यापार के लिए शहर का लाइसेंस। पहले राज्य पंजीकरण चाहिए।",
+        "why_mr": "या जागेतून व्यापारासाठी शहराचा परवाना. आधी राज्य नोंदणी लागते."
       },
       {
         "id": "s4_ka",
@@ -346,7 +397,10 @@
         },
         "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
         "name_gu": "દુકાન અને સંસ્થા નોંધણી",
-        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு",
+        "why": "Your state's basic registration for any shop or office. It needs your PAN and premises proof.",
+        "why_hi": "किसी भी दुकान या दफ़्तर का राज्य-स्तरीय मूल पंजीकरण। PAN और परिसर प्रमाण चाहिए।",
+        "why_mr": "कोणत्याही दुकान किंवा कार्यालयाची राज्यस्तरीय मूळ नोंदणी. PAN आणि जागेचा पुरावा लागतो."
       },
       {
         "id": "s4_gj",
@@ -381,7 +435,10 @@
         },
         "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
         "name_gu": "દુકાન અને સંસ્થા નોંધણી",
-        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு",
+        "why": "Your state's basic registration for any shop or office. It needs your PAN and premises proof.",
+        "why_hi": "किसी भी दुकान या दफ़्तर का राज्य-स्तरीय मूल पंजीकरण। PAN और परिसर प्रमाण चाहिए।",
+        "why_mr": "कोणत्याही दुकान किंवा कार्यालयाची राज्यस्तरीय मूळ नोंदणी. PAN आणि जागेचा पुरावा लागतो."
       },
       {
         "id": "s4_tn",
@@ -416,7 +473,10 @@
         },
         "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
         "name_gu": "દુકાન અને સંસ્થા નોંધણી",
-        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு",
+        "why": "Your state's basic registration for any shop or office. It needs your PAN and premises proof.",
+        "why_hi": "किसी भी दुकान या दफ़्तर का राज्य-स्तरीय मूल पंजीकरण। PAN और परिसर प्रमाण चाहिए।",
+        "why_mr": "कोणत्याही दुकान किंवा कार्यालयाची राज्यस्तरीय मूळ नोंदणी. PAN आणि जागेचा पुरावा लागतो."
       },
       {
         "id": "s4_dl",
@@ -451,7 +511,10 @@
         },
         "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
         "name_gu": "દુકાન અને સંસ્થા નોંધણી",
-        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு",
+        "why": "Your state's basic registration for any shop or office. It needs your PAN and premises proof.",
+        "why_hi": "किसी भी दुकान या दफ़्तर का राज्य-स्तरीय मूल पंजीकरण। PAN और परिसर प्रमाण चाहिए।",
+        "why_mr": "कोणत्याही दुकान किंवा कार्यालयाची राज्यस्तरीय मूळ नोंदणी. PAN आणि जागेचा पुरावा लागतो."
       },
       {
         "id": "s9_blr",
@@ -487,7 +550,10 @@
         },
         "name_kn": "ವ್ಯಾಪಾರ ಪರವಾನಗಿ (ಬೆಂಗಳೂರು ನಗರ ಪಾಲಿಕೆ)",
         "name_gu": "વેપાર લાઇસન્સ (બેંગલુરુ મહાનગરપાલિકા)",
-        "name_ta": "வணிக உரிமம் (பெங்களூரு மாநகராட்சி)"
+        "name_ta": "வணிக உரிமம் (பெங்களூரு மாநகராட்சி)",
+        "why": "Your city's licence to trade from these premises. It needs your state registration first.",
+        "why_hi": "इस परिसर से व्यापार के लिए शहर का लाइसेंस। पहले राज्य पंजीकरण चाहिए।",
+        "why_mr": "या जागेतून व्यापारासाठी शहराचा परवाना. आधी राज्य नोंदणी लागते."
       },
       {
         "id": "s9_chn",
@@ -523,7 +589,10 @@
         },
         "name_kn": "ವ್ಯಾಪಾರ ಪರವಾನಗಿ (ಗ್ರೇಟರ್ ಚೆನ್ನೈ ಪಾಲಿಕೆ)",
         "name_gu": "વેપાર લાઇસન્સ (ગ્રેટર ચેન્નાઈ કોર્પોરેશન)",
-        "name_ta": "வணிக உரிமம் (பெருநகர சென்னை மாநகராட்சி)"
+        "name_ta": "வணிக உரிமம் (பெருநகர சென்னை மாநகராட்சி)",
+        "why": "Your city's licence to trade from these premises. It needs your state registration first.",
+        "why_hi": "इस परिसर से व्यापार के लिए शहर का लाइसेंस। पहले राज्य पंजीकरण चाहिए।",
+        "why_mr": "या जागेतून व्यापारासाठी शहराचा परवाना. आधी राज्य नोंदणी लागते."
       },
       {
         "id": "s9_mcd",
@@ -559,7 +628,10 @@
         },
         "name_kn": "ಆರೋಗ್ಯ ವ್ಯಾಪಾರ ಪರವಾನಗಿ (MCD)",
         "name_gu": "હેલ્થ ટ્રેડ લાઇસન્સ (MCD)",
-        "name_ta": "சுகாதார வணிக உரிமம் (MCD)"
+        "name_ta": "சுகாதார வணிக உரிமம் (MCD)",
+        "why": "Your city's licence to trade from these premises. It needs your state registration first.",
+        "why_hi": "इस परिसर से व्यापार के लिए शहर का लाइसेंस। पहले राज्य पंजीकरण चाहिए।",
+        "why_mr": "या जागेतून व्यापारासाठी शहराचा परवाना. आधी राज्य नोंदणी लागते."
       },
       {
         "id": "s9_ndmc",
@@ -595,7 +667,10 @@
         },
         "name_kn": "ಆರೋಗ್ಯ ವ್ಯಾಪಾರ ಪರವಾನಗಿ (NDMC)",
         "name_gu": "હેલ્થ ટ્રેડ લાઇસન્સ (NDMC)",
-        "name_ta": "சுகாதார வணிக உரிமம் (NDMC)"
+        "name_ta": "சுகாதார வணிக உரிமம் (NDMC)",
+        "why": "Your city's licence to trade from these premises. It needs your state registration first.",
+        "why_hi": "इस परिसर से व्यापार के लिए शहर का लाइसेंस। पहले राज्य पंजीकरण चाहिए।",
+        "why_mr": "या जागेतून व्यापारासाठी शहराचा परवाना. आधी राज्य नोंदणी लागते."
       },
       {
         "id": "s8",
@@ -630,10 +705,11 @@
       }
     ],
     "category": "food",
-    "popular": 1,
+    "popular": 2,
     "title_kn": "ಸಣ್ಣ ಆಹಾರ ವ್ಯವಹಾರ ಆರಂಭಿಸಿ",
     "title_gu": "નાનો ખાદ્ય વ્યવસાય શરૂ કરો",
-    "title_ta": "சிறு உணவுத் தொழில் தொடங்கு"
+    "title_ta": "சிறு உணவுத் தொழில் தொடங்கு",
+    "area": "business"
   },
   {
     "task_id": "small-business",
@@ -669,6 +745,31 @@
     "sample_data": true,
     "steps": [
       {
+        "id": "bx0",
+        "name": "Choose your business structure",
+        "name_hi": "अपने व्यवसाय का ढाँचा चुनें",
+        "name_mr": "तुमच्या व्यवसायाची रचना निवडा",
+        "name_kn": "ವ್ಯವಹಾರದ ರಚನೆ ಆಯ್ಕೆಮಾಡಿ",
+        "name_gu": "વ્યવસાયનું માળખું પસંદ કરો",
+        "name_ta": "தொழில் அமைப்பைத் தேர்ந்தெடு",
+        "type": "document",
+        "office": "You decide. Companies and LLPs register with MCA",
+        "office_hi": "आप तय करें। कंपनी और LLP का पंजीकरण MCA पर",
+        "office_mr": "तुम्ही ठरवा. कंपनी आणि LLP ची नोंदणी MCA वर",
+        "documents": [],
+        "fee": null,
+        "link": "https://www.mca.gov.in",
+        "status": "approved",
+        "depends_on": [],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-26",
+        "why": "Everything else depends on this: a sole proprietor, partnership, LLP or company each registers differently.",
+        "why_hi": "बाक़ी सब इसी पर निर्भर है: प्रोप्राइटरशिप, पार्टनरशिप, LLP या कंपनी, हर एक का पंजीकरण अलग है।",
+        "why_mr": "बाकी सर्व यावर अवलंबून आहे: प्रोप्रायटरशिप, भागीदारी, LLP किंवा कंपनी, प्रत्येकाची नोंदणी वेगळी आहे."
+      },
+      {
         "id": "b1",
         "name": "PAN card",
         "name_hi": "पैन कार्ड",
@@ -684,7 +785,9 @@
         "fee": null,
         "link": "https://www.incometax.gov.in",
         "status": "approved",
-        "depends_on": [],
+        "depends_on": [
+          "bx0"
+        ],
         "scope": "national",
         "requirement": "required",
         "processing_time": null,
@@ -696,7 +799,10 @@
         },
         "name_kn": "ಪ್ಯಾನ್ ಕಾರ್ಡ್",
         "name_gu": "પાન કાર્ડ",
-        "name_ta": "பான் அட்டை"
+        "name_ta": "பான் அட்டை",
+        "why": "Almost every registration after this asks for your PAN.",
+        "why_hi": "इसके बाद लगभग हर पंजीकरण में PAN माँगा जाता है।",
+        "why_mr": "यानंतर जवळजवळ प्रत्येक नोंदणीत PAN मागितला जातो."
       },
       {
         "id": "b2",
@@ -724,7 +830,10 @@
         "verified_on": "2026-09-20",
         "name_kn": "ವ್ಯವಹಾರ ಬ್ಯಾಂಕ್ ಖಾತೆ",
         "name_gu": "વ્યવસાયનું બેંક ખાતું",
-        "name_ta": "தொழில் வங்கிக் கணக்கு"
+        "name_ta": "தொழில் வங்கிக் கணக்கு",
+        "why": "Keeps business money separate, and GST registration asks for bank details.",
+        "why_hi": "व्यवसाय का पैसा अलग रहता है, और GST पंजीकरण में बैंक विवरण माँगा जाता है।",
+        "why_mr": "व्यवसायाचे पैसे वेगळे राहतात, आणि GST नोंदणीत बँक तपशील मागितला जातो."
       },
       {
         "id": "b3",
@@ -756,7 +865,10 @@
         },
         "name_kn": "ಉದ್ಯಮ್ (MSME) ನೋಂದಣಿ",
         "name_gu": "ઉદ્યમ (MSME) નોંધણી",
-        "name_ta": "உத்யம் (MSME) பதிவு"
+        "name_ta": "உத்யம் (MSME) பதிவு",
+        "why": "Free, and it makes you eligible for MSME schemes and loans. Needs your PAN.",
+        "why_hi": "मुफ़्त है और MSME योजनाओं व लोन के लिए पात्र बनाता है। PAN चाहिए।",
+        "why_mr": "मोफत आहे आणि MSME योजना व कर्जासाठी पात्र बनवते. PAN लागतो."
       },
       {
         "id": "b4",
@@ -789,7 +901,10 @@
         },
         "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
         "name_gu": "દુકાન અને સંસ્થા નોંધણી",
-        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு",
+        "why": "Your state's basic registration for any shop or office. It needs your PAN and premises proof.",
+        "why_hi": "किसी भी दुकान या दफ़्तर का राज्य-स्तरीय मूल पंजीकरण। PAN और परिसर प्रमाण चाहिए।",
+        "why_mr": "कोणत्याही दुकान किंवा कार्यालयाची राज्यस्तरीय मूळ नोंदणी. PAN आणि जागेचा पुरावा लागतो."
       },
       {
         "id": "b5",
@@ -827,7 +942,10 @@
         "condition_mr": "फक्त तुमची उलाढाल GST नोंदणी मर्यादेपेक्षा जास्त असल्यास",
         "name_kn": "GST ನೋಂದಣಿ (ಮಿತಿ ಮೀರಿದರೆ)",
         "name_gu": "GST નોંધણી (મર્યાદાથી વધુ હોય તો)",
-        "name_ta": "GST பதிவு (வரம்பைத் தாண்டினால்)"
+        "name_ta": "GST பதிவு (வரம்பைத் தாண்டினால்)",
+        "why": "Only compulsory above a turnover limit, but it needs PAN and premises proof when you do.",
+        "why_hi": "केवल एक टर्नओवर सीमा से ऊपर अनिवार्य, और तब PAN व परिसर प्रमाण चाहिए।",
+        "why_mr": "फक्त ठराविक उलाढालीपेक्षा जास्त असल्यास अनिवार्य, आणि तेव्हा PAN व जागेचा पुरावा लागतो."
       },
       {
         "id": "b4_ka",
@@ -860,7 +978,10 @@
         },
         "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
         "name_gu": "દુકાન અને સંસ્થા નોંધણી",
-        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு",
+        "why": "Your state's basic registration for any shop or office. It needs your PAN and premises proof.",
+        "why_hi": "किसी भी दुकान या दफ़्तर का राज्य-स्तरीय मूल पंजीकरण। PAN और परिसर प्रमाण चाहिए।",
+        "why_mr": "कोणत्याही दुकान किंवा कार्यालयाची राज्यस्तरीय मूळ नोंदणी. PAN आणि जागेचा पुरावा लागतो."
       },
       {
         "id": "b4_gj",
@@ -893,7 +1014,10 @@
         },
         "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
         "name_gu": "દુકાન અને સંસ્થા નોંધણી",
-        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு",
+        "why": "Your state's basic registration for any shop or office. It needs your PAN and premises proof.",
+        "why_hi": "किसी भी दुकान या दफ़्तर का राज्य-स्तरीय मूल पंजीकरण। PAN और परिसर प्रमाण चाहिए।",
+        "why_mr": "कोणत्याही दुकान किंवा कार्यालयाची राज्यस्तरीय मूळ नोंदणी. PAN आणि जागेचा पुरावा लागतो."
       },
       {
         "id": "b4_tn",
@@ -926,7 +1050,10 @@
         },
         "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
         "name_gu": "દુકાન અને સંસ્થા નોંધણી",
-        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு",
+        "why": "Your state's basic registration for any shop or office. It needs your PAN and premises proof.",
+        "why_hi": "किसी भी दुकान या दफ़्तर का राज्य-स्तरीय मूल पंजीकरण। PAN और परिसर प्रमाण चाहिए।",
+        "why_mr": "कोणत्याही दुकान किंवा कार्यालयाची राज्यस्तरीय मूळ नोंदणी. PAN आणि जागेचा पुरावा लागतो."
       },
       {
         "id": "b4_dl",
@@ -959,7 +1086,10 @@
         },
         "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
         "name_gu": "દુકાન અને સંસ્થા નોંધણી",
-        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு",
+        "why": "Your state's basic registration for any shop or office. It needs your PAN and premises proof.",
+        "why_hi": "किसी भी दुकान या दफ़्तर का राज्य-स्तरीय मूल पंजीकरण। PAN और परिसर प्रमाण चाहिए।",
+        "why_mr": "कोणत्याही दुकान किंवा कार्यालयाची राज्यस्तरीय मूळ नोंदणी. PAN आणि जागेचा पुरावा लागतो."
       },
       {
         "id": "b6",
@@ -988,15 +1118,16 @@
       }
     ],
     "category": "retail",
-    "popular": 2,
+    "popular": 12,
     "title_kn": "ಸಣ್ಣ ವ್ಯವಹಾರ ನೋಂದಣಿ (ಆಹಾರೇತರ)",
     "title_gu": "નાના વ્યવસાયની નોંધણી (ખાદ્ય સિવાય)",
-    "title_ta": "சிறு தொழில் பதிவு (உணவு அல்லாதது)"
+    "title_ta": "சிறு தொழில் பதிவு (உணவு அல்லாதது)",
+    "area": "business"
   },
   {
     "task_id": "salon",
     "category": "services",
-    "popular": 3,
+    "popular": 13,
     "title": "Open a salon or beauty parlour",
     "title_hi": "सैलून या ब्यूटी पार्लर खोलें",
     "title_mr": "सलून किंवा ब्युटी पार्लर सुरू करा",
@@ -1024,6 +1155,31 @@
     "sample_data": true,
     "steps": [
       {
+        "id": "vx0",
+        "name": "Choose your business structure",
+        "name_hi": "अपने व्यवसाय का ढाँचा चुनें",
+        "name_mr": "तुमच्या व्यवसायाची रचना निवडा",
+        "name_kn": "ವ್ಯವಹಾರದ ರಚನೆ ಆಯ್ಕೆಮಾಡಿ",
+        "name_gu": "વ્યવસાયનું માળખું પસંદ કરો",
+        "name_ta": "தொழில் அமைப்பைத் தேர்ந்தெடு",
+        "type": "document",
+        "office": "You decide. Companies and LLPs register with MCA",
+        "office_hi": "आप तय करें। कंपनी और LLP का पंजीकरण MCA पर",
+        "office_mr": "तुम्ही ठरवा. कंपनी आणि LLP ची नोंदणी MCA वर",
+        "documents": [],
+        "fee": null,
+        "link": "https://www.mca.gov.in",
+        "status": "approved",
+        "depends_on": [],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-26",
+        "why": "Everything else depends on this: a sole proprietor, partnership, LLP or company each registers differently.",
+        "why_hi": "बाक़ी सब इसी पर निर्भर है: प्रोप्राइटरशिप, पार्टनरशिप, LLP या कंपनी, हर एक का पंजीकरण अलग है।",
+        "why_mr": "बाकी सर्व यावर अवलंबून आहे: प्रोप्रायटरशिप, भागीदारी, LLP किंवा कंपनी, प्रत्येकाची नोंदणी वेगळी आहे."
+      },
+      {
         "id": "v1",
         "name": "PAN card",
         "name_hi": "पैन कार्ड",
@@ -1039,7 +1195,9 @@
         "fee": null,
         "link": "https://www.incometax.gov.in",
         "status": "approved",
-        "depends_on": [],
+        "depends_on": [
+          "vx0"
+        ],
         "scope": "national",
         "requirement": "required",
         "processing_time": null,
@@ -1051,7 +1209,10 @@
         },
         "name_kn": "ಪ್ಯಾನ್ ಕಾರ್ಡ್",
         "name_gu": "પાન કાર્ડ",
-        "name_ta": "பான் அட்டை"
+        "name_ta": "பான் அட்டை",
+        "why": "Almost every registration after this asks for your PAN.",
+        "why_hi": "इसके बाद लगभग हर पंजीकरण में PAN माँगा जाता है।",
+        "why_mr": "यानंतर जवळजवळ प्रत्येक नोंदणीत PAN मागितला जातो."
       },
       {
         "id": "v2",
@@ -1076,7 +1237,10 @@
         "verified_on": "2026-09-20",
         "name_kn": "ವ್ಯವಹಾರ ಸ್ಥಳದ ಪುರಾವೆ",
         "name_gu": "વ્યવસાયના સ્થળનો પુરાવો",
-        "name_ta": "தொழில் இடத்துக்கான சான்று"
+        "name_ta": "தொழில் இடத்துக்கான சான்று",
+        "why": "Licences are tied to a place, so you need proof of where you'll operate.",
+        "why_hi": "लाइसेंस किसी जगह से जुड़े होते हैं, इसलिए व्यवसाय की जगह का प्रमाण चाहिए।",
+        "why_mr": "परवाने जागेशी जोडलेले असतात, म्हणून व्यवसायाच्या जागेचा पुरावा लागतो."
       },
       {
         "id": "v3",
@@ -1108,7 +1272,10 @@
         },
         "name_kn": "ಉದ್ಯಮ್ (MSME) ನೋಂದಣಿ",
         "name_gu": "ઉદ્યમ (MSME) નોંધણી",
-        "name_ta": "உத்யம் (MSME) பதிவு"
+        "name_ta": "உத்யம் (MSME) பதிவு",
+        "why": "Free, and it makes you eligible for MSME schemes and loans. Needs your PAN.",
+        "why_hi": "मुफ़्त है और MSME योजनाओं व लोन के लिए पात्र बनाता है। PAN चाहिए।",
+        "why_mr": "मोफत आहे आणि MSME योजना व कर्जासाठी पात्र बनवते. PAN लागतो."
       },
       {
         "id": "v4",
@@ -1143,7 +1310,10 @@
         },
         "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
         "name_gu": "દુકાન અને સંસ્થા નોંધણી",
-        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு",
+        "why": "Your state's basic registration for any shop or office. It needs your PAN and premises proof.",
+        "why_hi": "किसी भी दुकान या दफ़्तर का राज्य-स्तरीय मूल पंजीकरण। PAN और परिसर प्रमाण चाहिए।",
+        "why_mr": "कोणत्याही दुकान किंवा कार्यालयाची राज्यस्तरीय मूळ नोंदणी. PAN आणि जागेचा पुरावा लागतो."
       },
       {
         "id": "v7",
@@ -1181,7 +1351,10 @@
         "condition_mr": "फक्त तुमची उलाढाल GST नोंदणी मर्यादेपेक्षा जास्त असल्यास",
         "name_kn": "GST ನೋಂದಣಿ (ಮಿತಿ ಮೀರಿದರೆ)",
         "name_gu": "GST નોંધણી (મર્યાદાથી વધુ હોય તો)",
-        "name_ta": "GST பதிவு (வரம்பைத் தாண்டினால்)"
+        "name_ta": "GST பதிவு (வரம்பைத் தாண்டினால்)",
+        "why": "Only compulsory above a turnover limit, but it needs PAN and premises proof when you do.",
+        "why_hi": "केवल एक टर्नओवर सीमा से ऊपर अनिवार्य, और तब PAN व परिसर प्रमाण चाहिए।",
+        "why_mr": "फक्त ठराविक उलाढालीपेक्षा जास्त असल्यास अनिवार्य, आणि तेव्हा PAN व जागेचा पुरावा लागतो."
       },
       {
         "id": "v6",
@@ -1215,7 +1388,10 @@
         },
         "name_kn": "ವ್ಯಾಪಾರ ಪರವಾನಗಿ (BMC)",
         "name_gu": "વેપાર લાઇસન્સ (BMC)",
-        "name_ta": "வணிக உரிமம் (BMC)"
+        "name_ta": "வணிக உரிமம் (BMC)",
+        "why": "Your city's licence to trade from these premises. It needs your state registration first.",
+        "why_hi": "इस परिसर से व्यापार के लिए शहर का लाइसेंस। पहले राज्य पंजीकरण चाहिए।",
+        "why_mr": "या जागेतून व्यापारासाठी शहराचा परवाना. आधी राज्य नोंदणी लागते."
       },
       {
         "id": "v9",
@@ -1249,7 +1425,10 @@
         },
         "name_kn": "ವ್ಯಾಪಾರ ಪರವಾನಗಿ (PMC)",
         "name_gu": "વેપાર લાઇસન્સ (PMC)",
-        "name_ta": "வணிக உரிமம் (PMC)"
+        "name_ta": "வணிக உரிமம் (PMC)",
+        "why": "Your city's licence to trade from these premises. It needs your state registration first.",
+        "why_hi": "इस परिसर से व्यापार के लिए शहर का लाइसेंस। पहले राज्य पंजीकरण चाहिए।",
+        "why_mr": "या जागेतून व्यापारासाठी शहराचा परवाना. आधी राज्य नोंदणी लागते."
       },
       {
         "id": "v4_ka",
@@ -1284,7 +1463,10 @@
         },
         "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
         "name_gu": "દુકાન અને સંસ્થા નોંધણી",
-        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு",
+        "why": "Your state's basic registration for any shop or office. It needs your PAN and premises proof.",
+        "why_hi": "किसी भी दुकान या दफ़्तर का राज्य-स्तरीय मूल पंजीकरण। PAN और परिसर प्रमाण चाहिए।",
+        "why_mr": "कोणत्याही दुकान किंवा कार्यालयाची राज्यस्तरीय मूळ नोंदणी. PAN आणि जागेचा पुरावा लागतो."
       },
       {
         "id": "v4_gj",
@@ -1319,7 +1501,10 @@
         },
         "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
         "name_gu": "દુકાન અને સંસ્થા નોંધણી",
-        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு",
+        "why": "Your state's basic registration for any shop or office. It needs your PAN and premises proof.",
+        "why_hi": "किसी भी दुकान या दफ़्तर का राज्य-स्तरीय मूल पंजीकरण। PAN और परिसर प्रमाण चाहिए।",
+        "why_mr": "कोणत्याही दुकान किंवा कार्यालयाची राज्यस्तरीय मूळ नोंदणी. PAN आणि जागेचा पुरावा लागतो."
       },
       {
         "id": "v4_tn",
@@ -1354,7 +1539,10 @@
         },
         "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
         "name_gu": "દુકાન અને સંસ્થા નોંધણી",
-        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு",
+        "why": "Your state's basic registration for any shop or office. It needs your PAN and premises proof.",
+        "why_hi": "किसी भी दुकान या दफ़्तर का राज्य-स्तरीय मूल पंजीकरण। PAN और परिसर प्रमाण चाहिए।",
+        "why_mr": "कोणत्याही दुकान किंवा कार्यालयाची राज्यस्तरीय मूळ नोंदणी. PAN आणि जागेचा पुरावा लागतो."
       },
       {
         "id": "v4_dl",
@@ -1389,7 +1577,10 @@
         },
         "name_kn": "ಅಂಗಡಿ ಮತ್ತು ಸಂಸ್ಥೆ ನೋಂದಣಿ",
         "name_gu": "દુકાન અને સંસ્થા નોંધણી",
-        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு"
+        "name_ta": "கடை மற்றும் நிறுவனப் பதிவு",
+        "why": "Your state's basic registration for any shop or office. It needs your PAN and premises proof.",
+        "why_hi": "किसी भी दुकान या दफ़्तर का राज्य-स्तरीय मूल पंजीकरण। PAN और परिसर प्रमाण चाहिए।",
+        "why_mr": "कोणत्याही दुकान किंवा कार्यालयाची राज्यस्तरीय मूळ नोंदणी. PAN आणि जागेचा पुरावा लागतो."
       },
       {
         "id": "v9_blr",
@@ -1423,7 +1614,10 @@
         },
         "name_kn": "ವ್ಯಾಪಾರ ಪರವಾನಗಿ (ಬೆಂಗಳೂರು ನಗರ ಪಾಲಿಕೆ)",
         "name_gu": "વેપાર લાઇસન્સ (બેંગલુરુ મહાનગરપાલિકા)",
-        "name_ta": "வணிக உரிமம் (பெங்களூரு மாநகராட்சி)"
+        "name_ta": "வணிக உரிமம் (பெங்களூரு மாநகராட்சி)",
+        "why": "Your city's licence to trade from these premises. It needs your state registration first.",
+        "why_hi": "इस परिसर से व्यापार के लिए शहर का लाइसेंस। पहले राज्य पंजीकरण चाहिए।",
+        "why_mr": "या जागेतून व्यापारासाठी शहराचा परवाना. आधी राज्य नोंदणी लागते."
       },
       {
         "id": "v9_chn",
@@ -1457,7 +1651,10 @@
         },
         "name_kn": "ವ್ಯಾಪಾರ ಪರವಾನಗಿ (ಗ್ರೇಟರ್ ಚೆನ್ನೈ ಪಾಲಿಕೆ)",
         "name_gu": "વેપાર લાઇસન્સ (ગ્રેટર ચેન્નાઈ કોર્પોરેશન)",
-        "name_ta": "வணிக உரிமம் (பெருநகர சென்னை மாநகராட்சி)"
+        "name_ta": "வணிக உரிமம் (பெருநகர சென்னை மாநகராட்சி)",
+        "why": "Your city's licence to trade from these premises. It needs your state registration first.",
+        "why_hi": "इस परिसर से व्यापार के लिए शहर का लाइसेंस। पहले राज्य पंजीकरण चाहिए।",
+        "why_mr": "या जागेतून व्यापारासाठी शहराचा परवाना. आधी राज्य नोंदणी लागते."
       },
       {
         "id": "v9_mcd",
@@ -1491,7 +1688,10 @@
         },
         "name_kn": "ಆರೋಗ್ಯ ವ್ಯಾಪಾರ ಪರವಾನಗಿ (MCD)",
         "name_gu": "હેલ્થ ટ્રેડ લાઇસન્સ (MCD)",
-        "name_ta": "சுகாதார வணிக உரிமம் (MCD)"
+        "name_ta": "சுகாதார வணிக உரிமம் (MCD)",
+        "why": "Your city's licence to trade from these premises. It needs your state registration first.",
+        "why_hi": "इस परिसर से व्यापार के लिए शहर का लाइसेंस। पहले राज्य पंजीकरण चाहिए।",
+        "why_mr": "या जागेतून व्यापारासाठी शहराचा परवाना. आधी राज्य नोंदणी लागते."
       },
       {
         "id": "v9_ndmc",
@@ -1525,7 +1725,10 @@
         },
         "name_kn": "ಆರೋಗ್ಯ ವ್ಯಾಪಾರ ಪರವಾನಗಿ (NDMC)",
         "name_gu": "હેલ્થ ટ્રેડ લાઇસન્સ (NDMC)",
-        "name_ta": "சுகாதார வணிக உரிமம் (NDMC)"
+        "name_ta": "சுகாதார வணிக உரிமம் (NDMC)",
+        "why": "Your city's licence to trade from these premises. It needs your state registration first.",
+        "why_hi": "इस परिसर से व्यापार के लिए शहर का लाइसेंस। पहले राज्य पंजीकरण चाहिए।",
+        "why_mr": "या जागेतून व्यापारासाठी शहराचा परवाना. आधी राज्य नोंदणी लागते."
       },
       {
         "id": "v8",
@@ -1561,12 +1764,13 @@
     ],
     "title_kn": "ಸಲೂನ್ ಅಥವಾ ಬ್ಯೂಟಿ ಪಾರ್ಲರ್ ತೆರೆಯಿರಿ",
     "title_gu": "સલૂન અથવા બ્યુટી પાર્લર ખોલો",
-    "title_ta": "சலூன் அல்லது அழகு நிலையம் திற"
+    "title_ta": "சலூன் அல்லது அழகு நிலையம் திற",
+    "area": "business"
   },
   {
     "task_id": "online-store",
     "category": "online",
-    "popular": 4,
+    "popular": 14,
     "title": "Start an online store",
     "title_hi": "ऑनलाइन स्टोर शुरू करें",
     "title_mr": "ऑनलाइन स्टोअर सुरू करा",
@@ -1590,6 +1794,31 @@
     "sample_data": true,
     "steps": [
       {
+        "id": "ox0",
+        "name": "Choose your business structure",
+        "name_hi": "अपने व्यवसाय का ढाँचा चुनें",
+        "name_mr": "तुमच्या व्यवसायाची रचना निवडा",
+        "name_kn": "ವ್ಯವಹಾರದ ರಚನೆ ಆಯ್ಕೆಮಾಡಿ",
+        "name_gu": "વ્યવસાયનું માળખું પસંદ કરો",
+        "name_ta": "தொழில் அமைப்பைத் தேர்ந்தெடு",
+        "type": "document",
+        "office": "You decide. Companies and LLPs register with MCA",
+        "office_hi": "आप तय करें। कंपनी और LLP का पंजीकरण MCA पर",
+        "office_mr": "तुम्ही ठरवा. कंपनी आणि LLP ची नोंदणी MCA वर",
+        "documents": [],
+        "fee": null,
+        "link": "https://www.mca.gov.in",
+        "status": "approved",
+        "depends_on": [],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-26",
+        "why": "Everything else depends on this: a sole proprietor, partnership, LLP or company each registers differently.",
+        "why_hi": "बाक़ी सब इसी पर निर्भर है: प्रोप्राइटरशिप, पार्टनरशिप, LLP या कंपनी, हर एक का पंजीकरण अलग है।",
+        "why_mr": "बाकी सर्व यावर अवलंबून आहे: प्रोप्रायटरशिप, भागीदारी, LLP किंवा कंपनी, प्रत्येकाची नोंदणी वेगळी आहे."
+      },
+      {
         "id": "o1",
         "name": "PAN card",
         "name_hi": "पैन कार्ड",
@@ -1605,7 +1834,9 @@
         "fee": null,
         "link": "https://www.incometax.gov.in",
         "status": "approved",
-        "depends_on": [],
+        "depends_on": [
+          "ox0"
+        ],
         "scope": "national",
         "requirement": "required",
         "processing_time": null,
@@ -1617,7 +1848,10 @@
         },
         "name_kn": "ಪ್ಯಾನ್ ಕಾರ್ಡ್",
         "name_gu": "પાન કાર્ડ",
-        "name_ta": "பான் அட்டை"
+        "name_ta": "பான் அட்டை",
+        "why": "Almost every registration after this asks for your PAN.",
+        "why_hi": "इसके बाद लगभग हर पंजीकरण में PAN माँगा जाता है।",
+        "why_mr": "यानंतर जवळजवळ प्रत्येक नोंदणीत PAN मागितला जातो."
       },
       {
         "id": "o2",
@@ -1645,7 +1879,10 @@
         "verified_on": "2026-09-20",
         "name_kn": "ವ್ಯವಹಾರ ಬ್ಯಾಂಕ್ ಖಾತೆ",
         "name_gu": "વ્યવસાયનું બેંક ખાતું",
-        "name_ta": "தொழில் வங்கிக் கணக்கு"
+        "name_ta": "தொழில் வங்கிக் கணக்கு",
+        "why": "Keeps business money separate, and GST registration asks for bank details.",
+        "why_hi": "व्यवसाय का पैसा अलग रहता है, और GST पंजीकरण में बैंक विवरण माँगा जाता है।",
+        "why_mr": "व्यवसायाचे पैसे वेगळे राहतात, आणि GST नोंदणीत बँक तपशील मागितला जातो."
       },
       {
         "id": "o3",
@@ -1677,7 +1914,10 @@
         },
         "name_kn": "ಉದ್ಯಮ್ (MSME) ನೋಂದಣಿ",
         "name_gu": "ઉદ્યમ (MSME) નોંધણી",
-        "name_ta": "உத்யம் (MSME) பதிவு"
+        "name_ta": "உத்யம் (MSME) பதிவு",
+        "why": "Free, and it makes you eligible for MSME schemes and loans. Needs your PAN.",
+        "why_hi": "मुफ़्त है और MSME योजनाओं व लोन के लिए पात्र बनाता है। PAN चाहिए।",
+        "why_mr": "मोफत आहे आणि MSME योजना व कर्जासाठी पात्र बनवते. PAN लागतो."
       },
       {
         "id": "o5",
@@ -1714,7 +1954,10 @@
         "condition_mr": "तुमच्यासाठी नोंदणी अनिवार्य आहे का ते GST पोर्टलवर तपासा",
         "name_kn": "GST ನೋಂದಣಿ (ಮಿತಿ ಮೀರಿದರೆ)",
         "name_gu": "GST નોંધણી (મર્યાદાથી વધુ હોય તો)",
-        "name_ta": "GST பதிவு (வரம்பைத் தாண்டினால்)"
+        "name_ta": "GST பதிவு (வரம்பைத் தாண்டினால்)",
+        "why": "Only compulsory above a turnover limit, but it needs PAN and premises proof when you do.",
+        "why_hi": "केवल एक टर्नओवर सीमा से ऊपर अनिवार्य, और तब PAN व परिसर प्रमाण चाहिए।",
+        "why_mr": "फक्त ठराविक उलाढालीपेक्षा जास्त असल्यास अनिवार्य, आणि तेव्हा PAN व जागेचा पुरावा लागतो."
       },
       {
         "id": "o6",
@@ -1744,12 +1987,13 @@
     ],
     "title_kn": "ಆನ್‌ಲೈನ್ ಅಂಗಡಿ ಆರಂಭಿಸಿ",
     "title_gu": "ઓનલાઇન સ્ટોર શરૂ કરો",
-    "title_ta": "இணையக் கடை தொடங்கு"
+    "title_ta": "இணையக் கடை தொடங்கு",
+    "area": "business"
   },
   {
     "task_id": "home-bakery",
     "category": "home",
-    "popular": 5,
+    "popular": 15,
     "title": "Run a home bakery or tiffin service",
     "title_hi": "घर से बेकरी या टिफ़िन सेवा चलाएँ",
     "title_mr": "घरून बेकरी किंवा टिफिन सेवा चालवा",
@@ -1773,6 +2017,31 @@
     "sample_data": true,
     "steps": [
       {
+        "id": "hx0",
+        "name": "Choose your business structure",
+        "name_hi": "अपने व्यवसाय का ढाँचा चुनें",
+        "name_mr": "तुमच्या व्यवसायाची रचना निवडा",
+        "name_kn": "ವ್ಯವಹಾರದ ರಚನೆ ಆಯ್ಕೆಮಾಡಿ",
+        "name_gu": "વ્યવસાયનું માળખું પસંદ કરો",
+        "name_ta": "தொழில் அமைப்பைத் தேர்ந்தெடு",
+        "type": "document",
+        "office": "You decide. Companies and LLPs register with MCA",
+        "office_hi": "आप तय करें। कंपनी और LLP का पंजीकरण MCA पर",
+        "office_mr": "तुम्ही ठरवा. कंपनी आणि LLP ची नोंदणी MCA वर",
+        "documents": [],
+        "fee": null,
+        "link": "https://www.mca.gov.in",
+        "status": "approved",
+        "depends_on": [],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-26",
+        "why": "Everything else depends on this: a sole proprietor, partnership, LLP or company each registers differently.",
+        "why_hi": "बाक़ी सब इसी पर निर्भर है: प्रोप्राइटरशिप, पार्टनरशिप, LLP या कंपनी, हर एक का पंजीकरण अलग है।",
+        "why_mr": "बाकी सर्व यावर अवलंबून आहे: प्रोप्रायटरशिप, भागीदारी, LLP किंवा कंपनी, प्रत्येकाची नोंदणी वेगळी आहे."
+      },
+      {
         "id": "h1",
         "name": "PAN card",
         "name_hi": "पैन कार्ड",
@@ -1788,7 +2057,9 @@
         "fee": null,
         "link": "https://www.incometax.gov.in",
         "status": "approved",
-        "depends_on": [],
+        "depends_on": [
+          "hx0"
+        ],
         "scope": "national",
         "requirement": "required",
         "processing_time": null,
@@ -1800,7 +2071,10 @@
         },
         "name_kn": "ಪ್ಯಾನ್ ಕಾರ್ಡ್",
         "name_gu": "પાન કાર્ડ",
-        "name_ta": "பான் அட்டை"
+        "name_ta": "பான் அட்டை",
+        "why": "Almost every registration after this asks for your PAN.",
+        "why_hi": "इसके बाद लगभग हर पंजीकरण में PAN माँगा जाता है।",
+        "why_mr": "यानंतर जवळजवळ प्रत्येक नोंदणीत PAN मागितला जातो."
       },
       {
         "id": "h3",
@@ -1832,7 +2106,10 @@
         },
         "name_kn": "ಉದ್ಯಮ್ (MSME) ನೋಂದಣಿ",
         "name_gu": "ઉદ્યમ (MSME) નોંધણી",
-        "name_ta": "உத்யம் (MSME) பதிவு"
+        "name_ta": "உத்யம் (MSME) பதிவு",
+        "why": "Free, and it makes you eligible for MSME schemes and loans. Needs your PAN.",
+        "why_hi": "मुफ़्त है और MSME योजनाओं व लोन के लिए पात्र बनाता है। PAN चाहिए।",
+        "why_mr": "मोफत आहे आणि MSME योजना व कर्जासाठी पात्र बनवते. PAN लागतो."
       },
       {
         "id": "h5",
@@ -1865,7 +2142,10 @@
         },
         "name_kn": "FSSAI ನೋಂದಣಿ / ಪರವಾನಗಿ",
         "name_gu": "FSSAI નોંધણી / લાઇસન્સ",
-        "name_ta": "FSSAI பதிவு / உரிமம்"
+        "name_ta": "FSSAI பதிவு / உரிமம்",
+        "why": "Required before you sell any food. Which one you need depends on your turnover.",
+        "why_hi": "खाना बेचने से पहले ज़रूरी। कौन-सा चाहिए, यह टर्नओवर पर निर्भर है।",
+        "why_mr": "अन्न विकण्यापूर्वी आवश्यक. कोणते लागेल ते उलाढालीवर अवलंबून आहे."
       },
       {
         "id": "h7",
@@ -1902,7 +2182,10 @@
         "condition_mr": "फक्त तुमची उलाढाल GST नोंदणी मर्यादेपेक्षा जास्त असल्यास",
         "name_kn": "GST ನೋಂದಣಿ (ಮಿತಿ ಮೀರಿದರೆ)",
         "name_gu": "GST નોંધણી (મર્યાદાથી વધુ હોય તો)",
-        "name_ta": "GST பதிவு (வரம்பைத் தாண்டினால்)"
+        "name_ta": "GST பதிவு (வரம்பைத் தாண்டினால்)",
+        "why": "Only compulsory above a turnover limit, but it needs PAN and premises proof when you do.",
+        "why_hi": "केवल एक टर्नओवर सीमा से ऊपर अनिवार्य, और तब PAN व परिसर प्रमाण चाहिए।",
+        "why_mr": "फक्त ठराविक उलाढालीपेक्षा जास्त असल्यास अनिवार्य, आणि तेव्हा PAN व जागेचा पुरावा लागतो."
       },
       {
         "id": "h8",
@@ -1933,12 +2216,13 @@
     ],
     "title_kn": "ಮನೆ ಬೇಕರಿ ಅಥವಾ ಟಿಫಿನ್ ಸೇವೆ ನಡೆಸಿ",
     "title_gu": "ઘરેથી બેકરી અથવા ટિફિન સેવા ચલાવો",
-    "title_ta": "வீட்டு பேக்கரி அல்லது டிஃபின் சேவை நடத்து"
+    "title_ta": "வீட்டு பேக்கரி அல்லது டிஃபின் சேவை நடத்து",
+    "area": "business"
   },
   {
     "task_id": "small-manufacturing",
     "category": "manufacturing",
-    "popular": 6,
+    "popular": 16,
     "title": "Set up a small manufacturing unit",
     "title_hi": "छोटी निर्माण इकाई लगाएँ",
     "title_mr": "छोटा उत्पादन उद्योग सुरू करा",
@@ -1965,6 +2249,31 @@
     "sample_data": true,
     "steps": [
       {
+        "id": "mx0",
+        "name": "Choose your business structure",
+        "name_hi": "अपने व्यवसाय का ढाँचा चुनें",
+        "name_mr": "तुमच्या व्यवसायाची रचना निवडा",
+        "name_kn": "ವ್ಯವಹಾರದ ರಚನೆ ಆಯ್ಕೆಮಾಡಿ",
+        "name_gu": "વ્યવસાયનું માળખું પસંદ કરો",
+        "name_ta": "தொழில் அமைப்பைத் தேர்ந்தெடு",
+        "type": "document",
+        "office": "You decide. Companies and LLPs register with MCA",
+        "office_hi": "आप तय करें। कंपनी और LLP का पंजीकरण MCA पर",
+        "office_mr": "तुम्ही ठरवा. कंपनी आणि LLP ची नोंदणी MCA वर",
+        "documents": [],
+        "fee": null,
+        "link": "https://www.mca.gov.in",
+        "status": "approved",
+        "depends_on": [],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-26",
+        "why": "Everything else depends on this: a sole proprietor, partnership, LLP or company each registers differently.",
+        "why_hi": "बाक़ी सब इसी पर निर्भर है: प्रोप्राइटरशिप, पार्टनरशिप, LLP या कंपनी, हर एक का पंजीकरण अलग है।",
+        "why_mr": "बाकी सर्व यावर अवलंबून आहे: प्रोप्रायटरशिप, भागीदारी, LLP किंवा कंपनी, प्रत्येकाची नोंदणी वेगळी आहे."
+      },
+      {
         "id": "m1",
         "name": "PAN card",
         "name_hi": "पैन कार्ड",
@@ -1980,7 +2289,9 @@
         "fee": null,
         "link": "https://www.incometax.gov.in",
         "status": "approved",
-        "depends_on": [],
+        "depends_on": [
+          "mx0"
+        ],
         "scope": "national",
         "requirement": "required",
         "processing_time": null,
@@ -1992,7 +2303,10 @@
         },
         "name_kn": "ಪ್ಯಾನ್ ಕಾರ್ಡ್",
         "name_gu": "પાન કાર્ડ",
-        "name_ta": "பான் அட்டை"
+        "name_ta": "பான் அட்டை",
+        "why": "Almost every registration after this asks for your PAN.",
+        "why_hi": "इसके बाद लगभग हर पंजीकरण में PAN माँगा जाता है।",
+        "why_mr": "यानंतर जवळजवळ प्रत्येक नोंदणीत PAN मागितला जातो."
       },
       {
         "id": "m2",
@@ -2017,7 +2331,10 @@
         "verified_on": "2026-09-20",
         "name_kn": "ವ್ಯವಹಾರ ಸ್ಥಳದ ಪುರಾವೆ",
         "name_gu": "વ્યવસાયના સ્થળનો પુરાવો",
-        "name_ta": "தொழில் இடத்துக்கான சான்று"
+        "name_ta": "தொழில் இடத்துக்கான சான்று",
+        "why": "Licences are tied to a place, so you need proof of where you'll operate.",
+        "why_hi": "लाइसेंस किसी जगह से जुड़े होते हैं, इसलिए व्यवसाय की जगह का प्रमाण चाहिए।",
+        "why_mr": "परवाने जागेशी जोडलेले असतात, म्हणून व्यवसायाच्या जागेचा पुरावा लागतो."
       },
       {
         "id": "m3",
@@ -2049,7 +2366,10 @@
         },
         "name_kn": "ಉದ್ಯಮ್ (MSME) ನೋಂದಣಿ",
         "name_gu": "ઉદ્યમ (MSME) નોંધણી",
-        "name_ta": "உத்யம் (MSME) பதிவு"
+        "name_ta": "உத்யம் (MSME) பதிவு",
+        "why": "Free, and it makes you eligible for MSME schemes and loans. Needs your PAN.",
+        "why_hi": "मुफ़्त है और MSME योजनाओं व लोन के लिए पात्र बनाता है। PAN चाहिए।",
+        "why_mr": "मोफत आहे आणि MSME योजना व कर्जासाठी पात्र बनवते. PAN लागतो."
       },
       {
         "id": "m7",
@@ -2087,7 +2407,10 @@
         "condition_mr": "फक्त तुमची उलाढाल GST नोंदणी मर्यादेपेक्षा जास्त असल्यास",
         "name_kn": "GST ನೋಂದಣಿ (ಮಿತಿ ಮೀರಿದರೆ)",
         "name_gu": "GST નોંધણી (મર્યાદાથી વધુ હોય તો)",
-        "name_ta": "GST பதிவு (வரம்பைத் தாண்டினால்)"
+        "name_ta": "GST பதிவு (வரம்பைத் தாண்டினால்)",
+        "why": "Only compulsory above a turnover limit, but it needs PAN and premises proof when you do.",
+        "why_hi": "केवल एक टर्नओवर सीमा से ऊपर अनिवार्य, और तब PAN व परिसर प्रमाण चाहिए।",
+        "why_mr": "फक्त ठराविक उलाढालीपेक्षा जास्त असल्यास अनिवार्य, आणि तेव्हा PAN व जागेचा पुरावा लागतो."
       },
       {
         "id": "m4",
@@ -2115,7 +2438,10 @@
         "condition_mr": "उत्पादनासाठी प्रदूषण नियंत्रण संमती किंवा कारखाना परवाना यांसारख्या परवानग्याही लागू शकतात. त्या अजून समाविष्ट नाहीत.",
         "name_kn": "ಉದ್ಯಮ-ನಿರ್ದಿಷ್ಟ ಅನುಮತಿಗಳು",
         "name_gu": "ઉદ્યોગ સંબંધિત પરવાનગીઓ",
-        "name_ta": "தொழில் சார்ந்த அனுமதிகள்"
+        "name_ta": "தொழில் சார்ந்த அனுமதிகள்",
+        "why": "Some industries need extra permissions before production starts. Check yours early.",
+        "why_hi": "कुछ उद्योगों को उत्पादन से पहले अतिरिक्त अनुमति चाहिए। जल्दी जाँच लें।",
+        "why_mr": "काही उद्योगांना उत्पादनापूर्वी अतिरिक्त परवानग्या लागतात. लवकर तपासा."
       },
       {
         "id": "m8",
@@ -2146,6 +2472,693 @@
     ],
     "title_kn": "ಸಣ್ಣ ಉತ್ಪಾದನಾ ಘಟಕ ಸ್ಥಾಪಿಸಿ",
     "title_gu": "નાનું ઉત્પાદન એકમ સ્થાપો",
-    "title_ta": "சிறு உற்பத்தி அலகு அமை"
+    "title_ta": "சிறு உற்பத்தி அலகு அமை",
+    "area": "business"
+  },
+  {
+    "task_id": "passport",
+    "area": "ids",
+    "category": "ids",
+    "popular": 1,
+    "title": "Apply for a new passport",
+    "title_hi": "नया पासपोर्ट बनवाएँ",
+    "title_mr": "नवीन पासपोर्टसाठी अर्ज करा",
+    "title_kn": "ಹೊಸ ಪಾಸ್‌ಪೋರ್ಟ್‌ಗೆ ಅರ್ಜಿ",
+    "title_gu": "નવા પાસપોર્ટ માટે અરજી",
+    "title_ta": "புதிய கடவுச்சீட்டுக்கு விண்ணப்பி",
+    "keywords": [
+      "passport",
+      "travel abroad",
+      "visa",
+      "पासपोर्ट",
+      "ಪಾಸ್‌ಪೋರ್ಟ್",
+      "પાસપોર્ટ",
+      "கடவுச்சீட்டு",
+      "பாஸ்போர்ட்"
+    ],
+    "last_verified": "2026-09-26",
+    "sample_data": true,
+    "steps": [
+      {
+        "id": "p1",
+        "name": "Register on Passport Seva",
+        "name_hi": "पासपोर्ट सेवा पर पंजीकरण",
+        "name_mr": "पासपोर्ट सेवेवर नोंदणी",
+        "name_kn": "ಪಾಸ್‌ಪೋರ್ಟ್ ಸೇವಾದಲ್ಲಿ ನೋಂದಣಿ",
+        "name_gu": "પાસપોર્ટ સેવા પર નોંધણી",
+        "name_ta": "பாஸ்போர்ட் சேவையில் பதிவு",
+        "type": "form",
+        "office": "Passport Seva portal (online)",
+        "office_hi": "पासपोर्ट सेवा पोर्टल (ऑनलाइन)",
+        "office_mr": "पासपोर्ट सेवा पोर्टल (ऑनलाइन)",
+        "documents": [
+          "Email address",
+          "Mobile number"
+        ],
+        "fee": null,
+        "link": "https://www.passportindia.gov.in",
+        "status": "approved",
+        "depends_on": [],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-26",
+        "legal": {
+          "act": "Passports Act, 1967",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": true
+        },
+        "why": "You need an account before you can fill any passport form.",
+        "why_hi": "कोई भी पासपोर्ट फ़ॉर्म भरने से पहले खाता चाहिए।",
+        "why_mr": "कोणताही पासपोर्ट अर्ज भरण्यापूर्वी खाते लागते."
+      },
+      {
+        "id": "p2",
+        "name": "Fill the passport application",
+        "name_hi": "पासपोर्ट आवेदन भरें",
+        "name_mr": "पासपोर्ट अर्ज भरा",
+        "name_kn": "ಪಾಸ್‌ಪೋರ್ಟ್ ಅರ್ಜಿ ಭರ್ತಿ",
+        "name_gu": "પાસપોર્ટ અરજી ભરો",
+        "name_ta": "பாஸ்போர்ட் விண்ணப்பம் நிரப்பு",
+        "type": "form",
+        "office": "Passport Seva portal (online)",
+        "office_hi": "पासपोर्ट सेवा पोर्टल (ऑनलाइन)",
+        "office_mr": "पासपोर्ट सेवा पोर्टल (ऑनलाइन)",
+        "documents": [
+          "Proof of address",
+          "Proof of date of birth",
+          "Photo ID"
+        ],
+        "fee": null,
+        "link": "https://www.passportindia.gov.in",
+        "status": "approved",
+        "depends_on": [
+          "p1"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-26",
+        "why": "Your details here must match your documents exactly.",
+        "why_hi": "यहाँ दी गई जानकारी आपके दस्तावेज़ों से बिल्कुल मेल खानी चाहिए।",
+        "why_mr": "इथली माहिती तुमच्या कागदपत्रांशी तंतोतंत जुळली पाहिजे."
+      },
+      {
+        "id": "p3",
+        "name": "Pay the fee and book an appointment",
+        "name_hi": "फ़ीस भरें और अपॉइंटमेंट बुक करें",
+        "name_mr": "शुल्क भरा आणि अपॉइंटमेंट बुक करा",
+        "name_kn": "ಶುಲ್ಕ ಪಾವತಿಸಿ ಮತ್ತು ಅಪಾಯಿಂಟ್‌ಮೆಂಟ್ ಬುಕ್ ಮಾಡಿ",
+        "name_gu": "ફી ભરો અને એપોઇન્ટમેન્ટ બુક કરો",
+        "name_ta": "கட்டணம் செலுத்தி முன்பதிவு செய்",
+        "type": "payment",
+        "office": "Passport Seva portal (online)",
+        "office_hi": "पासपोर्ट सेवा पोर्टल (ऑनलाइन)",
+        "office_mr": "पासपोर्ट सेवा पोर्टल (ऑनलाइन)",
+        "documents": [],
+        "fee": null,
+        "link": "https://www.passportindia.gov.in",
+        "status": "approved",
+        "depends_on": [
+          "p2"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-26",
+        "why": "You can only pick an appointment slot after paying.",
+        "why_hi": "भुगतान के बाद ही अपॉइंटमेंट का समय चुन सकते हैं।",
+        "why_mr": "पैसे भरल्यानंतरच अपॉइंटमेंटची वेळ निवडता येते."
+      },
+      {
+        "id": "p4",
+        "name": "Visit the Passport Seva Kendra",
+        "name_hi": "पासपोर्ट सेवा केंद्र जाएँ",
+        "name_mr": "पासपोर्ट सेवा केंद्राला भेट द्या",
+        "name_kn": "ಪಾಸ್‌ಪೋರ್ಟ್ ಸೇವಾ ಕೇಂದ್ರಕ್ಕೆ ಭೇಟಿ",
+        "name_gu": "પાસપોર્ટ સેવા કેન્દ્રની મુલાકાત",
+        "name_ta": "பாஸ்போர்ட் சேவா கேந்திராவுக்குச் செல்",
+        "type": "visit",
+        "office": "Your Passport Seva Kendra or Post Office PSK",
+        "office_hi": "आपका पासपोर्ट सेवा केंद्र या डाकघर PSK",
+        "office_mr": "तुमचे पासपोर्ट सेवा केंद्र किंवा पोस्ट ऑफिस PSK",
+        "documents": [
+          "Original documents",
+          "Appointment receipt"
+        ],
+        "fee": null,
+        "link": "https://www.passportindia.gov.in",
+        "status": "approved",
+        "depends_on": [
+          "p3"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-26",
+        "why": "They check your original documents and take your photo and fingerprints.",
+        "why_hi": "वहाँ मूल दस्तावेज़ जाँचे जाते हैं और फ़ोटो व उँगलियों के निशान लिए जाते हैं।",
+        "why_mr": "तिथे मूळ कागदपत्रे तपासली जातात आणि फोटो व बोटांचे ठसे घेतले जातात."
+      },
+      {
+        "id": "p5",
+        "name": "Police verification",
+        "name_hi": "पुलिस सत्यापन",
+        "name_mr": "पोलीस पडताळणी",
+        "name_kn": "ಪೊಲೀಸ್ ಪರಿಶೀಲನೆ",
+        "name_gu": "પોલીસ ચકાસણી",
+        "name_ta": "காவல் சரிபார்ப்பு",
+        "type": "visit",
+        "office": "Your local police station",
+        "office_hi": "आपका स्थानीय पुलिस थाना",
+        "office_mr": "तुमचे स्थानिक पोलीस ठाणे",
+        "documents": [
+          "Original documents"
+        ],
+        "fee": null,
+        "link": "",
+        "status": "approved",
+        "depends_on": [
+          "p4"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-26",
+        "why": "The police confirm your address after your Passport Seva Kendra visit.",
+        "why_hi": "पासपोर्ट सेवा केंद्र जाने के बाद पुलिस आपका पता सत्यापित करती है।",
+        "why_mr": "पासपोर्ट सेवा केंद्राच्या भेटीनंतर पोलीस तुमचा पत्ता पडताळतात."
+      },
+      {
+        "id": "p6",
+        "name": "Passport delivered",
+        "name_hi": "पासपोर्ट मिला",
+        "name_mr": "पासपोर्ट मिळाला",
+        "name_kn": "ಪಾಸ್‌ಪೋರ್ಟ್ ಬಂದಿತು",
+        "name_gu": "પાસપોર્ટ મળ્યો",
+        "name_ta": "பாஸ்போர்ட் கிடைத்தது",
+        "type": "milestone",
+        "office": "",
+        "documents": [],
+        "fee": "",
+        "link": "",
+        "status": "approved",
+        "depends_on": [
+          "p5"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-26"
+      }
+    ]
+  },
+  {
+    "task_id": "aadhaar-update",
+    "area": "ids",
+    "category": "ids",
+    "popular": 4,
+    "title": "Update your Aadhaar details",
+    "title_hi": "आधार में जानकारी अपडेट करें",
+    "title_mr": "आधारमधील माहिती अपडेट करा",
+    "title_kn": "ಆಧಾರ್ ವಿವರ ನವೀಕರಿಸಿ",
+    "title_gu": "આધારની વિગતો અપડેટ કરો",
+    "title_ta": "ஆதார் விவரங்களைப் புதுப்பி",
+    "keywords": [
+      "aadhaar",
+      "aadhar",
+      "adhar",
+      "uidai",
+      "address change",
+      "आधार",
+      "ಆಧಾರ್",
+      "આધાર",
+      "ஆதார்"
+    ],
+    "last_verified": "2026-09-26",
+    "sample_data": true,
+    "steps": [
+      {
+        "id": "a1",
+        "name": "Check your mobile is linked to Aadhaar",
+        "name_hi": "जाँचें कि मोबाइल आधार से जुड़ा है",
+        "name_mr": "मोबाइल आधारशी जोडलेला आहे का ते तपासा",
+        "name_kn": "ಮೊಬೈಲ್ ಆಧಾರ್‌ಗೆ ಜೋಡಣೆಯಾಗಿದೆಯೇ ಪರಿಶೀಲಿಸಿ",
+        "name_gu": "મોબાઇલ આધાર સાથે જોડાયેલ છે કે નહીં તપાસો",
+        "name_ta": "ஆதாருடன் கைபேசி இணைக்கப்பட்டுள்ளதா சரிபார்",
+        "type": "document",
+        "office": "UIDAI (online)",
+        "office_hi": "UIDAI (ऑनलाइन)",
+        "office_mr": "UIDAI (ऑनलाइन)",
+        "documents": [],
+        "fee": null,
+        "link": "https://uidai.gov.in",
+        "status": "approved",
+        "depends_on": [],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-26",
+        "legal": {
+          "act": "Aadhaar (Targeted Delivery of Financial and Other Subsidies, Benefits and Services) Act, 2016",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": true
+        },
+        "why": "Online updates send an OTP to your linked mobile, so this decides your route.",
+        "why_hi": "ऑनलाइन अपडेट में जुड़े मोबाइल पर OTP आता है, इसलिए इसी से रास्ता तय होता है।",
+        "why_mr": "ऑनलाइन अपडेटमध्ये जोडलेल्या मोबाइलवर OTP येतो, म्हणून यावरच मार्ग ठरतो."
+      },
+      {
+        "id": "a2",
+        "name": "Update address or documents online",
+        "name_hi": "पता या दस्तावेज़ ऑनलाइन अपडेट करें",
+        "name_mr": "पत्ता किंवा कागदपत्रे ऑनलाइन अपडेट करा",
+        "name_kn": "ವಿಳಾಸ ಅಥವಾ ದಾಖಲೆ ಆನ್‌ಲೈನ್ ನವೀಕರಿಸಿ",
+        "name_gu": "સરનામું અથવા દસ્તાવેજ ઓનલાઇન અપડેટ કરો",
+        "name_ta": "முகவரி அல்லது ஆவணங்களை இணையத்தில் புதுப்பி",
+        "type": "form",
+        "office": "myAadhaar portal (online)",
+        "office_hi": "myAadhaar पोर्टल (ऑनलाइन)",
+        "office_mr": "myAadhaar पोर्टल (ऑनलाइन)",
+        "documents": [
+          "Proof of address"
+        ],
+        "fee": null,
+        "link": "https://myaadhaar.uidai.gov.in/",
+        "status": "approved",
+        "depends_on": [
+          "a1"
+        ],
+        "scope": "national",
+        "requirement": "conditional",
+        "processing_time": null,
+        "verified_on": "2026-09-26",
+        "condition": "Online works when your mobile number is linked. Other changes need a visit to an Aadhaar centre.",
+        "condition_hi": "ऑनलाइन तभी होगा जब मोबाइल जुड़ा हो। बाक़ी बदलाव के लिए आधार केंद्र जाना होगा।",
+        "condition_mr": "मोबाइल जोडलेला असेल तरच ऑनलाइन होते. इतर बदलांसाठी आधार केंद्रात जावे लागेल.",
+        "why": "Quickest route for an address change if your mobile is linked.",
+        "why_hi": "अगर मोबाइल जुड़ा है तो पता बदलने का सबसे तेज़ तरीका।",
+        "why_mr": "मोबाइल जोडलेला असल्यास पत्ता बदलण्याचा सर्वात जलद मार्ग."
+      },
+      {
+        "id": "a3",
+        "name": "Visit an Aadhaar centre",
+        "name_hi": "आधार केंद्र जाएँ",
+        "name_mr": "आधार केंद्राला भेट द्या",
+        "name_kn": "ಆಧಾರ್ ಕೇಂದ್ರಕ್ಕೆ ಭೇಟಿ",
+        "name_gu": "આધાર કેન્દ્રની મુલાકાત",
+        "name_ta": "ஆதார் மையத்துக்குச் செல்",
+        "type": "visit",
+        "office": "Nearest Aadhaar enrolment or update centre",
+        "office_hi": "नज़दीकी आधार नामांकन/अपडेट केंद्र",
+        "office_mr": "जवळचे आधार नोंदणी/अपडेट केंद्र",
+        "documents": [
+          "Supporting documents for the change"
+        ],
+        "fee": null,
+        "link": "https://bhuvan.nrsc.gov.in/aadhaar/",
+        "status": "approved",
+        "depends_on": [
+          "a1"
+        ],
+        "scope": "national",
+        "requirement": "conditional",
+        "processing_time": null,
+        "verified_on": "2026-09-26",
+        "condition": "Needed for changes you can't make online, such as your mobile number or biometrics.",
+        "condition_hi": "उन बदलावों के लिए ज़रूरी जो ऑनलाइन नहीं होते, जैसे मोबाइल नंबर या बायोमेट्रिक।",
+        "condition_mr": "जे बदल ऑनलाइन होत नाहीत त्यांसाठी आवश्यक, उदा. मोबाइल नंबर किंवा बायोमेट्रिक.",
+        "why": "For changes that need you in person, like a new mobile number or biometrics.",
+        "why_hi": "उन बदलावों के लिए जिनमें आपका वहाँ होना ज़रूरी है, जैसे नया मोबाइल नंबर या बायोमेट्रिक।",
+        "why_mr": "ज्या बदलांसाठी तुम्ही प्रत्यक्ष हवे, उदा. नवीन मोबाइल नंबर किंवा बायोमेट्रिक."
+      },
+      {
+        "id": "a4",
+        "name": "Track your request",
+        "name_hi": "अपना अनुरोध ट्रैक करें",
+        "name_mr": "तुमची विनंती ट्रॅक करा",
+        "name_kn": "ನಿಮ್ಮ ವಿನಂತಿ ಟ್ರ್ಯಾಕ್ ಮಾಡಿ",
+        "name_gu": "તમારી વિનંતી ટ્રેક કરો",
+        "name_ta": "உங்கள் கோரிக்கையைக் கண்காணி",
+        "type": "form",
+        "office": "myAadhaar portal (online)",
+        "office_hi": "myAadhaar पोर्टल (ऑनलाइन)",
+        "office_mr": "myAadhaar पोर्टल (ऑनलाइन)",
+        "documents": [
+          "Update request number (URN)"
+        ],
+        "fee": null,
+        "link": "https://myaadhaar.uidai.gov.in/",
+        "status": "approved",
+        "depends_on": [
+          "a2",
+          "a3"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-26",
+        "why": "Use the request number you received to follow progress.",
+        "why_hi": "मिले हुए अनुरोध नंबर से प्रगति देखें।",
+        "why_mr": "मिळालेल्या विनंती क्रमांकाने प्रगती पहा."
+      },
+      {
+        "id": "a5",
+        "name": "Download updated Aadhaar",
+        "name_hi": "अपडेट किया आधार डाउनलोड करें",
+        "name_mr": "अपडेट केलेले आधार डाउनलोड करा",
+        "name_kn": "ನವೀಕರಿಸಿದ ಆಧಾರ್ ಡೌನ್‌ಲೋಡ್",
+        "name_gu": "અપડેટ થયેલું આધાર ડાઉનલોડ કરો",
+        "name_ta": "புதுப்பித்த ஆதாரைப் பதிவிறக்கு",
+        "type": "milestone",
+        "office": "",
+        "documents": [],
+        "fee": "",
+        "link": "",
+        "status": "approved",
+        "depends_on": [
+          "a4"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-26"
+      }
+    ]
+  },
+  {
+    "task_id": "driving-licence",
+    "area": "vehicles",
+    "category": "vehicles",
+    "popular": 3,
+    "title": "Get a driving licence",
+    "title_hi": "ड्राइविंग लाइसेंस बनवाएँ",
+    "title_mr": "ड्रायव्हिंग लायसन्स मिळवा",
+    "title_kn": "ಚಾಲನಾ ಪರವಾನಗಿ ಪಡೆಯಿರಿ",
+    "title_gu": "ડ્રાઇવિંગ લાઇસન્સ મેળવો",
+    "title_ta": "ஓட்டுநர் உரிமம் பெறு",
+    "keywords": [
+      "driving",
+      "licence",
+      "license",
+      "dl",
+      "learner",
+      "rto",
+      "car",
+      "bike",
+      "ड्राइविंग",
+      "लाइसेंस",
+      "लायसन्स",
+      "ಚಾಲನಾ",
+      "ಲೈಸೆನ್ಸ್",
+      "ડ્રાઇવિંગ",
+      "லைசென்ஸ்",
+      "ஓட்டுநர்"
+    ],
+    "last_verified": "2026-09-26",
+    "sample_data": true,
+    "steps": [
+      {
+        "id": "d1",
+        "name": "Apply for a learner's licence",
+        "name_hi": "लर्नर लाइसेंस के लिए आवेदन",
+        "name_mr": "लर्नर लायसन्ससाठी अर्ज",
+        "name_kn": "ಕಲಿಕಾ ಪರವಾನಗಿಗೆ ಅರ್ಜಿ",
+        "name_gu": "લર્નર લાઇસન્સ માટે અરજી",
+        "name_ta": "பழகுநர் உரிமத்துக்கு விண்ணப்பி",
+        "type": "form",
+        "office": "Parivahan Sarathi (online)",
+        "office_hi": "परिवहन सारथी (ऑनलाइन)",
+        "office_mr": "परिवहन सारथी (ऑनलाइन)",
+        "documents": [
+          "Proof of age",
+          "Proof of address",
+          "Photo"
+        ],
+        "fee": null,
+        "link": "https://parivahan.gov.in",
+        "status": "approved",
+        "depends_on": [],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-26",
+        "legal": {
+          "act": "Motor Vehicles Act, 1988",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": true
+        },
+        "why": "You can't take a driving test without a learner's licence first.",
+        "why_hi": "बिना लर्नर लाइसेंस के ड्राइविंग टेस्ट नहीं दे सकते।",
+        "why_mr": "लर्नर लायसन्सशिवाय ड्रायव्हिंग चाचणी देता येत नाही."
+      },
+      {
+        "id": "d2",
+        "name": "Pass the learner's licence test",
+        "name_hi": "लर्नर लाइसेंस टेस्ट पास करें",
+        "name_mr": "लर्नर लायसन्स चाचणी उत्तीर्ण व्हा",
+        "name_kn": "ಕಲಿಕಾ ಪರವಾನಗಿ ಪರೀಕ್ಷೆ ಪಾಸ್ ಮಾಡಿ",
+        "name_gu": "લર્નર લાઇસન્સ ટેસ્ટ પાસ કરો",
+        "name_ta": "பழகுநர் உரிமத் தேர்வில் தேர்ச்சி",
+        "type": "visit",
+        "office": "Online or at your RTO",
+        "office_hi": "ऑनलाइन या आपके RTO पर",
+        "office_mr": "ऑनलाइन किंवा तुमच्या RTO मध्ये",
+        "documents": [],
+        "fee": null,
+        "link": "https://parivahan.gov.in",
+        "status": "approved",
+        "depends_on": [
+          "d1"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-26",
+        "why": "A short test on traffic rules and signs.",
+        "why_hi": "ट्रैफ़िक नियमों और संकेतों पर छोटी परीक्षा।",
+        "why_mr": "वाहतूक नियम आणि चिन्हांवरील छोटी चाचणी."
+      },
+      {
+        "id": "d3",
+        "name": "Practise driving with your learner's licence",
+        "name_hi": "लर्नर लाइसेंस के साथ ड्राइविंग अभ्यास",
+        "name_mr": "लर्नर लायसन्ससह ड्रायव्हिंगचा सराव",
+        "name_kn": "ಕಲಿಕಾ ಪರವಾನಗಿಯೊಂದಿಗೆ ಅಭ್ಯಾಸ",
+        "name_gu": "લર્નર લાઇસન્સ સાથે ડ્રાઇવિંગ અભ્યાસ",
+        "name_ta": "பழகுநர் உரிமத்துடன் பயிற்சி",
+        "type": "document",
+        "office": "On the road, with a licensed driver",
+        "office_hi": "सड़क पर, लाइसेंसधारी चालक के साथ",
+        "office_mr": "रस्त्यावर, परवानाधारक चालकासोबत",
+        "documents": [],
+        "fee": null,
+        "link": "",
+        "status": "approved",
+        "depends_on": [
+          "d2"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-26",
+        "why": "There is a minimum waiting period before the driving test. Use it to practise.",
+        "why_hi": "ड्राइविंग टेस्ट से पहले न्यूनतम प्रतीक्षा अवधि होती है। इसमें अभ्यास करें।",
+        "why_mr": "ड्रायव्हिंग चाचणीपूर्वी किमान प्रतीक्षा कालावधी असतो. त्यात सराव करा."
+      },
+      {
+        "id": "d4",
+        "name": "Book and take the driving test",
+        "name_hi": "ड्राइविंग टेस्ट बुक करें और दें",
+        "name_mr": "ड्रायव्हिंग चाचणी बुक करून द्या",
+        "name_kn": "ಚಾಲನಾ ಪರೀಕ್ಷೆ ಬುಕ್ ಮಾಡಿ ಮತ್ತು ಹಾಜರಾಗಿ",
+        "name_gu": "ડ્રાઇવિંગ ટેસ્ટ બુક કરો અને આપો",
+        "name_ta": "ஓட்டுநர் தேர்வை முன்பதிவு செய்து எழுது",
+        "type": "visit",
+        "office": "Your RTO",
+        "office_hi": "आपका RTO",
+        "office_mr": "तुमचे RTO",
+        "documents": [
+          "Learner's licence",
+          "Vehicle for the test"
+        ],
+        "fee": null,
+        "link": "https://parivahan.gov.in",
+        "status": "approved",
+        "depends_on": [
+          "d3"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-26",
+        "why": "Book once the waiting period is over and while your learner's licence is still valid.",
+        "why_hi": "प्रतीक्षा अवधि पूरी होने पर और लर्नर लाइसेंस वैध रहते बुक करें।",
+        "why_mr": "प्रतीक्षा कालावधी संपल्यावर आणि लर्नर लायसन्स वैध असताना बुक करा."
+      },
+      {
+        "id": "d5",
+        "name": "Driving licence issued",
+        "name_hi": "ड्राइविंग लाइसेंस जारी",
+        "name_mr": "ड्रायव्हिंग लायसन्स जारी",
+        "name_kn": "ಚಾಲನಾ ಪರವಾನಗಿ ನೀಡಲಾಗಿದೆ",
+        "name_gu": "ડ્રાઇવિંગ લાઇસન્સ જારી",
+        "name_ta": "ஓட்டுநர் உரிமம் வழங்கப்பட்டது",
+        "type": "milestone",
+        "office": "",
+        "documents": [],
+        "fee": "",
+        "link": "",
+        "status": "approved",
+        "depends_on": [
+          "d4"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-26"
+      }
+    ]
+  },
+  {
+    "task_id": "birth-certificate",
+    "area": "certificates",
+    "category": "certificates",
+    "popular": 5,
+    "title": "Get a birth certificate",
+    "title_hi": "जन्म प्रमाणपत्र बनवाएँ",
+    "title_mr": "जन्म प्रमाणपत्र मिळवा",
+    "title_kn": "ಜನನ ಪ್ರಮಾಣಪತ್ರ ಪಡೆಯಿರಿ",
+    "title_gu": "જન્મ પ્રમાણપત્ર મેળવો",
+    "title_ta": "பிறப்புச் சான்றிதழ் பெறு",
+    "keywords": [
+      "birth",
+      "certificate",
+      "baby",
+      "newborn",
+      "जन्म",
+      "प्रमाणपत्र",
+      "ಜನನ",
+      "જન્મ",
+      "பிறப்பு"
+    ],
+    "last_verified": "2026-09-26",
+    "sample_data": true,
+    "steps": [
+      {
+        "id": "c1",
+        "name": "Report the birth to the registrar",
+        "name_hi": "रजिस्ट्रार को जन्म की सूचना दें",
+        "name_mr": "निबंधकाला जन्माची माहिती द्या",
+        "name_kn": "ನೋಂದಣಾಧಿಕಾರಿಗೆ ಜನನ ತಿಳಿಸಿ",
+        "name_gu": "રજિસ્ટ્રારને જન્મની જાણ કરો",
+        "name_ta": "பதிவாளரிடம் பிறப்பைத் தெரிவி",
+        "type": "form",
+        "office": "Hospital or local registrar (your municipal body)",
+        "office_hi": "अस्पताल या स्थानीय रजिस्ट्रार (आपकी नगर निकाय)",
+        "office_mr": "रुग्णालय किंवा स्थानिक निबंधक (तुमची महानगरपालिका)",
+        "documents": [
+          "Hospital discharge summary",
+          "Parents' ID"
+        ],
+        "fee": null,
+        "link": "https://dc.crsorgi.gov.in/crs/Auth",
+        "status": "approved",
+        "depends_on": [],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-26",
+        "legal": {
+          "act": "Registration of Births and Deaths Act, 1969",
+          "url": "https://www.indiacode.nic.in/",
+          "verified": true
+        },
+        "condition": "Report within 21 days of the birth. Later registration is possible but needs extra steps.",
+        "condition_hi": "जन्म के 21 दिनों के भीतर सूचना दें। बाद में भी हो सकता है, पर अतिरिक्त प्रक्रिया लगती है।",
+        "condition_mr": "जन्मानंतर 21 दिवसांत माहिती द्या. नंतरही होते, पण अतिरिक्त प्रक्रिया लागते.",
+        "why": "Hospitals often do this for you. Check with them before going yourself.",
+        "why_hi": "अस्पताल अक्सर यह ख़ुद करते हैं। ख़ुद जाने से पहले उनसे पूछ लें।",
+        "why_mr": "रुग्णालये अनेकदा हे स्वतः करतात. स्वतः जाण्यापूर्वी त्यांना विचारा."
+      },
+      {
+        "id": "c2",
+        "name": "Birth gets registered",
+        "name_hi": "जन्म का पंजीकरण",
+        "name_mr": "जन्माची नोंदणी",
+        "name_kn": "ಜನನ ನೋಂದಣಿ",
+        "name_gu": "જન્મની નોંધણી",
+        "name_ta": "பிறப்பு பதிவு",
+        "type": "form",
+        "office": "Local registrar",
+        "office_hi": "स्थानीय रजिस्ट्रार",
+        "office_mr": "स्थानिक निबंधक",
+        "documents": [],
+        "fee": null,
+        "link": "https://dc.crsorgi.gov.in/crs/Auth",
+        "status": "approved",
+        "depends_on": [
+          "c1"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-26",
+        "why": "The registrar records the birth and gives a registration number.",
+        "why_hi": "रजिस्ट्रार जन्म दर्ज करके पंजीकरण संख्या देता है।",
+        "why_mr": "निबंधक जन्माची नोंद करून नोंदणी क्रमांक देतो."
+      },
+      {
+        "id": "c3",
+        "name": "Download or collect the certificate",
+        "name_hi": "प्रमाणपत्र डाउनलोड करें या लें",
+        "name_mr": "प्रमाणपत्र डाउनलोड करा किंवा घ्या",
+        "name_kn": "ಪ್ರಮಾಣಪತ್ರ ಡೌನ್‌ಲೋಡ್ ಅಥವಾ ಪಡೆಯಿರಿ",
+        "name_gu": "પ્રમાણપત્ર ડાઉનલોડ કરો અથવા મેળવો",
+        "name_ta": "சான்றிதழைப் பதிவிறக்கு அல்லது பெறு",
+        "type": "form",
+        "office": "Civil Registration System (online) or registrar's office",
+        "office_hi": "नागरिक पंजीकरण प्रणाली (ऑनलाइन) या रजिस्ट्रार कार्यालय",
+        "office_mr": "नागरी नोंदणी प्रणाली (ऑनलाइन) किंवा निबंधक कार्यालय",
+        "documents": [
+          "Registration number"
+        ],
+        "fee": null,
+        "link": "https://dc.crsorgi.gov.in/crs/Auth",
+        "status": "approved",
+        "depends_on": [
+          "c2"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-26",
+        "why": "Keep several copies. Schools, passports and Aadhaar all ask for it.",
+        "why_hi": "कई प्रतियाँ रखें। स्कूल, पासपोर्ट और आधार सबमें यह माँगा जाता है।",
+        "why_mr": "अनेक प्रती ठेवा. शाळा, पासपोर्ट आणि आधार सगळ्यांत हे मागितले जाते."
+      },
+      {
+        "id": "c4",
+        "name": "Birth certificate ready",
+        "name_hi": "जन्म प्रमाणपत्र तैयार",
+        "name_mr": "जन्म प्रमाणपत्र तयार",
+        "name_kn": "ಜನನ ಪ್ರಮಾಣಪತ್ರ ಸಿದ್ಧ",
+        "name_gu": "જન્મ પ્રમાણપત્ર તૈયાર",
+        "name_ta": "பிறப்புச் சான்றிதழ் தயார்",
+        "type": "milestone",
+        "office": "",
+        "documents": [],
+        "fee": "",
+        "link": "",
+        "status": "approved",
+        "depends_on": [
+          "c3"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": "2026-09-26"
+      }
+    ]
   }
 ]

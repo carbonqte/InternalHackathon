@@ -17,6 +17,7 @@ export default function StepPanel({ step, steps, done, onToggle, taskTitle, righ
   // What "Listen" reads: the same facts the panel shows, in the UI language.
   const spoken = [
     tr(step, 'name', lang) + '.',
+    step.why && tr(step, 'why', lang),
     step.office && `${t.where}: ${tr(step, 'office', lang)}.`,
     step.type !== 'milestone' && `${t.fee}: ${fee ?? t.feeUnknown}`,
     step.documents?.length && `${t.bring}: ${step.documents.join(', ')}.`,
@@ -40,6 +41,11 @@ export default function StepPanel({ step, steps, done, onToggle, taskTitle, righ
         )}
         <h2 className="font-display text-xl mt-1">{tr(step, 'name', lang)}</h2>
         {step.condition && <p className="text-sm text-warn mt-1">{tr(step, 'condition', lang)}</p>}
+        {step.why && (
+          <p className="text-sm mt-3 pl-3 border-l-2 border-next">
+            <span className="font-semibold">{t.whyTitle} </span>{tr(step, 'why', lang)}
+          </p>
+        )}
         <div className="mt-3"><ListenButton text={spoken} id={step.id} /></div>
       </div>
 

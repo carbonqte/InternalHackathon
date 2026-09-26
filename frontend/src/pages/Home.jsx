@@ -4,7 +4,7 @@ import { listJurisdictions, listTasks, searchTask, getTask } from '../api/client
 import { useLang, tr, CONTACT, LANGS } from '../lib/i18n.jsx'
 import MicButton from '../components/MicButton.jsx'
 import { stages } from '../lib/graph.js'
-import { CATEGORIES, CatIcon, lastPlace, savePlace, placeQuery, suggest } from '../lib/categories.jsx'
+import { AREAS, SOON, CatIcon, lastPlace, savePlace, placeQuery, suggest } from '../lib/categories.jsx'
 import Suggestions from '../components/Suggestions.jsx'
 
 export default function Home() {
@@ -32,7 +32,7 @@ export default function Home() {
   useEffect(() => { savePlace({ state, city }) }, [state, city])
   const popular = journeys.slice(0, 4)
   const sugg = showSug ? suggest(journeys, text, lang).map((j) => ({ ...j, href: `/task/${j.task_id}${loc}` })) : []
-  const count = (c) => journeys.filter((j) => j.category === c).length
+  const count = (a) => journeys.filter((j) => j.area === a).length
 
   async function go(q = text) {
     if (!q.trim()) return
@@ -122,20 +122,29 @@ export default function Home() {
             <h2 id="cats" className="text-xl">{t.catTitle}</h2>
             <p className="text-muted mt-1">{t.catSub}</p>
             <ul className="mt-6 grid gap-3 grid-cols-[repeat(auto-fill,minmax(min(100%,9.5rem),1fr))] sm:grid-cols-2">
-              {CATEGORIES.map((c) => (
-                <li key={c}>
-                  <Link to={`/browse?cat=${c}`}
-                  className="group h-full flex flex-col gap-3 rounded-xl border border-line bg-card p-4 hover:border-ink transition-colors">
-                  <span className="text-accent"><CatIcon k={c} size={34} /></span>
+            {AREAS.map((a) => {
+              const soon = SOON.includes(a)
+              const inner = (
+                <>
+                  <span className={soon ? 'text-muted' : 'text-accent'}><CatIcon k={a} size={34} /></span>
                   <span className="min-w-0">
-                    <span className="block font-semibold leading-snug group-hover:underline underline-offset-4">{t.cats[c]}</span>
-                    <span className="block text-sm text-muted mt-0.5">{t.catHint[c]}</span>
-                    <span className="block text-xs text-muted mt-2 tabular-nums">{t.nProcedures(count(c))}</span>
+                    <span className="block font-semibold leading-snug group-hover:underline underline-offset-4">{t.areas[a]}</span>
+                    <span className="block text-sm text-muted mt-0.5">{t.areaHint[a]}</span>
+                    <span className="block text-xs text-muted mt-2 tabular-nums">{soon ? t.comingSoon : t.nProcedures(count(a))}</span>
                   </span>
-                </Link>
+                </>
+              )
+              return (
+                <li key={a}>
+                  {soon ? (
+                    <div className="h-full flex flex-col gap-3 rounded-xl border border-dashed border-line p-4">{inner}</div>
+                  ) : (
+                    <Link to={`/browse?area=${a}`} className="group h-full flex flex-col gap-3 rounded-xl border border-line bg-card p-4 hover:border-ink transition-colors">{inner}</Link>
+                  )}
                 </li>
-              ))}
-            </ul>
+              )
+            })}
+          </ul>
         </section>
       </section>
 
