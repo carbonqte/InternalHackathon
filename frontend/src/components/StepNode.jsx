@@ -12,6 +12,7 @@ export default function StepNode({ data }) {
   const { step, state, selected, fresh, stage, first } = data
   const { lang, t } = useLang()
   return (
+    <div className="animate-reveal" style={{ animationDelay: `${(stage - 1) * 140}ms` }}>
     <div
       className={`relative w-[220px] h-[72px] rounded-lg border-2 pl-4 pr-3 py-2 flex gap-2 items-start cursor-pointer transition ${styles[state]} ${selected ? 'ring-2 ring-offset-2 ring-accent' : ''} ${fresh ? 'animate-unlock' : ''}`}
     >
@@ -26,6 +27,7 @@ export default function StepNode({ data }) {
         <span className="block text-[11px] text-muted mt-0.5">{t.types[step.type]}</span>
       </span>
       <Handle type="source" position={Position.Bottom} className="!opacity-0" />
+    </div>
     </div>
   )
 }

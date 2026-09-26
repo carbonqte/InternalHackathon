@@ -21,6 +21,7 @@ body { background: var(--color-paper); color: var(--color-ink); font-family: var
 @theme {
   --animate-unlock: unlock 1.4s ease-out;
   --animate-enter: enter 220ms ease-out;
+  --animate-reveal: enter 360ms ease-out both;
 }
 @keyframes unlock {
   0% { box-shadow: 0 0 0 0 rgb(31 95 79 / 0.45); }
