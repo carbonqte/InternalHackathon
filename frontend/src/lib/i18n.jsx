@@ -202,3 +202,7 @@ Object.assign(dict.mr, {
   grievance: 'विलंबाची तक्रार? केंद्रीय तक्रार पोर्टल (CPGRAMS) ↗',
   notAdvice: 'ही माहिती आहे, कायदेशीर सल्ला नाही.',
 })
+
+Object.assign(dict.en, { theme: 'Theme', themes: { system: 'Auto', light: 'Light', dark: 'Dark', contrast: 'High contrast' } })
+Object.assign(dict.hi, { theme: 'थीम', themes: { system: 'अपने-आप', light: 'लाइट', dark: 'डार्क', contrast: 'हाई कॉन्ट्रास्ट' } })
+Object.assign(dict.mr, { theme: 'थीम', themes: { system: 'आपोआप', light: 'लाइट', dark: 'डार्क', contrast: 'उच्च कॉन्ट्रास्ट' } })

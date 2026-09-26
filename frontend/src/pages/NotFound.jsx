@@ -9,7 +9,7 @@ export default function NotFound() {
     <section className="max-w-2xl mx-auto px-4 py-24">
       <h1 className="font-display text-3xl">{t.notFound}</h1>
       <p className="mt-3 text-muted">{t.notFoundSub}</p>
-      <Link to="/" className="mt-6 inline-block rounded-lg bg-accent text-white px-5 py-2.5 text-sm font-medium">{t.backToSearch}</Link>
+      <Link to="/" className="mt-6 inline-block rounded-lg bg-accent text-on-accent px-5 py-2.5 text-sm font-medium">{t.backToSearch}</Link>
     </section>
   )
 }

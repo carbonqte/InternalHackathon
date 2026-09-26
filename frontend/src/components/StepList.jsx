@@ -1,7 +1,7 @@
 import { stages, stepState } from '../lib/graph.js'
 import { useLang, tr } from '../lib/i18n.jsx'
 
-const tagCls = { done: 'bg-done/10 text-done', available: 'bg-accent text-white', locked: 'bg-line/70 text-lock' }
+const tagCls = { done: 'bg-done/10 text-done', available: 'bg-accent text-on-accent', locked: 'bg-line/70 text-lock' }
 
 // Modelled on GOV.UK's step-by-step pattern: numbered stages, "and" for steps you can do in parallel.
 export default function StepList({ steps, done, selectedId, onSelect, fresh }) {
@@ -25,7 +25,7 @@ export default function StepList({ steps, done, selectedId, onSelect, fresh }) {
                   <button
                     onClick={() => onSelect(s.id)}
                     aria-current={s.id === selectedId ? 'step' : undefined}
-                    className={`w-full text-left rounded-lg border px-4 py-3 flex items-center justify-between gap-3 transition-colors ${s.id === selectedId ? 'border-accent bg-accent-soft' : 'border-line bg-white hover:border-muted'} ${fresh?.has(s.id) ? 'animate-unlock' : ''}`}
+                    className={`w-full text-left rounded-lg border px-4 py-3 flex items-center justify-between gap-3 transition-colors ${s.id === selectedId ? 'border-accent bg-accent-soft' : 'border-line bg-card hover:border-muted'} ${fresh?.has(s.id) ? 'animate-unlock' : ''}`}
                   >
                     <span className="min-w-0 [overflow-wrap:anywhere]">
                       <span className={`block text-sm font-medium ${st === 'locked' ? 'text-lock' : ''} ${st === 'done' ? 'line-through decoration-done/60' : ''}`}>{tr(s, 'name', lang)}</span>

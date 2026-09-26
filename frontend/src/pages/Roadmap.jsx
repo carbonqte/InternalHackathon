@@ -88,13 +88,13 @@ export default function Roadmap() {
         </div>
         <div className="flex flex-wrap items-center gap-2 no-print">
           <button onClick={async () => { try { await navigator.clipboard.writeText(location.href); setCopied(true); setTimeout(() => setCopied(false), 2000) } catch { /* clipboard blocked */ } }}
-            className="rounded-lg border border-line bg-white px-3 py-1.5 text-sm">{copied ? t.copied : t.copyLink}</button>
+            className="rounded-lg border border-line bg-card px-3 py-1.5 text-sm">{copied ? t.copied : t.copyLink}</button>
           <button onClick={() => { setView('list'); setTimeout(() => window.print(), 100) }}
-            className="rounded-lg border border-line bg-white px-3 py-1.5 text-sm">{t.print}</button>
-        <div role="tablist" className="flex rounded-lg border border-line bg-white p-1 text-sm">
+            className="rounded-lg border border-line bg-card px-3 py-1.5 text-sm">{t.print}</button>
+        <div role="tablist" className="flex rounded-lg border border-line bg-card p-1 text-sm">
           {['graph', 'list'].map((v) => (
             <button key={v} role="tab" aria-selected={view === v} onClick={() => setView(v)}
-              className={`px-3 py-1 rounded-md ${view === v ? 'bg-accent text-white' : 'text-muted'}`}>{t[v]}</button>
+              className={`px-3 py-1 rounded-md ${view === v ? 'bg-accent text-on-accent' : 'text-muted'}`}>{t[v]}</button>
           ))}
         </div>
         </div>
@@ -111,7 +111,7 @@ export default function Roadmap() {
         <div className="h-2 rounded-full bg-line overflow-hidden"><div className="h-full bg-done transition-all" style={{ width: `${pct}%` }} /></div>
       </div>
 
-      <div className="mt-5 rounded-xl border border-line bg-white px-5 py-4 flex flex-wrap gap-x-8 gap-y-3 text-sm">
+      <div className="mt-5 rounded-xl border border-line bg-card px-5 py-4 flex flex-wrap gap-x-8 gap-y-3 text-sm">
         <div className="min-w-0">
           <p className="text-xs text-muted">{nextUp.length ? t.doNext : t.status}</p>
           <p className="font-medium mt-0.5">
@@ -131,7 +131,7 @@ export default function Roadmap() {
         {view === 'graph'
           ? <RoadmapGraph steps={task.steps} done={done} selectedId={selected} onSelect={setSelected} fresh={fresh} />
           : <StepList steps={task.steps} done={done} selectedId={selected} onSelect={setSelected} fresh={fresh} />}
-        <aside className="rounded-xl border border-line bg-white p-5 h-fit lg:sticky lg:top-6 no-print">
+        <aside className="rounded-xl border border-line bg-card p-5 h-fit lg:sticky lg:top-6 no-print">
           <StepPanel step={step} steps={task.steps} done={done} onToggle={toggle} taskTitle={task.title} rights={task.rights} />
         </aside>
       </div>

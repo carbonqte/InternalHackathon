@@ -31,13 +31,13 @@ export default function Admin() {
 
       <div className="mt-6 flex flex-wrap items-center gap-3">
         <label htmlFor="task" className="text-sm text-muted">Procedure</label>
-        <select id="task" value={taskId} onChange={(e) => setTaskId(e.target.value)} className="max-w-full min-w-0 rounded-lg border border-line bg-white px-3 py-2 text-sm">
+        <select id="task" value={taskId} onChange={(e) => setTaskId(e.target.value)} className="max-w-full min-w-0 rounded-lg border border-line bg-card px-3 py-2 text-sm">
           {tasks.map((t) => <option key={t.task_id} value={t.task_id}>{t.title}</option>)}
         </select>
         {pending > 0 && <span className="text-xs rounded bg-warn/10 text-warn px-2 py-1">{pending} pending</span>}
       </div>
 
-      <div className="mt-4 overflow-x-auto rounded-xl border border-line bg-white">
+      <div className="mt-4 overflow-x-auto rounded-xl border border-line bg-card">
         <table className="w-full text-sm">
           <thead className="text-left text-muted border-b border-line">
             <tr><th className="p-3">Step</th><th className="p-3">Applies to</th><th className="p-3">Office</th><th className="p-3">Fee</th><th className="p-3">Needs</th><th className="p-3">Status</th><th className="p-3" /></tr>

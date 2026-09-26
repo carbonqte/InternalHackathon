@@ -44,25 +44,25 @@ export default function Home() {
             id="q" rows={2} maxLength={300} value={text} onChange={(e) => setText(e.target.value)}
             onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); go() } }}
             placeholder={t.askPlaceholder}
-            className="w-full rounded-lg border border-line bg-white px-4 py-3 text-base resize-none focus:border-accent outline-none"
+            className="w-full rounded-lg border border-line bg-card px-4 py-3 text-base resize-none focus:border-accent outline-none"
           />
           <fieldset className="grid grid-cols-2 gap-3">
             <legend className="text-sm text-muted mb-1.5">{t.whereBiz}</legend>
             <label className="text-xs text-muted">{t.state}
               <select value={state} onChange={(e) => { const s = e.target.value; setState(s); setCity(places.find((p) => p.state === s)?.cities[0]?.city || '') }}
-                className="mt-1 block w-full rounded-lg border border-line bg-white px-3 py-2.5 text-sm text-ink">
+                className="mt-1 block w-full rounded-lg border border-line bg-card px-3 py-2.5 text-sm text-ink">
                 {places.map((p) => <option key={p.state} value={p.state}>{tr(p, 'state', lang)}{p.covered ? '' : ` (${t.partial})`}</option>)}
               </select>
             </label>
             <label className="text-xs text-muted">{t.city}
               <select value={city} onChange={(e) => setCity(e.target.value)}
-                className="mt-1 block w-full rounded-lg border border-line bg-white px-3 py-2.5 text-sm text-ink">
+                className="mt-1 block w-full rounded-lg border border-line bg-card px-3 py-2.5 text-sm text-ink">
                 {cities.map((c) => <option key={c.city} value={c.city}>{c.city}{c.covered ? '' : ` (${t.partial})`}</option>)}
               </select>
             </label>
           </fieldset>
           <div className="flex">
-            <button disabled={loading} className="flex-1 sm:flex-none sm:px-8 rounded-lg bg-accent text-white py-3 text-sm font-medium disabled:opacity-60">
+            <button disabled={loading} className="flex-1 sm:flex-none sm:px-8 rounded-lg bg-accent text-on-accent py-3 text-sm font-medium disabled:opacity-60">
               {loading ? t.finding : t.showRoadmap}
             </button>
           </div>
@@ -72,7 +72,7 @@ export default function Home() {
         {error && <p role="alert" className="mt-4 text-sm text-warn">{error}</p>}
 
         {miss && (
-          <div role="status" className="mt-6 rounded-xl border border-warn/40 bg-white p-5">
+          <div role="status" className="mt-6 rounded-xl border border-warn/40 bg-card p-5">
             <p className="font-medium">{t.notCoveredTitle}</p>
             <p className="text-sm text-muted mt-2">{t.supportedNow}</p>
             <ul className="mt-2 space-y-1">
@@ -91,7 +91,7 @@ export default function Home() {
         <div className="mt-3 grid gap-2 sm:grid-cols-2">
           {journeys.map((j) => (
             <Link key={j.task_id} to={`/task/${j.task_id}${loc}`}
-              className="rounded-lg border border-line bg-white px-4 py-3 hover:border-accent">
+              className="rounded-lg border border-line bg-card px-4 py-3 hover:border-accent">
               <span className="block text-sm font-medium">{tr(j, 'title', lang)}</span>
               <span className="block text-xs text-muted mt-0.5">{city}, {state}</span>
             </Link>

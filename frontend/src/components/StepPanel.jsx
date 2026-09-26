@@ -65,7 +65,7 @@ export default function StepPanel({ step, steps, done, onToggle, taskTitle, righ
           <button onClick={() => onToggle(step.id)} className="text-muted underline underline-offset-2 hover:text-ink">{t.undo}</button>
         </div>
       ) : (
-        <button onClick={() => onToggle(step.id)} className="w-full rounded-md py-2.5 text-sm font-medium bg-accent text-white hover:opacity-90">
+        <button onClick={() => onToggle(step.id)} className="w-full rounded-md py-2.5 text-sm font-medium bg-accent text-on-accent hover:opacity-90">
           {t.markDone}
         </button>
       )}

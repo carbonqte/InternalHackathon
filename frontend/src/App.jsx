@@ -5,9 +5,11 @@ import Admin from './pages/Admin.jsx'
 import Privacy from './pages/Privacy.jsx'
 import NotFound from './pages/NotFound.jsx'
 import { LANGS, useLang } from './lib/i18n.jsx'
+import { THEMES, useTheme } from './lib/theme.js'
 
 export default function App() {
   const { lang, setLang, t } = useLang()
+  const [theme, setTheme] = useTheme()
   return (
     <div className="min-h-screen flex flex-col">
       <header className="border-b border-line">
@@ -16,10 +18,15 @@ export default function App() {
             <Link to="/" className="font-display text-lg shrink-0">Civic Navigator</Link>
             <span className="hidden md:inline text-xs text-muted truncate">{t.notGov}</span>
           </span>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
+            <label htmlFor="theme" className="sr-only">{t.theme}</label>
+            <select id="theme" value={theme} onChange={(e) => setTheme(e.target.value)}
+              className="rounded-md border border-line bg-card px-2 py-1 text-sm max-w-[7.5rem]">
+              {THEMES.map((k) => <option key={k} value={k}>{t.themes[k]}</option>)}
+            </select>
             <label htmlFor="lang" className="sr-only">{t.language}</label>
             <select id="lang" value={lang} onChange={(e) => setLang(e.target.value)}
-              className="rounded-md border border-line bg-white px-2 py-1 text-sm">
+              className="rounded-md border border-line bg-card px-2 py-1 text-sm">
               {LANGS.map((l) => <option key={l.code} value={l.code}>{l.label}</option>)}
             </select>
             <Link to="/admin" className="text-sm text-muted hover:text-ink hidden sm:inline">{t.admin}</Link>
