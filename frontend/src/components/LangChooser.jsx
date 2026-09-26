@@ -3,11 +3,14 @@ import { LANGS, useLang } from '../lib/i18n.jsx'
 
 // First visit only: a slim, script-native language bar above the header.
 // It never blocks the page; choosing a language (or closing it) remembers the choice.
-export default function LangChooser() {
+export function useLangBar() {
+  return useState(() => { try { return !localStorage.getItem('langChosen') } catch { return false } })
+}
+
+export default function LangChooser({ open, onClose }) {
   const { lang, setLang } = useLang()
-  const [open, setOpen] = useState(() => { try { return !localStorage.getItem('langChosen') } catch { return false } })
   if (!open) return null
-  const done = (code) => { if (code) setLang(code); try { localStorage.setItem('langChosen', '1') } catch { /* private mode */ } setOpen(false) }
+  const done = (code) => { if (code) setLang(code); try { localStorage.setItem('langChosen', '1') } catch { /* private mode */ } onClose() }
   return (
     <section aria-labelledby="lang-bar" className="bg-card border-b border-line">
       <div className="max-w-6xl mx-auto px-4 py-2 flex items-center gap-3">
