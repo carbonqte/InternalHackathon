@@ -6,7 +6,7 @@ export function hostOf(u) {
 }
 const isGov = (h) => /\.(gov|nic)\.in$/.test(h)
 
-export default function StepPanel({ step, steps, done, onToggle, taskTitle }) {
+export default function StepPanel({ step, steps, done, onToggle, taskTitle, rights }) {
   const { lang, t } = useLang()
   if (!step) return <p className="text-sm text-muted">{t.selectStep}</p>
   const state = stepState(step, done)
@@ -26,6 +26,9 @@ export default function StepPanel({ step, steps, done, onToggle, taskTitle }) {
             </span>
           )}
         </p>
+        {step.type !== 'milestone' && step.scope && (
+          <p className="text-xs text-muted mt-1">{t.scope[step.scope]}{step.scope === 'state' ? ` · ${step.state}` : step.scope === 'local' ? ` · ${step.city}` : ''}</p>
+        )}
         <h2 className="font-display text-xl mt-1">{tr(step, 'name', lang)}</h2>
         {step.condition && <p className="text-sm text-warn mt-1">{tr(step, 'condition', lang)}</p>}
       </div>
@@ -65,6 +68,24 @@ export default function StepPanel({ step, steps, done, onToggle, taskTitle }) {
         <button onClick={() => onToggle(step.id)} className="w-full rounded-md py-2.5 text-sm font-medium bg-accent text-white hover:opacity-90">
           {t.markDone}
         </button>
+      )}
+
+      {step.legal && (
+        <div className="border-t border-line pt-4 text-sm space-y-1">
+          <p className="text-xs uppercase tracking-wide text-muted">{t.lawTitle}</p>
+          <p>{step.legal.act}{!step.legal.verified && <span className="ml-2 text-xs rounded bg-warn/10 text-warn px-1.5 py-0.5">{t.lawUnverified}</span>}</p>
+          <a href={step.legal.url} target="_blank" rel="noopener noreferrer" className="text-xs text-accent underline underline-offset-2">{t.lawSearch}</a>
+        </div>
+      )}
+
+      {step.type !== 'milestone' && (step.scope === 'state' || step.scope === 'local') && rights && (
+        <div className="border-t border-line pt-4 text-sm space-y-1.5">
+          <p className="text-xs uppercase tracking-wide text-muted">{t.rightsTitle}</p>
+          <p>{tr(rights, 'text', lang)}</p>
+          <a href={rights.url} target="_blank" rel="noopener noreferrer" className="block text-xs text-accent underline underline-offset-2">{t.rightsLink}</a>
+          <a href="https://pgportal.gov.in" target="_blank" rel="noopener noreferrer" className="block text-xs text-accent underline underline-offset-2">{t.grievance}</a>
+          <p className="text-xs text-muted">{t.notAdvice}</p>
+        </div>
       )}
 
       {step.type !== 'milestone' && (

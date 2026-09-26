@@ -1,0 +1,88 @@
+[
+  {
+    "state": "Maharashtra",
+    "state_hi": "महाराष्ट्र",
+    "state_mr": "महाराष्ट्र",
+    "covered": true,
+    "rights": {
+      "text": "Many services here have a fixed time limit under the Maharashtra Right to Public Services Act, 2015. If a department misses it, you can appeal.",
+      "text_hi": "महाराष्ट्र लोक सेवा अधिकार अधिनियम, 2015 के तहत कई सेवाओं की तय समय-सीमा है। विभाग देर करे तो आप अपील कर सकते हैं।",
+      "text_mr": "महाराष्ट्र लोकसेवा हक्क अधिनियम, 2015 अंतर्गत अनेक सेवांना ठरलेली कालमर्यादा आहे. विभागाने ती पाळली नाही तर तुम्ही अपील करू शकता.",
+      "url": "https://aaplesarkar.mahaonline.gov.in"
+    },
+    "cities": [
+      {
+        "city": "Mumbai",
+        "covered": true
+      },
+      {
+        "city": "Pune",
+        "covered": true
+      },
+      {
+        "city": "Nagpur",
+        "covered": false
+      },
+      {
+        "city": "Nashik",
+        "covered": false
+      }
+    ]
+  },
+  {
+    "state": "Karnataka",
+    "state_hi": "कर्नाटक",
+    "state_mr": "कर्नाटक",
+    "covered": false,
+    "cities": [
+      {
+        "city": "Bengaluru",
+        "covered": false
+      },
+      {
+        "city": "Mysuru",
+        "covered": false
+      }
+    ]
+  },
+  {
+    "state": "Gujarat",
+    "state_hi": "गुजरात",
+    "state_mr": "गुजरात",
+    "covered": false,
+    "cities": [
+      {
+        "city": "Ahmedabad",
+        "covered": false
+      },
+      {
+        "city": "Surat",
+        "covered": false
+      }
+    ]
+  },
+  {
+    "state": "Delhi",
+    "state_hi": "दिल्ली",
+    "state_mr": "दिल्ली",
+    "covered": false,
+    "cities": [
+      {
+        "city": "New Delhi",
+        "covered": false
+      }
+    ]
+  },
+  {
+    "state": "Tamil Nadu",
+    "state_hi": "तमिलनाडु",
+    "state_mr": "तमिळनाडू",
+    "covered": false,
+    "cities": [
+      {
+        "city": "Chennai",
+        "covered": false
+      }
+    ]
+  }
+]

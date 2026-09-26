@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, useSearchParams, Link } from 'react-router-dom'
 import { getTask, loadProgress, saveProgress } from '../api/client.js'
 import RoadmapGraph from '../components/RoadmapGraph.jsx'
 import StepList from '../components/StepList.jsx'
@@ -9,10 +9,13 @@ import { useLang, tr, fmtDate } from '../lib/i18n.jsx'
 
 export default function Roadmap() {
   const { taskId } = useParams()
+  const [params] = useSearchParams()
+  const place = { state: params.get('state') || 'Maharashtra', city: params.get('city') || 'Mumbai' }
+  const progressKey = `${taskId}:${place.state}:${place.city}`
   const { lang, t } = useLang()
   const [task, setTask] = useState(null)
   const [error, setError] = useState('')
-  const [done, setDone] = useState(() => loadProgress(taskId))
+  const [done, setDone] = useState(() => loadProgress(progressKey))
   const [selected, setSelected] = useState(null)
   const [fresh, setFresh] = useState(new Set())
   const freshTimer = useRef()
@@ -20,10 +23,10 @@ export default function Roadmap() {
   const [view, setView] = useState(() => (window.innerWidth < 768 ? 'list' : 'graph'))
 
   useEffect(() => {
-    getTask(taskId)
+    getTask(taskId, place.state, place.city)
       .then((x) => { setTask(x); setSelected(x.steps.find((s) => s.depends_on.length === 0)?.id) })
       .catch(() => setError('load'))
-  }, [taskId])
+  }, [taskId, place.state, place.city])
 
   useEffect(() => { if (task) document.title = `${tr(task, 'title', lang)} · Civic Navigator` }, [task, lang])
 
@@ -46,7 +49,7 @@ export default function Roadmap() {
         clearTimeout(freshTimer.current); freshTimer.current = setTimeout(() => setFresh(new Set()), 1600)
       }
     }
-    setDone(next); saveProgress(taskId, next)
+    setDone(next); saveProgress(progressKey, next)
   }
 
   if (error) return <p className="max-w-6xl mx-auto px-4 py-12">{t.loadError} <Link to="/" className="text-accent underline">{t.goBack}</Link></p>
@@ -55,7 +58,7 @@ export default function Roadmap() {
       <div className="h-4 w-24 rounded bg-line" />
       <div className="mt-4 h-8 w-72 max-w-full rounded bg-line" />
       <div className="mt-6 h-2 rounded bg-line" />
-      <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_320px]">
+      <div className="mt-6 grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
         <div className="h-[420px] rounded-xl bg-line/60" />
         <div className="h-56 rounded-xl bg-line/60" />
       </div>
@@ -75,7 +78,9 @@ export default function Roadmap() {
         <div>
           <h1 className="font-display text-2xl sm:text-3xl">{tr(task, 'title', lang)}</h1>
           <p className="text-sm text-muted mt-1">
-            <span>{task.city}</span>
+            <span>{task.city}, {task.state}</span>
+            <span aria-hidden> · </span>
+            <Link to="/" className="underline underline-offset-2 hover:text-ink no-print">{t.changePlace}</Link>
             <span aria-hidden> · </span>
             <span>{t.verifiedLabel} {fmtDate(task.last_verified, lang)}</span>
             {task.sample_data && <><span aria-hidden> · </span><span className="rounded bg-warn/10 text-warn px-1.5 py-0.5 text-xs">{t.sampleData}</span></>}
@@ -94,6 +99,12 @@ export default function Roadmap() {
         </div>
         </div>
       </div>
+
+      {task.coverage !== 'full' && (
+        <p role="note" className="mt-4 rounded-lg border border-warn/40 bg-warn/5 px-4 py-3 text-sm">
+          {task.coverage === 'state' ? t.covState(task.city, task.state) : t.covNational(task.state)}
+        </p>
+      )}
 
       <div className="mt-5" aria-label={`${pct}% complete`}>
         <div className="flex justify-between text-xs text-muted mb-1"><span>{t.stepsDone(done.size, task.steps.length)}</span><span>{pct}%</span></div>
@@ -116,12 +127,12 @@ export default function Roadmap() {
         <div><p className="text-xs text-muted">{t.officeVisits}</p><p className="font-medium mt-0.5 tabular-nums">{visits}</p></div>
       </div>
 
-      <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_320px]">
+      <div className="mt-6 grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
         {view === 'graph'
           ? <RoadmapGraph steps={task.steps} done={done} selectedId={selected} onSelect={setSelected} fresh={fresh} />
           : <StepList steps={task.steps} done={done} selectedId={selected} onSelect={setSelected} fresh={fresh} />}
         <aside className="rounded-xl border border-line bg-white p-5 h-fit lg:sticky lg:top-6 no-print">
-          <StepPanel step={step} steps={task.steps} done={done} onToggle={toggle} taskTitle={task.title} />
+          <StepPanel step={step} steps={task.steps} done={done} onToggle={toggle} taskTitle={task.title} rights={task.rights} />
         </aside>
       </div>
     </section>

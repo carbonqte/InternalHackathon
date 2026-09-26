@@ -14,14 +14,17 @@ Only `src/api/client.js` touches data. Replace each mock function body with a `f
 
 | Function | Endpoint | Returns |
 |---|---|---|
-| `listTasks()` | `GET /tasks` | `[{task_id, title, city}]` |
-| `searchTask(text, city)` | `POST /query` | `{task_id}` or `{task_id: null}` |
-| `getTask(id)` | `GET /tasks/{id}` | task with **approved steps only** |
+| `listJurisdictions()` | `GET /jurisdictions` | `[{state, covered, cities:[{city, covered}], rights?}]` |
+| `listTasks()` | `GET /tasks` | `[{task_id, title, title_hi, title_mr}]` |
+| `searchTask(text, state, city)` | `POST /query` | `{task_id}` or `{task_id: null}` |
+| `getTask(id, state, city)` | `GET /tasks/{id}?state=&city=` | national + that state's + that city's **approved** steps, plus `coverage` (`full`/`state`/`national`) and `rights` |
 | `getTaskAdmin(id)` | `GET /admin/tasks/{id}` | task with all steps |
 | `updateStep(taskId, stepId, fields)` | `PATCH /admin/steps/{id}` | updated step |
 | `load/saveProgress` | `GET/PUT /progress/{id}` | array of done step ids (localStorage for now) |
 
-Step shape: `{id, name, type: document|form|visit|payment|milestone, office, documents[], fee, link, status: pending|approved, depends_on[]}`.
+Step shape: `{id, name, name_hi, name_mr, type: document|form|visit|payment|milestone, scope: national|state|local, state?, city?, office, documents[], fee (null = not confirmed), processing_time, requirement: required|conditional|optional, condition?, link, legal?: {act, url, verified}, verified_on, status: pending|approved, depends_on[]}`.
+
+Roadmaps are assembled from three layers: all-India steps + the chosen state's steps + the chosen city's steps.
 See `src/mock/tasks.json`.
 
 ## Before the demo

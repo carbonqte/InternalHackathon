@@ -40,7 +40,7 @@ export default function Admin() {
       <div className="mt-4 overflow-x-auto rounded-xl border border-line bg-white">
         <table className="w-full text-sm">
           <thead className="text-left text-muted border-b border-line">
-            <tr><th className="p-3">Step</th><th className="p-3">Office</th><th className="p-3">Fee</th><th className="p-3">Needs</th><th className="p-3">Status</th><th className="p-3" /></tr>
+            <tr><th className="p-3">Step</th><th className="p-3">Applies to</th><th className="p-3">Office</th><th className="p-3">Fee</th><th className="p-3">Needs</th><th className="p-3">Status</th><th className="p-3" /></tr>
           </thead>
           <tbody>
             {task?.steps.map((s) => editing === s.id
@@ -48,6 +48,7 @@ export default function Admin() {
               : (
                 <tr key={s.id} className="border-b border-line last:border-0 align-top">
                   <td className="p-3 font-medium">{s.name}</td>
+                  <td className="p-3 text-muted whitespace-nowrap">{s.scope === 'local' ? s.city : s.scope === 'state' ? s.state : 'All India'}</td>
                   <td className="p-3">{s.office || '—'}</td>
                   <td className="p-3">{s.fee || '—'}</td>
                   <td className="p-3 text-muted">{s.depends_on.join(', ') || '—'}</td>
@@ -78,6 +79,7 @@ function EditRow({ step, onSave, onCancel }) {
   return (
     <tr className="border-b border-line bg-accent-soft/40 align-top">
       <td className="p-3">{input('name')}</td>
+      <td className="p-3" />
       <td className="p-3">{input('office')}</td>
       <td className="p-3">{input('fee')}</td>
       <td className="p-3" colSpan={2}>{input('link')}</td>

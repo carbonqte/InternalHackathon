@@ -126,7 +126,7 @@ Object.assign(dict.en, {
   report: 'Report outdated information', completed: 'Completed', undo: 'Undo',
   startHere: 'Start here', legend: 'Key', legAvail: 'Can start now', legDone: 'Completed', legLocked: 'Waiting on earlier steps',
   copyLink: 'Copy link', copied: 'Link copied', print: 'Print checklist', verifiedLabel: 'Last verified',
-  popular: 'Popular journeys', onlyMumbai: 'Currently available in Mumbai only. More cities coming.',
+  popular: 'Popular journeys', onlyMumbai: 'Full coverage for Mumbai and Pune. Other places get the all-India steps for now.',
   howTitle: 'How it works', how: ['Describe what you want to do, in your own words.', 'Get every step in the right order, with what to bring.', 'Open the official portal for each step and tick it off.'],
   trust: ['Links to official sources', 'Free to use', 'No login needed', 'Every step shows when it was checked'],
   notCoveredTitle: "We don't have that procedure yet.", supportedNow: 'Available right now:', suggest: 'Suggest a procedure we should add',
@@ -140,7 +140,7 @@ Object.assign(dict.hi, {
   report: 'पुरानी जानकारी की शिकायत करें', completed: 'पूरा हुआ', undo: 'वापस लें',
   startHere: 'यहाँ से शुरू करें', legend: 'संकेत', legAvail: 'अभी शुरू कर सकते हैं', legDone: 'पूरा', legLocked: 'पिछले कदमों का इंतज़ार',
   copyLink: 'लिंक कॉपी करें', copied: 'लिंक कॉपी हो गया', print: 'चेकलिस्ट प्रिंट करें', verifiedLabel: 'अंतिम जाँच',
-  popular: 'लोकप्रिय प्रक्रियाएँ', onlyMumbai: 'अभी केवल मुंबई में उपलब्ध। और शहर जल्द आएँगे।',
+  popular: 'लोकप्रिय प्रक्रियाएँ', onlyMumbai: 'मुंबई और पुणे पूरी तरह शामिल हैं। बाक़ी जगहों के लिए अभी पूरे भारत वाले कदम मिलेंगे।',
   howTitle: 'यह कैसे काम करता है', how: ['अपने शब्दों में बताइए कि आप क्या करना चाहते हैं।', 'हर कदम सही क्रम में पाइए, साथ में क्या लाना है वह भी।', 'हर कदम का आधिकारिक पोर्टल खोलिए और पूरा होने पर टिक कीजिए।'],
   trust: ['आधिकारिक स्रोतों के लिंक', 'मुफ़्त', 'लॉगिन की ज़रूरत नहीं', 'हर कदम की जाँच की तारीख़'],
   notCoveredTitle: 'यह प्रक्रिया अभी हमारे पास नहीं है।', supportedNow: 'अभी उपलब्ध:', suggest: 'कोई प्रक्रिया जोड़ने का सुझाव दें',
@@ -154,7 +154,7 @@ Object.assign(dict.mr, {
   report: 'जुनी माहिती कळवा', completed: 'पूर्ण झाले', undo: 'मागे घ्या',
   startHere: 'इथून सुरुवात करा', legend: 'संकेत', legAvail: 'आता सुरू करता येईल', legDone: 'पूर्ण', legLocked: 'आधीच्या टप्प्यांची वाट',
   copyLink: 'लिंक कॉपी करा', copied: 'लिंक कॉपी झाली', print: 'चेकलिस्ट प्रिंट करा', verifiedLabel: 'शेवटची पडताळणी',
-  popular: 'लोकप्रिय प्रक्रिया', onlyMumbai: 'सध्या फक्त मुंबईत उपलब्ध. आणखी शहरे लवकरच.',
+  popular: 'लोकप्रिय प्रक्रिया', onlyMumbai: 'मुंबई आणि पुणे पूर्णपणे समाविष्ट. इतर ठिकाणांसाठी सध्या संपूर्ण भारताचे टप्पे मिळतील.',
   howTitle: 'हे कसे काम करते', how: ['तुम्हाला काय करायचे आहे ते तुमच्या शब्दांत सांगा.', 'प्रत्येक टप्पा योग्य क्रमाने मिळवा, सोबत काय आणायचे तेही.', 'प्रत्येक टप्प्याचे अधिकृत पोर्टल उघडा आणि पूर्ण झाल्यावर टिक करा.'],
   trust: ['अधिकृत स्रोतांच्या लिंक', 'मोफत', 'लॉगिनची गरज नाही', 'प्रत्येक टप्प्याची तपासणी तारीख'],
   notCoveredTitle: 'ही प्रक्रिया अजून आमच्याकडे नाही.', supportedNow: 'सध्या उपलब्ध:', suggest: 'एखादी प्रक्रिया जोडण्याची सूचना द्या',
@@ -166,3 +166,39 @@ export function fmtDate(iso, lang) {
 }
 
 export const CONTACT = 'kabirh2006@gmail.com'
+
+// Location + law pass.
+Object.assign(dict.en, {
+  state: 'State', whereBiz: 'Where will your business be?',
+  scope: { national: 'All India', state: 'State', local: 'City' },
+  covFull: null,
+  covState: (city, state) => `We have the all-India and ${state} steps. Local steps for ${city} aren't covered yet, so check your municipal corporation's website too.`,
+  covNational: (state) => `We only have the all-India steps for ${state} so far. State and city rules (like shop registration and trade licences) aren't covered yet.`,
+  partial: 'partial', changePlace: 'Change location',
+  lawTitle: 'Legal basis', lawSearch: 'Look up this Act on India Code ↗', lawUnverified: 'To be verified',
+  rightsTitle: 'Your rights', rightsLink: 'Check time limits on Aaple Sarkar ↗',
+  grievance: 'Complaint about a delay? Use the central grievance portal (CPGRAMS) ↗',
+  notAdvice: 'Information, not legal advice.',
+})
+Object.assign(dict.hi, {
+  state: 'राज्य', whereBiz: 'आपका व्यवसाय कहाँ होगा?',
+  scope: { national: 'पूरे भारत में', state: 'राज्य', local: 'शहर' },
+  covState: (city, state) => `हमारे पास पूरे भारत और ${state} के कदम हैं। ${city} के स्थानीय कदम अभी शामिल नहीं हैं, इसलिए अपनी नगर निगम की वेबसाइट भी देखें।`,
+  covNational: (state) => `${state} के लिए अभी केवल पूरे भारत वाले कदम हैं। राज्य और शहर के नियम (जैसे दुकान पंजीकरण, व्यापार लाइसेंस) अभी शामिल नहीं हैं।`,
+  partial: 'आंशिक', changePlace: 'स्थान बदलें',
+  lawTitle: 'कानूनी आधार', lawSearch: 'India Code पर यह अधिनियम देखें ↗', lawUnverified: 'जाँच बाक़ी',
+  rightsTitle: 'आपके अधिकार', rightsLink: 'आपले सरकार पर समय-सीमा देखें ↗',
+  grievance: 'देरी की शिकायत? केंद्रीय शिकायत पोर्टल (CPGRAMS) ↗',
+  notAdvice: 'यह जानकारी है, कानूनी सलाह नहीं।',
+})
+Object.assign(dict.mr, {
+  state: 'राज्य', whereBiz: 'तुमचा व्यवसाय कुठे असेल?',
+  scope: { national: 'संपूर्ण भारत', state: 'राज्य', local: 'शहर' },
+  covState: (city, state) => `आमच्याकडे संपूर्ण भारत आणि ${state} चे टप्पे आहेत. ${city} चे स्थानिक टप्पे अजून समाविष्ट नाहीत, म्हणून तुमच्या महानगरपालिकेचे संकेतस्थळही तपासा.`,
+  covNational: (state) => `${state} साठी सध्या फक्त संपूर्ण भारताचे टप्पे आहेत. राज्य व शहराचे नियम (उदा. दुकान नोंदणी, व्यापार परवाना) अजून समाविष्ट नाहीत.`,
+  partial: 'अंशतः', changePlace: 'ठिकाण बदला',
+  lawTitle: 'कायदेशीर आधार', lawSearch: 'India Code वर हा कायदा पहा ↗', lawUnverified: 'पडताळणी बाकी',
+  rightsTitle: 'तुमचे हक्क', rightsLink: 'आपले सरकारवर कालमर्यादा पहा ↗',
+  grievance: 'विलंबाची तक्रार? केंद्रीय तक्रार पोर्टल (CPGRAMS) ↗',
+  notAdvice: 'ही माहिती आहे, कायदेशीर सल्ला नाही.',
+})

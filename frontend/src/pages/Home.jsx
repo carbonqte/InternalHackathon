@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { listTasks, searchTask } from '../api/client.js'
+import { listJurisdictions, listTasks, searchTask } from '../api/client.js'
 import { useLang, tr, CONTACT } from '../lib/i18n.jsx'
 
 export default function Home() {
   const { lang, t } = useLang()
   const [text, setText] = useState('')
+  const [state, setState] = useState('Maharashtra')
   const [city, setCity] = useState('Mumbai')
+  const [places, setPlaces] = useState([])
   const [error, setError] = useState('')
   const [miss, setMiss] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -14,14 +16,16 @@ export default function Home() {
   const nav = useNavigate()
 
   useEffect(() => { document.title = 'Civic Navigator' }, [])
-  useEffect(() => { listTasks().then(setJourneys).catch(() => {}) }, [])
+  useEffect(() => { listTasks().then(setJourneys).catch(() => {}); listJurisdictions().then(setPlaces).catch(() => {}) }, [])
+  const cities = places.find((p) => p.state === state)?.cities || []
+  const loc = `?state=${encodeURIComponent(state)}&city=${encodeURIComponent(city)}`
 
   async function go(q = text) {
     if (!q.trim()) return
     setLoading(true); setError(''); setMiss(false)
     try {
-      const { task_id } = await searchTask(q.slice(0, 300), city)
-      if (task_id) nav(`/task/${task_id}`)
+      const { task_id } = await searchTask(q.slice(0, 300), state, city)
+      if (task_id) nav(`/task/${task_id}${loc}`)
       else setMiss(true)
     } catch {
       setError(t.genericError)
@@ -42,12 +46,22 @@ export default function Home() {
             placeholder={t.askPlaceholder}
             className="w-full rounded-lg border border-line bg-white px-4 py-3 text-base resize-none focus:border-accent outline-none"
           />
-          <div className="flex gap-3">
-            <label htmlFor="city" className="sr-only">{t.city}</label>
-            <select id="city" value={city} onChange={(e) => setCity(e.target.value)} className="rounded-lg border border-line bg-white px-3 text-sm">
-              <option value="Mumbai">Mumbai</option>
-              <option disabled>{t.moreCities}</option>
-            </select>
+          <fieldset className="grid grid-cols-2 gap-3">
+            <legend className="text-sm text-muted mb-1.5">{t.whereBiz}</legend>
+            <label className="text-xs text-muted">{t.state}
+              <select value={state} onChange={(e) => { const s = e.target.value; setState(s); setCity(places.find((p) => p.state === s)?.cities[0]?.city || '') }}
+                className="mt-1 block w-full rounded-lg border border-line bg-white px-3 py-2.5 text-sm text-ink">
+                {places.map((p) => <option key={p.state} value={p.state}>{tr(p, 'state', lang)}{p.covered ? '' : ` (${t.partial})`}</option>)}
+              </select>
+            </label>
+            <label className="text-xs text-muted">{t.city}
+              <select value={city} onChange={(e) => setCity(e.target.value)}
+                className="mt-1 block w-full rounded-lg border border-line bg-white px-3 py-2.5 text-sm text-ink">
+                {cities.map((c) => <option key={c.city} value={c.city}>{c.city}{c.covered ? '' : ` (${t.partial})`}</option>)}
+              </select>
+            </label>
+          </fieldset>
+          <div className="flex">
             <button disabled={loading} className="flex-1 sm:flex-none sm:px-8 rounded-lg bg-accent text-white py-3 text-sm font-medium disabled:opacity-60">
               {loading ? t.finding : t.showRoadmap}
             </button>
@@ -63,7 +77,7 @@ export default function Home() {
             <p className="text-sm text-muted mt-2">{t.supportedNow}</p>
             <ul className="mt-2 space-y-1">
               {journeys.map((j) => (
-                <li key={j.task_id}><Link to={`/task/${j.task_id}`} className="text-sm text-accent underline underline-offset-2">{tr(j, 'title', lang)}</Link></li>
+                <li key={j.task_id}><Link to={`/task/${j.task_id}${loc}`} className="text-sm text-accent underline underline-offset-2">{tr(j, 'title', lang)}</Link></li>
               ))}
             </ul>
             <a href={`mailto:${CONTACT}?subject=${encodeURIComponent('Please add: ' + text.slice(0, 80))}`}
@@ -76,10 +90,10 @@ export default function Home() {
         <h2 className="text-xs uppercase tracking-wide text-muted">{t.popular}</h2>
         <div className="mt-3 grid gap-2 sm:grid-cols-2">
           {journeys.map((j) => (
-            <Link key={j.task_id} to={`/task/${j.task_id}`}
+            <Link key={j.task_id} to={`/task/${j.task_id}${loc}`}
               className="rounded-lg border border-line bg-white px-4 py-3 hover:border-accent">
               <span className="block text-sm font-medium">{tr(j, 'title', lang)}</span>
-              <span className="block text-xs text-muted mt-0.5">{j.city}</span>
+              <span className="block text-xs text-muted mt-0.5">{city}, {state}</span>
             </Link>
           ))}
         </div>
