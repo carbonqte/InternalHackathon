@@ -11,6 +11,7 @@ import LangChooser from './components/LangChooser.jsx'
 import { LANGS, useLang } from './lib/i18n.jsx'
 import ThemeMenu from './components/ThemeMenu.jsx'
 import Logo from './components/Logo.jsx'
+import SweepLink from './components/SweepLink.jsx'
 
 export default function App() {
   const { lang, setLang, t } = useLang()
@@ -18,12 +19,12 @@ export default function App() {
     <div className="min-h-screen flex flex-col">
       <LangChooser />
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-accent focus:text-on-accent focus:px-4 focus:py-3">{t.skip}</a>
-      <header className="border-b border-line bg-paper">
+      <header className="border-b border-ink/80 bg-paper">
         <nav className="max-w-6xl mx-auto px-4 min-h-16 py-2 flex items-center justify-between gap-3">
           <Link to="/" className="flex items-center gap-2.5 min-h-11 min-w-0">
             <Logo />
             <span className="min-w-0 leading-tight">
-              <span className="block font-display text-[1.05rem] tracking-tight">Civic Navigator</span>
+              <span className="block font-display text-[1.15rem]">Civic Navigator</span>
               <span className="hidden sm:block text-[11px] text-muted truncate">{t.notGov}</span>
             </span>
           </Link>
@@ -57,9 +58,9 @@ export default function App() {
           <p>{t.disclaimer}</p>
           <p className="flex flex-wrap gap-x-4 gap-y-1">
             <span>© {new Date().getFullYear()} Civic Navigator · TSEC Internal Hackathon</span>
-            <Link to="/privacy" className="underline underline-offset-2 hover:text-ink">{t.privacy}</Link>
-            <Link to="/admin" className="underline underline-offset-2 hover:text-ink">{t.admin}</Link>
-            <a href="mailto:kabirh2006@gmail.com" className="underline underline-offset-2 hover:text-ink">{t.contact}</a>
+            <SweepLink to="/privacy" className="hover:text-ink">{t.privacy}</SweepLink>
+            <SweepLink to="/admin" className="hover:text-ink">{t.admin}</SweepLink>
+            <SweepLink href="mailto:kabirh2006@gmail.com" className="hover:text-ink">{t.contact}</SweepLink>
           </p>
         </div>
       </footer>

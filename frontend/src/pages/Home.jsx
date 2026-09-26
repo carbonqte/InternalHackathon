@@ -3,9 +3,13 @@ import { Link, useNavigate } from 'react-router-dom'
 import { listJurisdictions, listTasks, searchTask, getTask } from '../api/client.js'
 import { useLang, tr, CONTACT, LANGS } from '../lib/i18n.jsx'
 import MicButton from '../components/MicButton.jsx'
-import { stages } from '../lib/graph.js'
+import { topoOrder } from '../lib/graph.js'
 import { AREAS, SOON, CatIcon, lastPlace, savePlace, placeQuery, suggest } from '../lib/categories.jsx'
 import Suggestions from '../components/Suggestions.jsx'
+import SweepLink from '../components/SweepLink.jsx'
+
+// Real procedures shown as the homepage example, in this order.
+const SAMPLES = ['passport', 'driving-licence', 'food-business', 'aadhaar-update']
 
 export default function Home() {
   const { lang, setLang, t } = useLang()
@@ -18,21 +22,24 @@ export default function Home() {
   const [miss, setMiss] = useState(false)
   const [loading, setLoading] = useState(false)
   const [journeys, setJourneys] = useState([])
-  const [details, setDetails] = useState({})
+  const [sampleId, setSampleId] = useState(SAMPLES[0])
+  const [sample, setSample] = useState(null)
   const nav = useNavigate()
 
   useEffect(() => { document.title = 'Civic Navigator' }, [])
   useEffect(() => { listTasks().then(setJourneys).catch(() => {}); listJurisdictions().then(setPlaces).catch(() => {}) }, [])
   useEffect(() => {
-    Promise.all(journeys.slice(0, 4).map((j) => getTask(j.task_id, state, city).catch(() => null)))
-      .then((all) => setDetails(Object.fromEntries(all.filter(Boolean).map((x) => [x.task_id, x]))))
-  }, [journeys, state, city])
+    let live = true
+    getTask(sampleId, state, city).then((d) => live && setSample(d)).catch(() => live && setSample(null))
+    return () => { live = false }
+  }, [sampleId, state, city])
   const cities = places.find((p) => p.state === state)?.cities || []
   const loc = placeQuery({ state, city })
   useEffect(() => { savePlace({ state, city }) }, [state, city])
-  const popular = journeys.slice(0, 4)
   const sugg = showSug ? suggest(journeys, text, lang).map((j) => ({ ...j, href: `/task/${j.task_id}${loc}` })) : []
   const count = (a) => journeys.filter((j) => j.area === a).length
+  const samples = SAMPLES.map((id) => journeys.find((j) => j.task_id === id)).filter(Boolean)
+  const steps = sample ? topoOrder(sample.steps).filter((s) => s.type !== 'milestone') : []
 
   async function go(q = text) {
     if (!q.trim()) return
@@ -46,172 +53,140 @@ export default function Home() {
     } finally { setLoading(false) }
   }
 
-  const qi = t.heroTitle.search(/[?？]/)
-  const h1a = qi > 0 ? t.heroTitle.slice(0, qi + 1) : t.heroTitle
-  const h1b = qi > 0 ? t.heroTitle.slice(qi + 1).trim() : ''
+  const want = places.find((p) => p.state === state)?.lang
+  const wantLang = LANGS.find((x) => x.code === want)
 
   return (
-    <>
-      <div className="bg-band text-on-band">
-      <div className="max-w-6xl mx-auto px-4 pt-8 sm:pt-12 pb-10 sm:pb-14 grid gap-8 lg:gap-12 lg:grid-cols-[1.2fr_1fr] items-start">
-      <section>
-        <p className="eyebrow flex items-center gap-2 text-band-muted"><span aria-hidden className="h-2 w-2 rounded-full bg-next" />{t.eyebrow}</p>
-        <h1 className="mt-3 font-display text-[1.85rem] sm:text-[2.9rem] leading-[1.06] max-w-2xl">
-          {h1a}{h1b && <> <span className="text-next">{h1b}</span></>}
-        </h1>
-        <p className="mt-4 text-band-muted max-w-xl">{t.heroSub}</p>
+    <div className="max-w-6xl mx-auto px-4">
+      <div className="pt-8 sm:pt-14 pb-12 grid gap-10 lg:gap-16 lg:grid-cols-[1fr_1fr] items-start">
+        <section>
+          <h1 className="font-display text-[2.1rem] sm:text-[3.25rem] leading-[1.08] max-w-xl">{t.heroTitle}</h1>
+          <p className="mt-4 text-muted text-[1.05rem] max-w-lg">{t.heroSub}</p>
 
-        <nav aria-label={t.catTitle} className="lg:hidden mt-6 grid grid-cols-2 gap-2">
-          {AREAS.filter((a) => !SOON.includes(a)).map((a) => (
-            <Link key={a} to={`/browse?area=${a}`}
-              className="flex items-center gap-2.5 min-h-12 rounded-lg border border-on-band/20 bg-on-band/5 px-3 text-sm font-medium text-on-band hover:bg-on-band/10">
-              <span className="text-next shrink-0"><CatIcon k={a} size={22} /></span>
-              <span className="leading-tight">{t.areas[a]}</span>
-            </Link>
-          ))}
-        </nav>
-
-        <form onSubmit={(e) => { e.preventDefault(); go() }} className="mt-7 space-y-3 rounded-2xl bg-card text-ink p-3 sm:p-4 shadow-2xl shadow-black/20">
-          <label htmlFor="q" className="sr-only">{t.askLabel}</label>
-          <div className="flex gap-2 items-start">
-          <textarea
-            id="q" rows={2} maxLength={300} value={text} onChange={(e) => { setText(e.target.value); setShowSug(true) }}
-            aria-autocomplete="list" aria-controls="q-suggest" aria-expanded={sugg.length > 0}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); go() }
-              if (e.key === 'ArrowDown' && sugg.length) { e.preventDefault(); document.querySelector('#q-suggest a')?.focus() }
-              if (e.key === 'Escape') setShowSug(false)
-            }}
-            placeholder={t.askPlaceholder}
-            className="w-full rounded-lg border border-line bg-paper px-4 py-3 text-base resize-none focus:border-accent outline-none"
-          />
-          <MicButton onText={(said) => { setText(said); go(said) }} onError={setError} />
-          </div>
-          <Suggestions id="q-suggest" items={sugg} query={text} onClose={() => setShowSug(false)} />
-          <fieldset className="grid grid-cols-2 gap-3 pt-1">
-            <legend className="text-sm text-muted mb-1.5">{t.whereBiz}</legend>
-            <label className="text-xs text-muted">{t.state}
-              <select value={state} onChange={(e) => { const s = e.target.value; setState(s); setCity(places.find((p) => p.state === s)?.cities[0]?.city || '') }}
-                className="mt-1 block w-full rounded-lg border border-line bg-card px-3 py-2.5 text-sm text-ink">
-                {places.map((p) => <option key={p.state} value={p.state}>{tr(p, 'state', lang)}{p.covered ? '' : ` (${t.partial})`}</option>)}
-              </select>
-            </label>
-            <label className="text-xs text-muted">{t.city}
-              <select value={city} onChange={(e) => setCity(e.target.value)}
-                className="mt-1 block w-full rounded-lg border border-line bg-card px-3 py-2.5 text-sm text-ink">
-                {cities.map((c) => <option key={c.city} value={c.city}>{c.city}{c.covered ? '' : ` (${t.partial})`}</option>)}
-              </select>
-            </label>
-          </fieldset>
-          {(() => {
-            const want = places.find((p) => p.state === state)?.lang
-            const l = LANGS.find((x) => x.code === want)
-            return l && want !== lang ? (
-              <button type="button" lang={want} onClick={() => setLang(want)}
-                className="inline-flex items-center gap-2 min-h-11 rounded-full border border-line bg-card px-4 text-sm hover:border-accent">
-                {({ en: 'View in English', hi: 'हिन्दी में देखें', mr: 'मराठीत पहा', kn: 'ಕನ್ನಡದಲ್ಲಿ ನೋಡಿ', gu: 'ગુજરાતીમાં જુઓ', ta: 'தமிழில் பார்க்க' })[want]}{l.beta ? ' (Beta)' : ''}
+          <form onSubmit={(e) => { e.preventDefault(); go() }} className="mt-8 space-y-4">
+            <label htmlFor="q" className="block font-semibold">{t.askLabel}</label>
+            <div className="flex gap-2 items-stretch -mt-2">
+              <textarea
+                id="q" rows={2} maxLength={300} value={text} onChange={(e) => { setText(e.target.value); setShowSug(true) }}
+                aria-autocomplete="list" aria-controls="q-suggest" aria-expanded={sugg.length > 0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); go() }
+                  if (e.key === 'ArrowDown' && sugg.length) { e.preventDefault(); document.querySelector('#q-suggest a')?.focus() }
+                  if (e.key === 'Escape') setShowSug(false)
+                }}
+                placeholder={t.askPlaceholder}
+                className="w-full rounded-[3px] border-[1.5px] border-ink/70 bg-card px-4 py-3 text-base resize-none focus:border-accent outline-none"
+              />
+              <MicButton onText={(said) => { setText(said); go(said) }} onError={setError} />
+            </div>
+            <Suggestions id="q-suggest" items={sugg} query={text} onClose={() => setShowSug(false)} />
+            <fieldset className="grid grid-cols-2 gap-3">
+              <legend className="text-sm text-muted mb-1.5">{t.whereBiz}</legend>
+              <label className="text-xs text-muted">{t.state}
+                <select value={state} onChange={(e) => { const s = e.target.value; setState(s); setCity(places.find((p) => p.state === s)?.cities[0]?.city || '') }}
+                  className="mt-1 block w-full rounded-[3px] border border-line bg-card px-3 py-2.5 text-sm text-ink">
+                  {places.map((p) => <option key={p.state} value={p.state}>{tr(p, 'state', lang)}{p.covered ? '' : ` (${t.partial})`}</option>)}
+                </select>
+              </label>
+              <label className="text-xs text-muted">{t.city}
+                <select value={city} onChange={(e) => setCity(e.target.value)}
+                  className="mt-1 block w-full rounded-[3px] border border-line bg-card px-3 py-2.5 text-sm text-ink">
+                  {cities.map((c) => <option key={c.city} value={c.city}>{c.city}{c.covered ? '' : ` (${t.partial})`}</option>)}
+                </select>
+              </label>
+            </fieldset>
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+              <button disabled={loading} className="min-h-12 px-7 rounded-[3px] bg-ink text-paper font-semibold disabled:opacity-60 hover:bg-accent">
+                {loading ? t.finding : t.showRoadmap}
               </button>
-            ) : null
-          })()}
-          <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-            <button disabled={loading} className="sm:shrink-0 sm:px-8 min-h-12 rounded-lg bg-accent text-on-accent text-base font-semibold disabled:opacity-60 inline-flex items-center justify-center gap-2">
-              {loading ? t.finding : t.showRoadmap}<span aria-hidden>→</span>
-            </button>
-            <p className="text-xs text-muted">{t.onlyMumbai}</p>
-          </div>
-          {error && <p role="alert" className="text-sm text-warn">{error}</p>}
-        </form>
+              {wantLang && want !== lang && (
+                <button type="button" lang={want} onClick={() => setLang(want)} className="min-h-11 text-sm underline underline-offset-4 decoration-line hover:decoration-ink">
+                  {({ en: 'View in English', hi: 'हिन्दी में देखें', mr: 'मराठीत पहा', kn: 'ಕನ್ನಡದಲ್ಲಿ ನೋಡಿ', gu: 'ગુજરાતીમાં જુઓ', ta: 'தமிழில் பார்க்க' })[want]}{wantLang.beta ? ' (Beta)' : ''}
+                </button>
+              )}
+            </div>
+            <p className="text-xs text-muted max-w-md">{t.onlyMumbai}</p>
+            {error && <p role="alert" className="text-sm text-warn">{error}</p>}
+          </form>
 
-        {miss && (
-          <div role="status" className="mt-6 rounded-xl border border-warn/40 bg-card p-5">
-            <p className="font-medium">{t.notCoveredTitle}</p>
-            <p className="text-sm text-muted mt-2">{t.supportedNow}</p>
-            <ul className="mt-2 space-y-1">
-              {journeys.map((j) => (
-                <li key={j.task_id}><Link to={`/task/${j.task_id}${loc}`} className="text-sm text-accent underline underline-offset-2">{tr(j, 'title', lang)}</Link></li>
+          {miss && (
+            <div role="status" className="mt-6 border-l-2 border-warn pl-4 py-1">
+              <p className="font-medium">{t.notCoveredTitle}</p>
+              <p className="text-sm text-muted mt-2">{t.supportedNow}</p>
+              <ul className="mt-2 space-y-1">
+                {journeys.map((j) => (
+                  <li key={j.task_id}><Link to={`/task/${j.task_id}${loc}`} className="text-sm text-accent underline underline-offset-2">{tr(j, 'title', lang)}</Link></li>
+                ))}
+              </ul>
+              <a href={`mailto:${CONTACT}?subject=${encodeURIComponent('Please add: ' + text.slice(0, 80))}`}
+                className="mt-4 inline-block text-sm underline underline-offset-2 text-muted hover:text-ink">{t.suggest}</a>
+            </div>
+          )}
+        </section>
+
+        {/* The product itself: a real roadmap from our data, not a mock-up. */}
+        <section aria-labelledby="sample" className="border border-ink/80 bg-card">
+          <div className="px-5 pt-4 border-b border-line">
+            <p className="text-xs text-muted">{t.sampleLabel}</p>
+            <div role="tablist" aria-label={t.sampleLabel} className="mt-1 flex flex-wrap gap-x-5 -mb-px">
+              {samples.map((j) => (
+                <button key={j.task_id} type="button" role="tab" aria-selected={sampleId === j.task_id} onClick={() => setSampleId(j.task_id)}
+                  className={`shrink-0 min-h-11 border-b-2 text-sm ${sampleId === j.task_id ? 'border-stamp text-ink font-semibold' : 'border-transparent text-muted hover:text-ink'}`}>
+                  {tr(j, 'title', lang)}
+                </button>
               ))}
-            </ul>
-            <a href={`mailto:${CONTACT}?subject=${encodeURIComponent('Please add: ' + text.slice(0, 80))}`}
-              className="mt-4 inline-block text-sm underline underline-offset-2 text-muted hover:text-ink">{t.suggest}</a>
+            </div>
           </div>
-        )}
-      </section>
-
-      <section aria-labelledby="ready" className="rounded-2xl bg-card text-ink p-5 sm:p-6 shadow-2xl shadow-black/20">
-        <h2 id="ready" className="text-xl">{t.previewTitle}</h2>
-        <p className="text-sm text-muted mt-1">{t.previewSub}</p>
-        <ul className="mt-5 space-y-3">
-          {popular.map((j) => {
-            const d = details[j.task_id]
-            const groups = d ? stages(d.steps) : []
-            const forms = d ? d.steps.filter((x) => x.type === 'form').length : 0
-            const visits = d ? d.steps.filter((x) => x.type === 'visit').length : 0
-            return (
-              <li key={j.task_id}>
-                <Link to={`/task/${j.task_id}${loc}`} className="group block rounded-lg border border-line hover:border-accent p-4">
-                  <span className="flex items-baseline justify-between gap-3">
-                    <span className="font-semibold group-hover:text-accent">{tr(j, 'title', lang)}</span>
-                    <span aria-hidden className="text-accent">→</span>
+          <div role="tabpanel" className="px-5 py-4">
+            <h2 id="sample" className="text-xl">{sample ? tr(sample, 'title', lang) : '…'}</h2>
+            <ol className="mt-3">
+              {steps.map((s, i) => (
+                <li key={s.id} className="grid grid-cols-[2rem_1fr] gap-x-2 py-3 border-t border-line first:border-t-0">
+                  <span className="font-display text-lg text-stamp tabular-nums leading-6">{i + 1}</span>
+                  <span>
+                    <span className="block font-medium leading-6">{tr(s, 'name', lang)}</span>
+                    <span className="block text-sm text-muted">
+                      {t.types?.[s.type] || s.type}{s.office ? ` · ${tr(s, 'office', lang)}` : ''}
+                    </span>
                   </span>
-                  {d && (
-                    <>
-                      <span aria-hidden className="mt-3 flex items-center gap-1">
-                        {groups.map((g, i) => (
-                          <span key={i} className="flex items-center gap-1">
-                            {i > 0 && <span className="w-3 h-0.5 bg-line" />}
-                            <span className={`h-6 min-w-6 px-1.5 rounded-full grid place-items-center text-[11px] font-semibold ${i === 0 ? 'bg-next text-on-next' : 'border border-line text-muted'}`}>{g.length}</span>
-                          </span>
-                        ))}
-                      </span>
-                      <span className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted tabular-nums">
-                        <span><b className="text-ink">{d.steps.length}</b> {t.stepsWord}</span>
-                        <span><b className="text-ink">{forms}</b> {t.onlineForms}</span>
-                        <span><b className="text-ink">{visits}</b> {t.officeVisits}</span>
-                      </span>
-                    </>
-                  )}
-                </Link>
+                </li>
+              ))}
+            </ol>
+          </div>
+          <div className="flex items-center min-h-12 px-5 border-t border-ink/80">
+            <SweepLink to={`/task/${sampleId}${loc}`} className="font-semibold pb-0.5">{t.openFull}</SweepLink>
+          </div>
+        </section>
+      </div>
+
+      <section aria-labelledby="cats" className="border-t border-ink/80 pt-8 pb-14">
+        <div className="flex flex-wrap items-baseline justify-between gap-3">
+          <h2 id="cats" className="text-2xl sm:text-3xl">{t.catTitle}</h2>
+          <SweepLink to="/browse" className="text-sm font-semibold pb-0.5">{t.seeAllPlain(journeys.length)}</SweepLink>
+        </div>
+        <ul className="mt-6 grid lg:grid-cols-2 lg:gap-x-12">
+          {AREAS.map((a) => {
+            const soon = SOON.includes(a)
+            const inner = (
+              <>
+                <span className={soon ? 'text-muted' : 'text-ink'}><CatIcon k={a} size={24} /></span>
+                <span className="min-w-0">
+                  <span className="block font-semibold leading-snug">{t.areas[a]}</span>
+                  <span className="block text-sm text-muted">{t.areaHint[a]}</span>
+                </span>
+                <span className="text-sm text-muted tabular-nums text-right">{soon ? t.comingSoon : t.nProcedures(count(a))}</span>
+              </>
+            )
+            const cls = 'grid grid-cols-[1.75rem_1fr_auto] items-center gap-3 py-4 border-b border-line'
+            return (
+              <li key={a}>
+                {soon ? <div className={`${cls} opacity-70`}>{inner}</div>
+                  : <Link to={`/browse?area=${a}`} className={`${cls} hover:bg-card -mx-2 px-2`}>{inner}</Link>}
               </li>
             )
           })}
         </ul>
-        <Link to="/browse" className="mt-4 flex items-center justify-center min-h-11 rounded-lg border border-line text-sm font-medium text-accent hover:border-accent">
-          {t.seeAll(journeys.length)} <span aria-hidden className="ml-1.5">→</span>
-        </Link>
-        <ul className="mt-5 pt-4 border-t border-line flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted">
-          {t.trust.map((line) => <li key={line}>✓ {line}</li>)}
-        </ul>
       </section>
-      </div>
-      </div>
-        <section aria-labelledby="cats" className="max-w-6xl mx-auto px-4 py-12 sm:py-16">
-            <p className="eyebrow text-accent">{t.catSub.replace(/[.।]$/, "")}</p>
-            <h2 id="cats" className="mt-2 text-2xl sm:text-3xl">{t.catTitle}</h2>
-            <ul className="mt-6 grid gap-3 grid-cols-[repeat(auto-fill,minmax(min(100%,9.5rem),1fr))] sm:grid-cols-2 lg:grid-cols-3">
-            {AREAS.map((a) => {
-              const soon = SOON.includes(a)
-              const inner = (
-                <>
-                  <span className={soon ? 'text-muted' : 'text-accent'}><CatIcon k={a} size={34} /></span>
-                  <span className="min-w-0">
-                    <span className="block font-semibold leading-snug group-hover:underline underline-offset-4">{t.areas[a]}</span>
-                    <span className="block text-sm text-muted mt-0.5">{t.areaHint[a]}</span>
-                    <span className="block text-xs text-muted mt-2 tabular-nums">{soon ? t.comingSoon : t.nProcedures(count(a))}</span>
-                  </span>
-                </>
-              )
-              return (
-                <li key={a}>
-                  {soon ? (
-                    <div className="h-full flex flex-col gap-3 rounded-xl border border-dashed border-line p-4">{inner}</div>
-                  ) : (
-                    <Link to={`/browse?area=${a}`} className="group h-full flex flex-col gap-3 rounded-xl border border-line bg-card p-4 hover:border-ink transition-colors">{inner}</Link>
-                  )}
-                </li>
-              )
-            })}
-          </ul>
-        </section>
-    </>
+    </div>
   )
 }

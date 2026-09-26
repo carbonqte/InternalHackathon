@@ -2,13 +2,14 @@
 
 @theme {
   --font-sans: "Mukta", "Noto Sans Kannada", "Noto Sans Gujarati", "Noto Sans Tamil", system-ui, sans-serif;
-  --font-display: "Bricolage Grotesque", "Mukta", "Noto Sans Kannada", "Noto Sans Gujarati", "Noto Sans Tamil", system-ui, sans-serif;
+  --font-display: "Source Serif 4", "Mukta", "Noto Sans Kannada", "Noto Sans Gujarati", "Noto Sans Tamil", system-ui, sans-serif;
   --color-paper: #f7f5f0;
   --color-ink: #14203a;
   --color-muted: #4f5a6b;
   --color-line: #dcd7cc;
   --color-accent: #1f45a0;
   --color-accent-soft: #e7ecf8;
+  --color-stamp: #a3281c;
   --color-band: #13223f;
   --color-on-band: #f7f5f0;
   --color-band-muted: #c3cbdb;
@@ -27,12 +28,12 @@
   color-scheme: dark;
   --color-paper: #0d1420; --color-card: #151e2d; --color-ink: #e8edf5; --color-muted: #a3afc0;
   --color-line: #2c384b; --color-grid: #182232; --color-accent: #8fb1ff; --color-accent-soft: #1b2a4a;
-  --color-on-accent: #0a1222; --color-band: #182a4d; --color-on-band: #eef2f8; --color-band-muted: #aab6c9; --color-done: #6fd39a; --color-lock: #a3afc0; --color-warn: #f2a867;
+  --color-on-accent: #0a1222; --color-stamp: #ff8f7f; --color-band: #182a4d; --color-on-band: #eef2f8; --color-band-muted: #aab6c9; --color-done: #6fd39a; --color-lock: #a3afc0; --color-warn: #f2a867;
 }
 :root[data-theme="contrast"] {
   --color-paper: #ffffff; --color-card: #ffffff; --color-ink: #000000; --color-muted: #262626;
   --color-line: #000000; --color-grid: #e6e6e6; --color-accent: #0a2f80; --color-accent-soft: #dbe5fb;
-  --color-on-accent: #ffffff; --color-band: #000000; --color-on-band: #ffffff; --color-band-muted: #ffffff; --color-done: #0a5a2b; --color-lock: #3a3a3a; --color-warn: #7a3300;
+  --color-on-accent: #ffffff; --color-stamp: #8a0000; --color-band: #000000; --color-on-band: #ffffff; --color-band-muted: #ffffff; --color-done: #0a5a2b; --color-lock: #3a3a3a; --color-warn: #7a3300;
 }
 :root[data-theme="contrast"] :focus-visible { outline-width: 3px; }
 /* React Flow's zoom buttons use their own colours */
@@ -40,7 +41,7 @@
 
 html[data-textsize="l"] { font-size: 112.5%; }
 html[data-textsize="xl"] { font-size: 125%; }
-h1, h2, .font-display { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.025em; }
+h1, h2, .font-display { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.012em; }
 body { background: var(--color-paper); color: var(--color-ink); font-family: var(--font-sans); }
 :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
 

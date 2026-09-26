@@ -291,6 +291,13 @@ Object.assign(dict.kn, { eyebrow: 'ಭಾರತೀಯ ಸರ್ಕಾರಿ ಸ�
 Object.assign(dict.gu, { eyebrow: 'ભારતીય સરકારી સેવાઓ માટે તમારી માર્ગદર્શિકા', display: 'દેખાવ' })
 Object.assign(dict.ta, { eyebrow: 'இந்திய அரசு சேவைகளுக்கான உங்கள் வழிகாட்டி', display: 'காட்சி' })
 
+Object.assign(dict.en, { heroTitle: 'Which office first, which form next.', heroSub: 'Passport, driving licence, Aadhaar update, a shop or food licence. Type what you need and get the government steps in the order they have to happen, each with its official link.', askLabel: 'What do you need done?', sampleLabel: 'Example roadmap', openFull: 'Open the full roadmap', seeAllPlain: (n) => `All ${n} procedures` })
+Object.assign(dict.hi, { heroTitle: 'पहले कौन सा दफ़्तर, फिर कौन सा फ़ॉर्म।', heroSub: 'पासपोर्ट, ड्राइविंग लाइसेंस, आधार अपडेट, दुकान या फ़ूड लाइसेंस। बताइए आपको क्या चाहिए, और सरकारी कदम उसी क्रम में पाइए जिसमें उन्हें होना है, हर कदम के आधिकारिक लिंक के साथ।', askLabel: 'आपको क्या करवाना है?', sampleLabel: 'उदाहरण रोडमैप', openFull: 'पूरा रोडमैप खोलें', seeAllPlain: (n) => `सभी ${n} प्रक्रियाएँ` })
+Object.assign(dict.mr, { heroTitle: 'आधी कोणते कार्यालय, मग कोणता अर्ज.', heroSub: 'पासपोर्ट, ड्रायव्हिंग लायसन्स, आधार अपडेट, दुकान किंवा खाद्य परवाना. तुम्हाला काय हवे ते लिहा, आणि सरकारी टप्पे ज्या क्रमाने व्हायला हवेत त्या क्रमाने, प्रत्येकाच्या अधिकृत लिंकसह मिळवा.', askLabel: 'तुम्हाला काय करायचे आहे?', sampleLabel: 'उदाहरण रोडमॅप', openFull: 'संपूर्ण रोडमॅप उघडा', seeAllPlain: (n) => `सर्व ${n} प्रक्रिया` })
+Object.assign(dict.kn, { sampleLabel: 'ಉದಾಹರಣೆ ಮಾರ್ಗಸೂಚಿ', openFull: 'ಪೂರ್ಣ ಮಾರ್ಗಸೂಚಿ ತೆರೆಯಿರಿ', seeAllPlain: (n) => `ಎಲ್ಲಾ ${n} ಪ್ರಕ್ರಿಯೆಗಳು` })
+Object.assign(dict.gu, { sampleLabel: 'ઉદાહરણ રોડમેપ', openFull: 'પૂરો રોડમેપ ખોલો', seeAllPlain: (n) => `બધી ${n} પ્રક્રિયાઓ` })
+Object.assign(dict.ta, { sampleLabel: 'எடுத்துக்காட்டு வழிவரைபடம்', openFull: 'முழு வழிவரைபடத்தைத் திற', seeAllPlain: (n) => `அனைத்து ${n} நடைமுறைகளும்` })
+
 // English fills any gap in a translation, including nested groups like t.cats.
 const cache = {}
 function withFallback(lang) {

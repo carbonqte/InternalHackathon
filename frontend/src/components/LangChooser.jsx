@@ -9,14 +9,14 @@ export default function LangChooser() {
   if (!open) return null
   const done = (code) => { if (code) setLang(code); try { localStorage.setItem('langChosen', '1') } catch { /* private mode */ } setOpen(false) }
   return (
-    <section aria-labelledby="lang-bar" className="bg-accent-soft border-b border-line">
+    <section aria-labelledby="lang-bar" className="bg-card border-b border-line">
       <div className="max-w-6xl mx-auto px-4 py-2 flex items-center gap-3">
         <h2 id="lang-bar" aria-label="Choose your language" className="!font-sans !tracking-normal text-sm font-semibold shrink-0 hidden md:block">Choose your language · भाषा चुनें</h2>
         <ul aria-labelledby="lang-bar" className="flex gap-1.5 overflow-x-auto min-w-0 -my-1 py-1">
           {LANGS.map((l) => (
             <li key={l.code}>
               <button type="button" lang={l.code} onClick={() => done(l.code)} aria-pressed={lang === l.code}
-                className={`relative min-h-9 rounded-full border px-3 text-sm ${lang === l.code ? 'border-accent bg-accent text-on-accent' : 'border-line bg-card hover:border-accent'} shrink-0`}>
+                className={`relative min-h-9 rounded-[3px] border px-3 text-sm ${lang === l.code ? 'border-accent bg-accent text-on-accent' : 'border-line bg-card hover:border-accent'} shrink-0`}>
                 {l.label}{l.beta && <span className="sr-only"> (Beta)</span>}
               </button>
             </li>
