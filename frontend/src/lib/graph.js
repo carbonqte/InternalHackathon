@@ -1,0 +1,56 @@
+import dagre from '@dagrejs/dagre'
+
+export const NODE_W = 220
+export const NODE_H = 72
+
+/** Step state: done if ticked, available if every dependency is done, else locked. */
+export function stepState(step, done) {
+  if (done.has(step.id)) return 'done'
+  return step.depends_on.every((d) => done.has(d)) ? 'available' : 'locked'
+}
+
+/** Kahn's algorithm — gives a valid reading order for the list view. */
+export function topoOrder(steps) {
+  const indeg = new Map(steps.map((s) => [s.id, s.depends_on.length]))
+  const out = new Map(steps.map((s) => [s.id, []]))
+  steps.forEach((s) => s.depends_on.forEach((d) => out.get(d)?.push(s.id)))
+  const queue = steps.filter((s) => indeg.get(s.id) === 0).map((s) => s.id)
+  const order = []
+  while (queue.length) {
+    const id = queue.shift()
+    order.push(id)
+    out.get(id).forEach((n) => { indeg.set(n, indeg.get(n) - 1); if (indeg.get(n) === 0) queue.push(n) })
+  }
+  const byId = new Map(steps.map((s) => [s.id, s]))
+  return order.map((id) => byId.get(id))
+}
+
+/** Convert steps → React Flow nodes/edges with a top-to-bottom dagre layout. */
+export function toFlow(steps, done, selectedId) {
+  const g = new dagre.graphlib.Graph()
+  g.setGraph({ rankdir: 'TB', nodesep: 40, ranksep: 60 })
+  g.setDefaultEdgeLabel(() => ({}))
+  steps.forEach((s) => g.setNode(s.id, { width: NODE_W, height: NODE_H }))
+  steps.forEach((s) => s.depends_on.forEach((d) => g.setEdge(d, s.id)))
+  dagre.layout(g)
+
+  const nodes = steps.map((s) => {
+    const { x, y } = g.node(s.id)
+    return {
+      id: s.id,
+      type: 'step',
+      position: { x: x - NODE_W / 2, y: y - NODE_H / 2 },
+      data: { step: s, state: stepState(s, done), selected: s.id === selectedId },
+    }
+  })
+  const edges = steps.flatMap((s) =>
+    s.depends_on.map((d) => ({
+      id: `${d}-${s.id}`,
+      source: d,
+      target: s.id,
+      animated: done.has(d) && !done.has(s.id),
+      style: { stroke: done.has(d) ? 'var(--color-done)' : 'var(--color-line)', strokeWidth: 2 },
+    })),
+  )
+  return { nodes, edges }
+}

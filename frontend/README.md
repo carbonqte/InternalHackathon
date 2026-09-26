@@ -1,0 +1,30 @@
+# Civic Navigator — frontend (PSWB02)
+
+React + Vite + Tailwind + React Flow. Runs fully on mock data until the FastAPI backend is ready.
+
+## Run
+    npm install
+    npm run dev          # http://localhost:5173
+
+Routes: `/` search · `/task/:taskId` roadmap · `/admin` review queue.
+
+## Plugging in the backend
+Only `src/api/client.js` touches data. Replace each mock function body with a `fetch` to
+`VITE_API_BASE` (default `http://localhost:8000`) and return the same shape:
+
+| Function | Endpoint | Returns |
+|---|---|---|
+| `listTasks()` | `GET /tasks` | `[{task_id, title, city}]` |
+| `searchTask(text, city)` | `POST /query` | `{task_id}` or `{task_id: null}` |
+| `getTask(id)` | `GET /tasks/{id}` | task with **approved steps only** |
+| `getTaskAdmin(id)` | `GET /admin/tasks/{id}` | task with all steps |
+| `updateStep(taskId, stepId, fields)` | `PATCH /admin/steps/{id}` | updated step |
+| `load/saveProgress` | `GET/PUT /progress/{id}` | array of done step ids (localStorage for now) |
+
+Step shape: `{id, name, type: document|form|visit|payment|milestone, office, documents[], fee, link, status: pending|approved, depends_on[]}`.
+See `src/mock/tasks.json`.
+
+## Before the demo
+- Mock fees/steps are **sample data** — replace with scraped + admin-approved values.
+- `/admin` has **no auth** yet; protect it in the backend.
+- Backend: set CORS to the frontend origin only, keep LLM keys server-side, sanitize scraped HTML.
