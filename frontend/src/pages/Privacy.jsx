@@ -9,14 +9,15 @@ export default function Privacy() {
       <p className="text-muted">Last updated 26 September 2026</p>
       <h2 className="font-display text-lg pt-2">What we collect</h2>
       <p>
-        The text you type into the search box is sent to our server to find a matching procedure. We don't
+        The text you type into the search box, and the state and city you pick, are sent to our server to find the right procedure. We don't
         ask for your name, phone number, Aadhaar or any other identity details, and we don't use accounts
         for citizens.
       </p>
       <h2 className="font-display text-lg pt-2">What stays on your device</h2>
       <p>
-        Your progress (which steps you've ticked) is saved in your browser's local storage so it survives a
-        refresh. It isn't sent to us. Clearing your browser data removes it.
+        Your progress (which steps you've ticked), your language and your theme choice are saved in your
+        browser's local storage so they survive a refresh. None of this is sent to us. Clearing your browser
+        data removes it.
       </p>
       <h2 className="font-display text-lg pt-2">Cookies and tracking</h2>
       <p>We don't use cookies, analytics or advertising trackers. Fonts are loaded from Google Fonts.</p>
