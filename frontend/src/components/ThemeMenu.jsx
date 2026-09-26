@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { THEMES, useTheme } from '../lib/theme.js'
 import { useLang } from '../lib/i18n.jsx'
+import TextSize from './TextSize.jsx'
 
 const P = { width: 16, height: 16, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': true }
 const Icon = ({ k }) => {
@@ -45,7 +46,7 @@ export default function ThemeMenu() {
       </button>
       {open && (
         <div role="menu" aria-label={t.theme} onKeyDown={onKey}
-          className="absolute left-1/2 -translate-x-1/2 sm:left-auto sm:right-0 sm:translate-x-0 mt-2 w-48 rounded-lg border border-line bg-card p-1 shadow-lg z-50 animate-enter">
+          className="fixed inset-x-4 top-14 sm:absolute sm:inset-x-auto sm:top-auto sm:right-0 mt-2 sm:w-48 rounded-lg border border-line bg-card p-1 shadow-lg z-50 animate-enter">
           {THEMES.map((k) => (
             <button key={k} type="button" role="menuitemradio" aria-checked={theme === k}
               onClick={() => { setTheme(k); setOpen(false); btn.current?.focus() }}
@@ -54,6 +55,10 @@ export default function ThemeMenu() {
               {theme === k && <span className="ml-auto" aria-hidden>✓</span>}
             </button>
           ))}
+          <div className="sm:hidden border-t border-line mt-1 pt-2 px-2 pb-1">
+            <p className="text-xs text-muted mb-1.5">{t.textSize}</p>
+            <TextSize />
+          </div>
         </div>
       )}
     </div>

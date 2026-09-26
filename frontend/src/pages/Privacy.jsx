@@ -20,7 +20,7 @@ export default function Privacy() {
         data removes it.
       </p>
       <h2 className="font-display text-lg pt-2">Cookies and tracking</h2>
-      <p>We don't use cookies, analytics or advertising trackers. Fonts are loaded from Google Fonts.</p>
+      <p>We don't use cookies or advertising trackers. We count page visits with Vercel Web Analytics, which uses no cookies and doesn't identify you. Fonts are loaded from Google Fonts.</p>
       <h2 className="font-display text-lg pt-2">Your rights</h2>
       <p>
         We aim to follow India's Digital Personal Data Protection Act, 2023. To ask about or delete any data

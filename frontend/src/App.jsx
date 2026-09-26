@@ -1,8 +1,10 @@
+import { lazy, Suspense } from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import Home from './pages/Home.jsx'
-import Roadmap from './pages/Roadmap.jsx'
-import Admin from './pages/Admin.jsx'
-import Privacy from './pages/Privacy.jsx'
+// The graph library is only needed on roadmap pages, so it loads when one opens.
+const Roadmap = lazy(() => import('./pages/Roadmap.jsx'))
+const Admin = lazy(() => import('./pages/Admin.jsx'))
+const Privacy = lazy(() => import('./pages/Privacy.jsx'))
 import NotFound from './pages/NotFound.jsx'
 import Browse from './pages/Browse.jsx'
 import LangChooser from './components/LangChooser.jsx'
@@ -23,7 +25,7 @@ export default function App() {
             <span className="hidden md:inline text-xs text-muted truncate">{t.notGov}</span>
           </span>
           <div className="flex flex-wrap items-center gap-2 sm:gap-4">
-            <TextSize />
+            <span className="hidden sm:flex"><TextSize /></span>
             <ThemeMenu />
             <label htmlFor="lang" className="sr-only">{t.language}</label>
             <select id="lang" value={lang} onChange={(e) => setLang(e.target.value)}
@@ -35,6 +37,7 @@ export default function App() {
         </nav>
       </header>
       <main id="main" tabIndex={-1} className="flex-1 outline-none">
+        <Suspense fallback={<p className="max-w-6xl mx-auto px-4 py-12 text-muted" aria-busy="true">…</p>}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/task/:taskId" element={<Roadmap />} />
@@ -43,6 +46,7 @@ export default function App() {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </Suspense>
       </main>
       <footer className="border-t border-line text-xs text-muted">
         <div className="max-w-6xl mx-auto px-4 py-4 space-y-2">

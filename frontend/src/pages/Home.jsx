@@ -50,8 +50,18 @@ export default function Home() {
     <>
       <div className="max-w-6xl mx-auto px-4 pt-10 sm:pt-16 pb-12 grid gap-10 lg:grid-cols-[1.15fr_1fr] items-start">
       <section>
-        <h1 className="font-display text-3xl sm:text-[2.75rem] leading-[1.1] max-w-xl">{t.heroTitle}</h1>
-        <p className="mt-4 text-muted">{t.heroSub}</p>
+        <h1 className="font-display text-[1.7rem] sm:text-[2.75rem] leading-[1.15] max-w-xl">{t.heroTitle}</h1>
+        <p className="mt-3 sm:mt-4 text-muted">{t.heroSub}</p>
+
+        <nav aria-label={t.catTitle} className="lg:hidden mt-5 grid grid-cols-2 gap-2">
+          {AREAS.filter((a) => !SOON.includes(a)).map((a) => (
+            <Link key={a} to={`/browse?area=${a}`}
+              className="flex items-center gap-2.5 min-h-12 rounded-lg border border-line bg-card px-3 text-sm font-medium hover:border-ink">
+              <span className="text-accent shrink-0"><CatIcon k={a} size={22} /></span>
+              <span className="leading-tight">{t.areas[a]}</span>
+            </Link>
+          ))}
+        </nav>
 
         <form onSubmit={(e) => { e.preventDefault(); go() }} className="mt-8 space-y-3">
           <label htmlFor="q" className="sr-only">{t.askLabel}</label>
@@ -118,7 +128,7 @@ export default function Home() {
               className="mt-4 inline-block text-sm underline underline-offset-2 text-muted hover:text-ink">{t.suggest}</a>
           </div>
         )}
-        <section aria-labelledby="cats" className="mt-12">
+        <section aria-labelledby="cats" className="hidden lg:block mt-12">
             <h2 id="cats" className="text-xl">{t.catTitle}</h2>
             <p className="text-muted mt-1">{t.catSub}</p>
             <ul className="mt-6 grid gap-3 grid-cols-[repeat(auto-fill,minmax(min(100%,9.5rem),1fr))] sm:grid-cols-2">

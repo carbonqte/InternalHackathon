@@ -4,9 +4,10 @@ import { BrowserRouter } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
 import { LangProvider } from './lib/i18n.jsx'
+import { Analytics } from '@vercel/analytics/react'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter><LangProvider><App /></LangProvider></BrowserRouter>
+    <BrowserRouter><LangProvider><App /><Analytics /></LangProvider></BrowserRouter>
   </StrictMode>,
 )
