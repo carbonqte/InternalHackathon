@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { searchTask } from '../api/client.js'
 
 const examples = ['Start a cloud kitchen', 'Open a small shop', 'Register my startup for GST']
 
 export default function Home() {
+  useEffect(() => { document.title = 'Civic Navigator' }, [])
   const [text, setText] = useState('')
   const [city, setCity] = useState('Mumbai')
   const [error, setError] = useState('')
@@ -26,7 +27,7 @@ export default function Home() {
   return (
     <section className="max-w-2xl mx-auto px-4 pt-16 sm:pt-24 pb-16">
       <h1 className="font-display text-3xl sm:text-5xl leading-tight">
-        Know every form, office and fee — before you start.
+        Know every form, office and fee before you start.
       </h1>
       <p className="mt-4 text-muted">
         Describe what you want to do. We map the government steps in the order they have to happen,

@@ -15,7 +15,7 @@ export default function Roadmap() {
 
   useEffect(() => {
     getTask(taskId)
-      .then((t) => { setTask(t); setSelected(t.steps.find((s) => s.depends_on.length === 0)?.id) })
+      .then((t) => { document.title = `${t.title} · Civic Navigator`; setTask(t); setSelected(t.steps.find((s) => s.depends_on.length === 0)?.id) })
       .catch(() => setError('This roadmap could not be loaded.'))
   }, [taskId])
 
@@ -34,7 +34,17 @@ export default function Roadmap() {
   }
 
   if (error) return <p className="max-w-6xl mx-auto px-4 py-12">{error} <Link to="/" className="text-accent underline">Go back</Link></p>
-  if (!task) return <p className="max-w-6xl mx-auto px-4 py-12 text-muted">Loading roadmap…</p>
+  if (!task) return (
+    <section aria-busy="true" aria-label="Loading roadmap" className="max-w-6xl mx-auto px-4 py-8 animate-pulse">
+      <div className="h-4 w-24 rounded bg-line" />
+      <div className="mt-4 h-8 w-72 max-w-full rounded bg-line" />
+      <div className="mt-6 h-2 rounded bg-line" />
+      <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_320px]">
+        <div className="h-[420px] rounded-xl bg-line/60" />
+        <div className="h-56 rounded-xl bg-line/60" />
+      </div>
+    </section>
+  )
 
   const pct = Math.round((done.size / task.steps.length) * 100)
   const step = task.steps.find((s) => s.id === selected)

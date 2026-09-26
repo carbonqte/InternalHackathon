@@ -9,7 +9,7 @@ export function stepState(step, done) {
   return step.depends_on.every((d) => done.has(d)) ? 'available' : 'locked'
 }
 
-/** Kahn's algorithm — gives a valid reading order for the list view. */
+/** Kahn's algorithm: gives a valid reading order for the list view. */
 export function topoOrder(steps) {
   const indeg = new Map(steps.map((s) => [s.id, s.depends_on.length]))
   const out = new Map(steps.map((s) => [s.id, []]))

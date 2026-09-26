@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { ReactFlow, Background, Controls } from '@xyflow/react'
+import { ReactFlow, Background, BackgroundVariant, Controls } from '@xyflow/react'
 import '@xyflow/react/dist/style.css'
 import StepNode from './StepNode.jsx'
 import { toFlow } from '../lib/graph.js'
@@ -20,7 +20,7 @@ export default function RoadmapGraph({ steps, done, selectedId, onSelect }) {
         fitView
         proOptions={{ hideAttribution: true }}
       >
-        <Background color="var(--color-line)" gap={20} />
+        <Background variant={BackgroundVariant.Lines} color="#efe9dd" gap={40} />
         <Controls showInteractive={false} />
       </ReactFlow>
     </div>

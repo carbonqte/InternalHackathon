@@ -7,13 +7,19 @@ export default function Admin() {
   const [taskId, setTaskId] = useState('')
   const [task, setTask] = useState(null)
   const [editing, setEditing] = useState(null)
+  const [busy, setBusy] = useState(false)
 
+  useEffect(() => { document.title = 'Admin review · Civic Navigator' }, [])
   useEffect(() => { listTasks().then((t) => { setTasks(t); setTaskId(t[0]?.task_id) }) }, [])
   useEffect(() => { if (taskId) getTaskAdmin(taskId).then(setTask) }, [taskId])
 
   async function save(stepId, fields) {
-    await updateStep(taskId, stepId, fields)
-    setTask(await getTaskAdmin(taskId)); setEditing(null)
+    if (busy) return
+    setBusy(true)
+    try {
+      await updateStep(taskId, stepId, fields)
+      setTask(await getTaskAdmin(taskId)); setEditing(null)
+    } finally { setBusy(false) }
   }
 
   const pending = task?.steps.filter((s) => s.status === 'pending').length ?? 0
@@ -23,9 +29,9 @@ export default function Admin() {
       <h1 className="font-display text-2xl">Review extracted steps</h1>
       <p className="text-sm text-muted mt-1">Scraped steps stay hidden from citizens until approved here.</p>
 
-      <div className="mt-6 flex items-center gap-3">
+      <div className="mt-6 flex flex-wrap items-center gap-3">
         <label htmlFor="task" className="text-sm text-muted">Procedure</label>
-        <select id="task" value={taskId} onChange={(e) => setTaskId(e.target.value)} className="rounded-lg border border-line bg-white px-3 py-2 text-sm">
+        <select id="task" value={taskId} onChange={(e) => setTaskId(e.target.value)} className="max-w-full min-w-0 rounded-lg border border-line bg-white px-3 py-2 text-sm">
           {tasks.map((t) => <option key={t.task_id} value={t.task_id}>{t.title}</option>)}
         </select>
         {pending > 0 && <span className="text-xs rounded bg-warn/10 text-warn px-2 py-1">{pending} pending</span>}

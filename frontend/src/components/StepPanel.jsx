@@ -23,7 +23,7 @@ export default function StepPanel({ step, steps, done, onToggle }) {
         )}
       </dl>
 
-      {step.link && (
+      {isSafeUrl(step.link) && (
         <a href={step.link} target="_blank" rel="noopener noreferrer" className="inline-block text-sm text-accent underline underline-offset-2">
           Official source ↗
         </a>
@@ -43,6 +43,10 @@ export default function StepPanel({ step, steps, done, onToggle }) {
       )}
     </div>
   )
+}
+
+function isSafeUrl(u) {
+  try { return ['https:', 'http:'].includes(new URL(u).protocol) } catch { return false }
 }
 
 const Row = ({ label, children }) => (
