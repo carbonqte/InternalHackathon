@@ -32,3 +32,9 @@ body { background: var(--color-paper); color: var(--color-ink); font-family: var
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; }
 }
+
+@media print {
+  header, footer, .no-print, .react-flow__controls { display: none !important; }
+  body { background: #fff; }
+  main section { padding-top: 0; }
+}

@@ -115,3 +115,54 @@ export const useLang = () => useContext(Ctx)
 
 /** Pick a translated field from data, e.g. tr(step, 'name', 'hi') → step.name_hi ?? step.name */
 export const tr = (obj, field, lang) => (lang !== 'en' && obj?.[`${field}_${lang}`]) || obj?.[field]
+
+// Added with the trust / readability pass.
+Object.assign(dict.en, {
+  notGov: 'Not a government website', free: 'Free', moreCities: 'More cities coming soon', noFee: 'No government fee',
+  feeUnknown: 'Fee not confirmed. Check the official source before paying.',
+  timeUnknown: 'Not confirmed yet',
+  processing: 'Time', required: 'Required', conditional: 'Only if it applies to you', optional: 'Optional',
+  checked: 'Checked', openPortal: 'Open official portal', notOfficialDomain: 'This link is not a government (.gov.in) website. Double-check it.',
+  report: 'Report outdated information', completed: 'Completed', undo: 'Undo',
+  startHere: 'Start here', legend: 'Key', legAvail: 'Can start now', legDone: 'Completed', legLocked: 'Waiting on earlier steps',
+  copyLink: 'Copy link', copied: 'Link copied', print: 'Print checklist', verifiedLabel: 'Last verified',
+  popular: 'Popular journeys', onlyMumbai: 'Currently available in Mumbai only. More cities coming.',
+  howTitle: 'How it works', how: ['Describe what you want to do, in your own words.', 'Get every step in the right order, with what to bring.', 'Open the official portal for each step and tick it off.'],
+  trust: ['Links to official sources', 'Free to use', 'No login needed', 'Every step shows when it was checked'],
+  notCoveredTitle: "We don't have that procedure yet.", supportedNow: 'Available right now:', suggest: 'Suggest a procedure we should add',
+})
+Object.assign(dict.hi, {
+  notGov: 'यह सरकारी वेबसाइट नहीं है', free: 'मुफ़्त', moreCities: 'और शहर जल्द', noFee: 'कोई सरकारी फ़ीस नहीं',
+  feeUnknown: 'फ़ीस की पुष्टि नहीं हुई है। भुगतान से पहले आधिकारिक स्रोत देखें।',
+  timeUnknown: 'अभी पुष्टि नहीं हुई',
+  processing: 'समय', required: 'ज़रूरी', conditional: 'केवल आप पर लागू हो तो', optional: 'वैकल्पिक',
+  checked: 'जाँचा गया', openPortal: 'आधिकारिक पोर्टल खोलें', notOfficialDomain: 'यह लिंक सरकारी (.gov.in) वेबसाइट नहीं है। ध्यान से जाँचें।',
+  report: 'पुरानी जानकारी की शिकायत करें', completed: 'पूरा हुआ', undo: 'वापस लें',
+  startHere: 'यहाँ से शुरू करें', legend: 'संकेत', legAvail: 'अभी शुरू कर सकते हैं', legDone: 'पूरा', legLocked: 'पिछले कदमों का इंतज़ार',
+  copyLink: 'लिंक कॉपी करें', copied: 'लिंक कॉपी हो गया', print: 'चेकलिस्ट प्रिंट करें', verifiedLabel: 'अंतिम जाँच',
+  popular: 'लोकप्रिय प्रक्रियाएँ', onlyMumbai: 'अभी केवल मुंबई में उपलब्ध। और शहर जल्द आएँगे।',
+  howTitle: 'यह कैसे काम करता है', how: ['अपने शब्दों में बताइए कि आप क्या करना चाहते हैं।', 'हर कदम सही क्रम में पाइए, साथ में क्या लाना है वह भी।', 'हर कदम का आधिकारिक पोर्टल खोलिए और पूरा होने पर टिक कीजिए।'],
+  trust: ['आधिकारिक स्रोतों के लिंक', 'मुफ़्त', 'लॉगिन की ज़रूरत नहीं', 'हर कदम की जाँच की तारीख़'],
+  notCoveredTitle: 'यह प्रक्रिया अभी हमारे पास नहीं है।', supportedNow: 'अभी उपलब्ध:', suggest: 'कोई प्रक्रिया जोड़ने का सुझाव दें',
+})
+Object.assign(dict.mr, {
+  notGov: 'हे सरकारी संकेतस्थळ नाही', free: 'मोफत', moreCities: 'आणखी शहरे लवकरच', noFee: 'सरकारी शुल्क नाही',
+  feeUnknown: 'शुल्काची खात्री झालेली नाही. पैसे भरण्यापूर्वी अधिकृत स्रोत तपासा.',
+  timeUnknown: 'अजून खात्री नाही',
+  processing: 'वेळ', required: 'आवश्यक', conditional: 'फक्त तुम्हाला लागू असल्यास', optional: 'ऐच्छिक',
+  checked: 'तपासले', openPortal: 'अधिकृत पोर्टल उघडा', notOfficialDomain: 'ही लिंक सरकारी (.gov.in) संकेतस्थळाची नाही. नीट तपासा.',
+  report: 'जुनी माहिती कळवा', completed: 'पूर्ण झाले', undo: 'मागे घ्या',
+  startHere: 'इथून सुरुवात करा', legend: 'संकेत', legAvail: 'आता सुरू करता येईल', legDone: 'पूर्ण', legLocked: 'आधीच्या टप्प्यांची वाट',
+  copyLink: 'लिंक कॉपी करा', copied: 'लिंक कॉपी झाली', print: 'चेकलिस्ट प्रिंट करा', verifiedLabel: 'शेवटची पडताळणी',
+  popular: 'लोकप्रिय प्रक्रिया', onlyMumbai: 'सध्या फक्त मुंबईत उपलब्ध. आणखी शहरे लवकरच.',
+  howTitle: 'हे कसे काम करते', how: ['तुम्हाला काय करायचे आहे ते तुमच्या शब्दांत सांगा.', 'प्रत्येक टप्पा योग्य क्रमाने मिळवा, सोबत काय आणायचे तेही.', 'प्रत्येक टप्प्याचे अधिकृत पोर्टल उघडा आणि पूर्ण झाल्यावर टिक करा.'],
+  trust: ['अधिकृत स्रोतांच्या लिंक', 'मोफत', 'लॉगिनची गरज नाही', 'प्रत्येक टप्प्याची तपासणी तारीख'],
+  notCoveredTitle: 'ही प्रक्रिया अजून आमच्याकडे नाही.', supportedNow: 'सध्या उपलब्ध:', suggest: 'एखादी प्रक्रिया जोडण्याची सूचना द्या',
+})
+
+/** 20 Sep 2026 / २० सित॰ २०२६ style dates */
+export function fmtDate(iso, lang) {
+  try { return new Intl.DateTimeFormat(`${lang}-IN`, { day: 'numeric', month: 'short', year: 'numeric' }).format(new Date(iso)) } catch { return iso }
+}
+
+export const CONTACT = 'kabirh2006@gmail.com'

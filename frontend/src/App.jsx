@@ -12,7 +12,10 @@ export default function App() {
     <div className="min-h-screen flex flex-col">
       <header className="border-b border-line">
         <nav className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
-          <Link to="/" className="font-display text-lg">Civic Navigator</Link>
+          <span className="flex items-baseline gap-3 min-w-0">
+            <Link to="/" className="font-display text-lg shrink-0">Civic Navigator</Link>
+            <span className="hidden md:inline text-xs text-muted truncate">{t.notGov}</span>
+          </span>
           <div className="flex items-center gap-4">
             <label htmlFor="lang" className="sr-only">{t.language}</label>
             <select id="lang" value={lang} onChange={(e) => setLang(e.target.value)}

@@ -33,6 +33,8 @@ export function toFlow(steps, done, selectedId, fresh) {
   steps.forEach((s) => g.setNode(s.id, { width: NODE_W, height: NODE_H }))
   steps.forEach((s) => s.depends_on.forEach((d) => g.setEdge(d, s.id)))
   dagre.layout(g)
+  const stageOf = new Map()
+  stages(steps).forEach((grp, i) => grp.forEach((s) => stageOf.set(s.id, i + 1)))
 
   const nodes = steps.map((s) => {
     const { x, y } = g.node(s.id)
@@ -40,7 +42,7 @@ export function toFlow(steps, done, selectedId, fresh) {
       id: s.id,
       type: 'step',
       position: { x: x - NODE_W / 2, y: y - NODE_H / 2 },
-      data: { step: s, state: stepState(s, done), selected: s.id === selectedId, fresh: fresh?.has(s.id) },
+      data: { step: s, state: stepState(s, done), selected: s.id === selectedId, fresh: fresh?.has(s.id), stage: stageOf.get(s.id), first: s.depends_on.length === 0 && done.size === 0 },
     }
   })
   const edges = steps.flatMap((s) =>

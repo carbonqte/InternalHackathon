@@ -10,7 +10,7 @@ let db = clone(tasks) // in-memory stand-in for the backend
 /** GET /tasks → [{task_id, title, city}] */
 export async function listTasks() {
   await delay()
-  return db.map(({ task_id, title, city }) => ({ task_id, title, city }))
+  return db.map(({ task_id, title, title_hi, title_mr, city }) => ({ task_id, title, title_hi, title_mr, city }))
 }
 
 /** POST /query {text, city} → {task_id} | {task_id: null}  (backend will use an LLM / embeddings) */

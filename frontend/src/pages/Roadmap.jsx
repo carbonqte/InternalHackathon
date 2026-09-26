@@ -5,7 +5,7 @@ import RoadmapGraph from '../components/RoadmapGraph.jsx'
 import StepList from '../components/StepList.jsx'
 import StepPanel from '../components/StepPanel.jsx'
 import { stepState } from '../lib/graph.js'
-import { useLang, tr } from '../lib/i18n.jsx'
+import { useLang, tr, fmtDate } from '../lib/i18n.jsx'
 
 export default function Roadmap() {
   const { taskId } = useParams()
@@ -16,6 +16,7 @@ export default function Roadmap() {
   const [selected, setSelected] = useState(null)
   const [fresh, setFresh] = useState(new Set())
   const freshTimer = useRef()
+  const [copied, setCopied] = useState(false)
   const [view, setView] = useState(() => (window.innerWidth < 768 ? 'list' : 'graph'))
 
   useEffect(() => {
@@ -74,15 +75,23 @@ export default function Roadmap() {
         <div>
           <h1 className="font-display text-2xl sm:text-3xl">{tr(task, 'title', lang)}</h1>
           <p className="text-sm text-muted mt-1">
-            {task.city} · {t.lastVerified} {task.last_verified}
-            {task.sample_data && <span className="ml-2 rounded bg-warn/10 text-warn px-1.5 py-0.5 text-xs">{t.sampleData}</span>}
+            <span>{task.city}</span>
+            <span aria-hidden> · </span>
+            <span>{t.verifiedLabel} {fmtDate(task.last_verified, lang)}</span>
+            {task.sample_data && <><span aria-hidden> · </span><span className="rounded bg-warn/10 text-warn px-1.5 py-0.5 text-xs">{t.sampleData}</span></>}
           </p>
         </div>
+        <div className="flex flex-wrap items-center gap-2 no-print">
+          <button onClick={async () => { try { await navigator.clipboard.writeText(location.href); setCopied(true); setTimeout(() => setCopied(false), 2000) } catch { /* clipboard blocked */ } }}
+            className="rounded-lg border border-line bg-white px-3 py-1.5 text-sm">{copied ? t.copied : t.copyLink}</button>
+          <button onClick={() => { setView('list'); setTimeout(() => window.print(), 100) }}
+            className="rounded-lg border border-line bg-white px-3 py-1.5 text-sm">{t.print}</button>
         <div role="tablist" className="flex rounded-lg border border-line bg-white p-1 text-sm">
           {['graph', 'list'].map((v) => (
             <button key={v} role="tab" aria-selected={view === v} onClick={() => setView(v)}
               className={`px-3 py-1 rounded-md ${view === v ? 'bg-accent text-white' : 'text-muted'}`}>{t[v]}</button>
           ))}
+        </div>
         </div>
       </div>
 
@@ -111,8 +120,8 @@ export default function Roadmap() {
         {view === 'graph'
           ? <RoadmapGraph steps={task.steps} done={done} selectedId={selected} onSelect={setSelected} fresh={fresh} />
           : <StepList steps={task.steps} done={done} selectedId={selected} onSelect={setSelected} fresh={fresh} />}
-        <aside className="rounded-xl border border-line bg-white p-5 h-fit lg:sticky lg:top-6">
-          <StepPanel step={step} steps={task.steps} done={done} onToggle={toggle} />
+        <aside className="rounded-xl border border-line bg-white p-5 h-fit lg:sticky lg:top-6 no-print">
+          <StepPanel step={step} steps={task.steps} done={done} onToggle={toggle} taskTitle={task.title} />
         </aside>
       </div>
     </section>
