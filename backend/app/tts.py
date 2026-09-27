@@ -31,7 +31,8 @@ def synthesize(text: str, lang: str, s: Settings) -> bytes:
         timeout=20,
     )
     if r.status_code != 200:
-        raise TTSUnavailable(f"elevenlabs {r.status_code}")
+        # ElevenLabs explains the problem in the body (quota, bad model, blocked voice); keep it for the server log.
+        raise TTSUnavailable(f"elevenlabs {r.status_code}: {r.text[:300]}")
     _cache[key] = r.content
     if len(_cache) > _CACHE_ITEMS:
         _cache.popitem(last=False)
