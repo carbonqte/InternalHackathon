@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useParams, useSearchParams, Link } from 'react-router-dom'
-import { getTask, loadProgress, saveProgress } from '../api/client.js'
+import { getTask, loadProgress, saveProgress, requestVerification } from '../api/client.js'
 import RoadmapGraph from '../components/RoadmapGraph.jsx'
 import StepList from '../components/StepList.jsx'
 import StepPanel from '../components/StepPanel.jsx'
@@ -79,8 +79,7 @@ export default function Roadmap() {
             <span>{task.city}, {task.state}</span>
             <span aria-hidden> · </span>
             <Link to="/" className="underline underline-offset-2 hover:text-ink no-print">{t.changePlace}</Link>
-            <span aria-hidden> · </span>
-            <span>{t.verifiedLabel} {fmtDate(task.last_verified, lang)}</span>
+            {task.last_verified && <><span aria-hidden> · </span><span>{t.verifiedLabel} {fmtDate(task.last_verified, lang)}</span></>}
             {task.sample_data && <><span aria-hidden> · </span><span>{t.sampleData}</span></>}
           </p>
         </div>
@@ -99,6 +98,8 @@ export default function Roadmap() {
           )}
         </div>
       </div>
+
+      {task.is_verified === false && <DraftBanner task={task} />}
 
       {task.coverage !== 'full' && (
         <p role="note" className="mt-4 border-l-2 border-warn pl-4 py-1 text-sm max-w-3xl">
@@ -120,5 +121,39 @@ export default function Roadmap() {
         </aside>
       </div>
     </section>
+  )
+}
+
+// Shown on procedures drafted by AI that no person has checked yet. The button records a real request on the server;
+// admins see these counts as a queue and verify the most-requested procedures first.
+function DraftBanner({ task }) {
+  const [state, setState] = useState('idle') // idle | sending | done | error
+  const [msg, setMsg] = useState('')
+  async function send() {
+    if (state === 'sending' || state === 'done') return
+    setState('sending'); setMsg('')
+    try {
+      const r = await requestVerification(task.task_id, task.title)
+      setState('done')
+      setMsg(`Request sent. ${r.request_count} ${r.request_count === 1 ? 'person has' : 'people have'} asked for this to be verified.`)
+    } catch (e) {
+      setState('error')
+      setMsg(e.status === 429 ? 'Too many requests from your network. Please try again in a minute.' : e.message || 'Could not send the request. Please try again.')
+    }
+  }
+  return (
+    <div role="note" className="mt-4 max-w-3xl rounded-[3px] border-[1.5px] border-amber-500 bg-amber-100 px-4 py-3 text-amber-950 no-print">
+      <p className="font-semibold">AI-Generated Draft: Pending Verification.</p>
+      <p className="mt-1 text-sm">
+        These steps were drafted from official pages by AI and have not been checked by a person yet. Confirm each step on the linked official website.
+      </p>
+      <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
+        <button type="button" onClick={send} disabled={state === 'sending' || state === 'done'}
+          className="min-h-11 px-5 rounded-[3px] bg-amber-950 text-amber-50 font-semibold disabled:opacity-60">
+          {state === 'sending' ? 'Sending…' : state === 'done' ? 'Requested' : 'Request Fast-Track Verification'}
+        </button>
+        {msg && <p role="status" className="text-sm">{msg}</p>}
+      </div>
+    </div>
   )
 }

@@ -1,14 +1,21 @@
 """Civic Navigator API.
 
-Public (no login):  GET /health, /jurisdictions, /tasks, /tasks/{id}?state=&city=   POST /query, /tts
+Public (no login):  GET /health, /jurisdictions, /tasks, /tasks/{id}?state=&city=   POST /query, /tts,
+    /api/request-verification (counts requests to fast-track an unverified procedure; stored in local SQLite)
+Admin queue:  GET /api/admin/requests (admin sign-in on the live server; open on a laptop with no sign-in set up)
 Admin (Supabase sign-in + email in ADMIN_EMAILS):  GET /admin/tasks, /admin/tasks/{id}
     PATCH /admin/tasks/{id}/steps/{step_id}   POST /admin/extract
 Response shapes match frontend/src/api/client.js, so the frontend only swaps mock calls for fetch().
 """
 import logging
+import os
+import sqlite3
+import threading
+from contextlib import closing
+from pathlib import Path
 from typing import Literal
 
-from fastapi import Depends, FastAPI, HTTPException, Request
+from fastapi import Depends, FastAPI, Header, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response
 from pydantic import BaseModel, Field
@@ -248,3 +255,74 @@ def admin_extract(body: ExtractReq, request: Request, who: str = Depends(require
     store().add_steps(body.task_id, fresh)
     log.info("admin %s extracted %d pending steps for %s from %s", who, len(fresh), body.task_id, body.url)
     return {"added": len(fresh), "skipped_existing": len(steps) - len(fresh), "steps": fresh}
+
+
+# ---------- verification requests (demand-driven triage queue) ----------
+# Citizens can ask for an unverified (AI-drafted) procedure to be fast-tracked. Each click adds one to a counter
+# in a small local SQLite file, and admins review the most-requested procedures first.
+# SQLite is used on purpose: zero setup for local demos. On Render's free plan the file resets on each deploy.
+
+_db_lock = threading.Lock()
+
+
+def _db_path() -> str:
+    return os.getenv("REQUESTS_DB", str(Path(__file__).resolve().parents[1] / "data" / "requests.db"))
+
+
+def _db() -> sqlite3.Connection:
+    path = _db_path()
+    if path != ":memory:":
+        Path(path).parent.mkdir(parents=True, exist_ok=True)
+    con = sqlite3.connect(path, timeout=5)
+    con.row_factory = sqlite3.Row
+    con.execute(
+        "CREATE TABLE IF NOT EXISTS procedure_requests ("
+        " id INTEGER PRIMARY KEY AUTOINCREMENT,"
+        " procedure_name TEXT NOT NULL UNIQUE,"
+        " request_count INTEGER NOT NULL DEFAULT 0)"
+    )
+    return con
+
+
+class VerifyReq(BaseModel):
+    task_id: str = Field(min_length=1, max_length=80)
+    procedure_name: str | None = Field(default=None, max_length=200)  # informational; the server uses its own title
+
+
+@app.post("/api/request-verification")
+def request_verification(body: VerifyReq, request: Request):
+    limiter.check(request, "verify", 5)
+    try:
+        t = store().task(body.task_id)
+    except NotFound:
+        raise HTTPException(404, "We don't have that procedure.")
+    if t.get("is_verified", True):
+        raise HTTPException(409, "This procedure is already verified.")
+    # The name is taken from our own data, never from the request, so the queue can't be filled with junk text.
+    name = t.get("title") or t["task_id"]
+    with _db_lock, closing(_db()) as con, con:
+        con.execute(
+            "INSERT INTO procedure_requests (procedure_name, request_count) VALUES (?, 1) "
+            "ON CONFLICT(procedure_name) DO UPDATE SET request_count = request_count + 1",
+            (name,),
+        )
+        count = con.execute("SELECT request_count FROM procedure_requests WHERE procedure_name = ?", (name,)).fetchone()[0]
+    return {"procedure_name": name, "request_count": count}
+
+
+def admin_or_local(authorization: str = Header(default="")) -> str:
+    """On the live server (admin sign-in set up) this is the normal admin check.
+    On a laptop with no sign-in configured, the queue is open so the demo runs with zero setup."""
+    s = settings()
+    if s.admin_emails and s.supabase_url:
+        return require_admin(authorization)
+    return "local-demo"
+
+
+@app.get("/api/admin/requests")
+def admin_requests(_: str = Depends(admin_or_local)):
+    with _db_lock, closing(_db()) as con:
+        rows = con.execute(
+            "SELECT id, procedure_name, request_count FROM procedure_requests ORDER BY request_count DESC, id ASC LIMIT 200"
+        ).fetchall()
+    return [dict(r) for r in rows]

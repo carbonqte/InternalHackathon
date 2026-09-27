@@ -132,6 +132,22 @@ export function saveProgress(id, done) {
   try { localStorage.setItem(key(id), JSON.stringify([...done])) } catch { /* private mode */ }
 }
 
+/**
+ * POST /api/request-verification {task_id, procedure_name} → {procedure_name, request_count}
+ * A citizen asks for an AI-drafted (unverified) procedure to be checked sooner. Always a real server call:
+ * a click that is never recorded would be a fake button.
+ */
+export async function requestVerification(taskId, procedureName) {
+  if (!LIVE) throw new Error('Connect the backend (set VITE_API_BASE) to send requests.')
+  return api('/api/request-verification', { method: 'POST', body: { task_id: taskId, procedure_name: procedureName }, timeout: 30000 })
+}
+
+/** GET /api/admin/requests → [{id, procedure_name, request_count}], most requested first. */
+export async function listVerificationRequests() {
+  if (!LIVE) return null // no backend: the admin page says so instead of showing made-up numbers
+  return api('/api/admin/requests', { admin: true, timeout: 30000 })
+}
+
 /** POST /admin/extract: import draft steps from an official page. They arrive as "pending" for review. */
 export async function extractSteps(body) {
   if (!(LIVE && adminToken)) throw new Error('Sign in as admin on the live API to import pages.')

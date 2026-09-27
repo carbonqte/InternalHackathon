@@ -3160,5 +3160,146 @@
         "verified_on": "2026-09-26"
       }
     ]
+  },
+  {
+    "task_id": "solar-subsidy",
+    "area": "welfare",
+    "category": "home",
+    "popular": 11,
+    "title": "Get a rooftop solar subsidy",
+    "title_hi": "रूफटॉप सोलर सब्सिडी पाएं",
+    "title_mr": "रूफटॉप सोलर अनुदान मिळवा",
+    "title_kn": "ಮೇಲ್ಛಾವಣಿ ಸೌರ ಸಬ್ಸಿಡಿ ಪಡೆಯಿರಿ",
+    "title_gu": "રૂફટોપ સોલર સબસિડી મેળવો",
+    "title_ta": "கூரை சூரிய மின் மானியம் பெறு",
+    "keywords": [
+      "solar",
+      "rooftop",
+      "surya ghar",
+      "solar panel",
+      "subsidy",
+      "सोलर",
+      "सौर",
+      "ಸೌರ",
+      "સોલર",
+      "சூரிய"
+    ],
+    "last_verified": null,
+    "sample_data": true,
+    "is_verified": false,
+    "steps": [
+      {
+        "id": "sp1",
+        "name": "Register on the PM Surya Ghar portal",
+        "type": "form",
+        "office": "PM Surya Ghar national portal (online)",
+        "documents": [
+          "Latest electricity bill (consumer number)",
+          "Mobile number"
+        ],
+        "fee": null,
+        "link": "https://pmsuryaghar.gov.in/",
+        "status": "approved",
+        "depends_on": [],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": null,
+        "why": "Registration links your electricity connection to the scheme."
+      },
+      {
+        "id": "sp2",
+        "name": "Apply for rooftop solar and get feasibility approval",
+        "type": "form",
+        "office": "Your electricity distribution company (DISCOM)",
+        "documents": [],
+        "fee": null,
+        "link": "https://pmsuryaghar.gov.in/",
+        "status": "approved",
+        "depends_on": [
+          "sp1"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": null,
+        "why": "The DISCOM checks your connection and roof before you install."
+      },
+      {
+        "id": "sp3",
+        "name": "Install through a registered vendor",
+        "type": "visit",
+        "office": "Vendor registered with your DISCOM",
+        "documents": [],
+        "fee": null,
+        "link": "https://pmsuryaghar.gov.in/",
+        "status": "approved",
+        "depends_on": [
+          "sp2"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": null,
+        "why": "Only systems installed by registered vendors qualify for the subsidy."
+      },
+      {
+        "id": "sp4",
+        "name": "Apply for net metering and inspection",
+        "type": "form",
+        "office": "Your electricity distribution company (DISCOM)",
+        "documents": [],
+        "fee": null,
+        "link": "https://pmsuryaghar.gov.in/",
+        "status": "approved",
+        "depends_on": [
+          "sp3"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": null,
+        "why": "The DISCOM installs the net meter and inspects the plant."
+      },
+      {
+        "id": "sp5",
+        "name": "Submit bank details for the subsidy",
+        "type": "form",
+        "office": "PM Surya Ghar national portal (online)",
+        "documents": [
+          "Bank account details",
+          "Cancelled cheque"
+        ],
+        "fee": null,
+        "link": "https://pmsuryaghar.gov.in/",
+        "status": "approved",
+        "depends_on": [
+          "sp4"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": null,
+        "why": "The subsidy is paid to your bank account after commissioning."
+      },
+      {
+        "id": "sp6",
+        "name": "Subsidy credited",
+        "type": "milestone",
+        "office": "Ministry of New and Renewable Energy",
+        "documents": [],
+        "fee": null,
+        "link": "https://pmsuryaghar.gov.in/",
+        "status": "approved",
+        "depends_on": [
+          "sp5"
+        ],
+        "scope": "national",
+        "requirement": "required",
+        "processing_time": null,
+        "verified_on": null,
+        "why": "Amounts and timelines are set by the scheme; check the portal for current figures."
+      }
+    ]
   }
 ]

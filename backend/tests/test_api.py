@@ -356,3 +356,41 @@ def test_server_error_keeps_cors_header(monkeypatch):
     r = TestClient(main.app, raise_server_exceptions=False).get("/tasks", headers={"Origin": "https://civic-navigator-seven.vercel.app"})
     assert r.status_code == 500 and "secret" not in r.text
     assert r.headers.get("access-control-allow-origin") == "https://civic-navigator-seven.vercel.app"
+
+
+# ---------- verification requests (SQLite queue) ----------
+
+@pytest.fixture
+def reqdb(monkeypatch, tmp_path):
+    monkeypatch.setenv("REQUESTS_DB", str(tmp_path / "req.db"))
+
+
+def test_request_verification_counts_and_sorts(client, reqdb):
+    for _ in range(3):
+        r = client.post("/api/request-verification", json={"task_id": "solar-subsidy", "procedure_name": "anything"})
+        assert r.status_code == 200
+    assert r.json() == {"procedure_name": "Get a rooftop solar subsidy", "request_count": 3}  # server's title, not client text
+    rows = client.get("/api/admin/requests").json()  # no admin sign-in configured -> open for local demo
+    assert rows[0]["procedure_name"] == "Get a rooftop solar subsidy" and rows[0]["request_count"] == 3
+
+
+def test_request_verification_rejects_verified_and_unknown(client, reqdb):
+    assert client.post("/api/request-verification", json={"task_id": "passport"}).status_code == 409
+    assert client.post("/api/request-verification", json={"task_id": "nope"}).status_code == 404
+    assert client.post("/api/request-verification", json={}).status_code == 422
+
+
+def test_request_verification_rate_limited(client, reqdb):
+    codes = [client.post("/api/request-verification", json={"task_id": "solar-subsidy"}).status_code for _ in range(7)]
+    assert codes[:5] == [200] * 5 and 429 in codes[5:]
+
+
+def test_admin_requests_needs_admin_when_configured(client, reqdb, admin):
+    assert client.get("/api/admin/requests").status_code == 401
+    assert client.get("/api/admin/requests", headers={"Authorization": "Bearer other"}).status_code == 403
+    assert client.get("/api/admin/requests", headers=admin).status_code == 200
+
+
+def test_unverified_task_is_served_with_flag(client):
+    t = client.get("/tasks/solar-subsidy").json()
+    assert t["is_verified"] is False and len(t["steps"]) == 6

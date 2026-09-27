@@ -4,7 +4,7 @@ export const CATEGORIES = ['food', 'retail', 'services', 'manufacturing', 'onlin
 
 // Top level: what the citizen needs to do. Business is one of these; property and welfare are not mapped yet.
 export const AREAS = ['business', 'ids', 'vehicles', 'certificates', 'property', 'welfare']
-export const SOON = ['property', 'welfare']
+export const SOON = ['property']
 
 // Icons: Phosphor Icons (MIT, https://phosphoricons.com), duotone weight.
 const ICONS = { food: CookingPot, retail: Storefront, services: Scissors, manufacturing: Factory, online: DeviceMobile, home: HouseLine,

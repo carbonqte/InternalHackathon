@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { listTasks, getTaskAdmin, updateStep, extractSteps, setAdminToken, isLive } from '../api/client.js'
+import { listTasks, getTaskAdmin, updateStep, extractSteps, setAdminToken, isLive, listVerificationRequests } from '../api/client.js'
 import { authConfigured, currentSession, signIn, signOut } from '../lib/auth.js'
 
 // Admin review. On the live site this needs a Supabase sign-in, and the backend also checks the email is an admin.
@@ -76,7 +76,8 @@ function Review({ live, onExpired }) {
 
   return (
     <>
-      <div className="mt-6 flex flex-wrap items-center gap-3">
+      <RequestQueue onExpired={onExpired} />
+      <div className="mt-10 flex flex-wrap items-center gap-3">
         <label htmlFor="task" className="text-sm text-muted">Procedure</label>
         <select id="task" value={taskId} onChange={(e) => setTaskId(e.target.value)} className="max-w-full min-w-0 min-h-11 rounded-[3px] border border-line bg-card px-3 text-sm">
           {tasks.map((t) => <option key={t.task_id} value={t.task_id}>{t.title}</option>)}
@@ -116,6 +117,61 @@ function Review({ live, onExpired }) {
 
       <Import live={live} taskId={taskId} taskTitle={tasks.find((t) => t.task_id === taskId)?.title} onAdded={() => reload()} onError={fail} />
     </>
+  )
+}
+
+// Demand-driven queue: real counts from the backend's SQLite table, most requested first.
+// Refreshes every 10 seconds so a click on a citizen's page shows up here during a demo.
+function RequestQueue({ onExpired }) {
+  const [rows, setRows] = useState(undefined) // undefined = loading, null = no backend
+  const [error, setError] = useState('')
+  const [updated, setUpdated] = useState(null)
+
+  async function load() {
+    try {
+      const r = await listVerificationRequests()
+      setRows(r); setError(''); setUpdated(new Date())
+    } catch (e) {
+      if (e.status === 401) onExpired()
+      setError(e.message || 'Could not load the queue.')
+    }
+  }
+  useEffect(() => {
+    load()
+    const id = setInterval(load, 10000)
+    return () => clearInterval(id)
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  const top = rows?.[0]?.request_count || 1
+  return (
+    <section aria-labelledby="queue" className="mt-6">
+      <div className="flex flex-wrap items-baseline justify-between gap-3">
+        <h2 id="queue" className="text-xl">Verification requests</h2>
+        <p className="text-sm text-muted">
+          {updated && <>Updated {updated.toLocaleTimeString()} · </>}
+          <button type="button" onClick={load} className="underline underline-offset-4 hover:text-ink min-h-11">Refresh</button>
+        </p>
+      </div>
+      <p className="text-sm text-muted mt-1">Citizens asked for these AI-drafted procedures to be checked. Verify the top of the list first.</p>
+      {error && <p role="alert" className="mt-3 text-sm text-warn border-l-2 border-warn pl-3">{error}</p>}
+      {rows === undefined && !error && <div aria-busy="true" className="mt-4 h-24 rounded bg-line/60 animate-pulse" />}
+      {rows === null && <p className="mt-4 text-sm text-muted">Connect the backend (set VITE_API_BASE) to see real requests.</p>}
+      {rows?.length === 0 && <p className="mt-4 text-sm text-muted">No requests yet. They appear here when someone presses “Request Fast-Track Verification” on a draft procedure.</p>}
+      {rows?.length > 0 && (
+        <ol className="mt-4 border border-ink/80 bg-card divide-y divide-line">
+          {rows.map((r, i) => (
+            <li key={r.id} className="grid grid-cols-[2rem_minmax(0,1fr)_auto] items-center gap-3 p-3">
+              <span className="text-muted tabular-nums">{i + 1}</span>
+              <div className="min-w-0">
+                <p className="font-medium">{r.procedure_name}</p>
+                <div aria-hidden className="mt-1.5 h-1 bg-line"><div className="h-full bg-warn" style={{ width: `${(r.request_count / top) * 100}%` }} /></div>
+              </div>
+              <span className="tabular-nums font-semibold whitespace-nowrap">{r.request_count} {r.request_count === 1 ? 'request' : 'requests'}</span>
+            </li>
+          ))}
+        </ol>
+      )}
+    </section>
   )
 }
 
