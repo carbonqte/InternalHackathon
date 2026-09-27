@@ -63,7 +63,15 @@ async def guard(request: Request, call_next):
             limiter.check(request, "public", settings().rate_public)
         except HTTPException as e:
             return JSONResponse({"detail": e.detail}, status_code=e.status_code, headers=e.headers)
-    resp = await call_next(request)
+    try:
+        resp = await call_next(request)
+    except Exception:
+        # Never leak internals, and keep the CORS header so the browser can show this message instead of "Failed to fetch".
+        log.exception("unhandled error on %s", request.url.path)
+        resp = JSONResponse({"detail": "Something went wrong on our side. Please try again."}, status_code=500)
+        origin = request.headers.get("origin")
+        if origin in settings().cors_origins:
+            resp.headers["Access-Control-Allow-Origin"] = origin
     resp.headers["X-Content-Type-Options"] = "nosniff"
     resp.headers["Referrer-Policy"] = "no-referrer"
     resp.headers["X-Frame-Options"] = "DENY"

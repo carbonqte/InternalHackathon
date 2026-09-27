@@ -74,6 +74,7 @@ body { background: #fff; }
 
 /* Long words (Tamil, Kannada, German-style compounds) may wrap only when they would otherwise overflow. */
 main :where(h1, h2, h3, p, li, a, button, label, span, dd) { overflow-wrap: anywhere; }
+main .whitespace-nowrap :where(span, button) { overflow-wrap: normal; }
 
 /* Small spaced-out label above a section. */
 .eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }

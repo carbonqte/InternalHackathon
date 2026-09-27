@@ -102,6 +102,13 @@ def html_to_text(html: str) -> str:
 
 def fetch_source(url: str, s: Settings) -> str:
     """Returns the readable text of an official page."""
+    try:
+        return _fetch(url, s)
+    except httpx.HTTPError as e:  # site down, timeout, TLS or network trouble
+        raise SourceError(f"Could not reach that page ({type(e).__name__}). Check the link opens in your browser, then try again.") from e
+
+
+def _fetch(url: str, s: Settings) -> str:
     current = url
     with httpx.Client(timeout=15, follow_redirects=False, headers={"User-Agent": "CivicNavigatorBot/1.0 (student project)"}) as c:
         for _ in range(4):
@@ -187,12 +194,15 @@ Page text:
 def call_llm(prompt: str, s: Settings) -> str:
     if not s.anthropic_key:
         raise ExtractError("No LLM key is set on the server (ANTHROPIC_API_KEY).")
-    r = httpx.post(
-        "https://api.anthropic.com/v1/messages",
-        headers={"x-api-key": s.anthropic_key, "anthropic-version": "2023-06-01", "content-type": "application/json"},
-        json={"model": s.llm_model, "max_tokens": 4000, "messages": [{"role": "user", "content": prompt}]},
-        timeout=60,
-    )
+    try:
+        r = httpx.post(
+            "https://api.anthropic.com/v1/messages",
+            headers={"x-api-key": s.anthropic_key, "anthropic-version": "2023-06-01", "content-type": "application/json"},
+            json={"model": s.llm_model, "max_tokens": 4000, "messages": [{"role": "user", "content": prompt}]},
+            timeout=60,
+        )
+    except httpx.HTTPError as e:
+        raise ExtractError(f"Could not reach the AI service ({type(e).__name__}). Try again in a minute.") from e
     if r.status_code != 200:
         raise ExtractError(f"The LLM request failed (HTTP {r.status_code}).")
     return "".join(b.get("text", "") for b in r.json().get("content", []))

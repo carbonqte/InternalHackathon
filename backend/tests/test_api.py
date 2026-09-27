@@ -329,3 +329,30 @@ def test_fetch_connects_to_checked_ip(monkeypatch):
 def test_admin_patch_types(client, admin, fields):
     sid = client.get("/admin/tasks/passport", headers=admin).json()["steps"][0]["id"]
     assert client.patch(f"/admin/tasks/passport/steps/{sid}", headers=admin, json={"fields": fields}).status_code == 422
+
+
+def test_unreachable_page_gives_clear_message(client, admin, monkeypatch):
+    def boom(*a, **k):
+        raise pipeline.httpx.ConnectError("down")
+    monkeypatch.setattr(pipeline.socket, "getaddrinfo", lambda *a, **k: [(0, 0, 0, "", ("164.100.1.1", 443))])
+    monkeypatch.setattr(pipeline.httpx.Client, "stream", boom)
+    r = client.post("/admin/extract", headers=admin, json={"task_id": "passport", "url": "https://www.fssai.gov.in/"})
+    assert r.status_code == 422 and "Could not reach that page" in r.json()["detail"]
+
+
+def test_llm_unreachable_gives_clear_message(monkeypatch):
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "k"); settings.cache_clear()
+    def boom(*a, **k):
+        raise pipeline.httpx.ConnectTimeout("slow")
+    monkeypatch.setattr(pipeline.httpx, "post", boom)
+    with pytest.raises(pipeline.ExtractError, match="Could not reach the AI service"):
+        pipeline.call_llm("x", settings())
+
+
+def test_server_error_keeps_cors_header(monkeypatch):
+    def boom():
+        raise RuntimeError("secret internals")
+    monkeypatch.setattr(main, "store", boom)
+    r = TestClient(main.app, raise_server_exceptions=False).get("/tasks", headers={"Origin": "https://civic-navigator-seven.vercel.app"})
+    assert r.status_code == 500 and "secret" not in r.text
+    assert r.headers.get("access-control-allow-origin") == "https://civic-navigator-seven.vercel.app"

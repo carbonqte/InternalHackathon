@@ -9,7 +9,7 @@ let adminToken = null
 /** Set by the admin sign-in (Supabase Auth). Admin calls go to the API only when a token is present. */
 export function setAdminToken(t) { adminToken = t || null }
 
-async function api(path, { method = 'GET', body, admin = false, timeout = 10000 } = {}) {
+async function api(path, { method = 'GET', body, admin = false, timeout = 25000 } = {}) {
   const ctrl = new AbortController()
   const timer = setTimeout(() => ctrl.abort(), timeout)
   try {
@@ -26,6 +26,18 @@ async function api(path, { method = 'GET', body, admin = false, timeout = 10000 
     return res.json()
   } finally { clearTimeout(timer) }
 }
+
+// The free backend sleeps when idle and takes ~50 s to wake. Nudge it as soon as the site opens,
+// and if a public request still fails or times out, quietly use the built-in data instead of showing an error.
+if (LIVE && typeof window !== 'undefined') fetch(API_BASE + '/health').catch(() => {})
+async function live(path, fallback, opts = {}) {
+  try { return await api(path, { timeout: 6000, ...opts }) } catch (e) {
+    if (e.status === 404) throw e
+    console.warn('[api] using built-in data:', e.message)
+    return fallback()
+  }
+}
+
 const qs = (o) => new URLSearchParams(Object.entries(o).filter(([, v]) => v)).toString()
 const delay = (ms = 250) => new Promise((r) => setTimeout(r, ms))
 const clone = (x) => structuredClone(x)
@@ -33,14 +45,17 @@ let db = clone(tasks) // in-memory stand-in for the backend
 
 /** GET /jurisdictions → [{state, covered, cities:[{city, covered}], rights?}] */
 export async function listJurisdictions() {
-  if (LIVE) return api('/jurisdictions')
+  if (LIVE) return live('/jurisdictions', () => clone(jurisdictions))
   await delay(100)
   return clone(jurisdictions)
 }
 
 /** GET /tasks → [{task_id, title, ...}] */
 export async function listTasks() {
-  if (LIVE) return api('/tasks')
+  if (LIVE) return live('/tasks', mockList)
+  return mockList()
+}
+async function mockList() {
   await delay()
   return db
     .map(({ steps, last_verified, sample_data, ...rest }) => rest)
@@ -49,7 +64,10 @@ export async function listTasks() {
 
 /** POST /query {text, state, city} → {task_id} | {task_id: null}  (backend: keywords, then an LLM that can only pick from our list) */
 export async function searchTask(text, state, city) {
-  if (LIVE) return api('/query', { method: 'POST', body: { text: text.slice(0, 300), state, city } })
+  if (LIVE) return live('/query', () => mockSearch(text), { method: 'POST', body: { text: text.slice(0, 300), state, city } })
+  return mockSearch(text)
+}
+async function mockSearch(text) {
   await delay()
   const q = text.toLowerCase()
   const scored = db
@@ -64,7 +82,10 @@ export async function searchTask(text, state, city) {
  * coverage: 'full' (state and city covered), 'state' (city not covered), 'national' (state not covered).
  */
 export async function getTask(id, state = 'Maharashtra', city = 'Mumbai') {
-  if (LIVE) return api(`/tasks/${encodeURIComponent(id)}?${qs({ state, city })}`)
+  if (LIVE) return live(`/tasks/${encodeURIComponent(id)}?${qs({ state, city })}`, () => mockTask(id, state, city))
+  return mockTask(id, state, city)
+}
+async function mockTask(id, state, city) {
   await delay()
   const t = db.find((x) => x.task_id === id)
   if (!t) throw new Error('Task not found')
@@ -85,6 +106,8 @@ export async function getTask(id, state = 'Maharashtra', city = 'Mumbai') {
 }
 
 /** GET /admin/tasks/{id} → task with all steps (every place, incl. pending) */
+export const isLive = LIVE
+
 export async function getTaskAdmin(id) {
   if (LIVE && adminToken) return api(`/admin/tasks/${encodeURIComponent(id)}`, { admin: true })
   await delay()
